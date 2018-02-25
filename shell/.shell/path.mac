@@ -4,8 +4,8 @@
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 # Android
-PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
-PATH="$ANDROID_SDK_ROOT/tools:$PATH"
+PATH="/usr/local/share/android-sdk/platform-tools:$PATH"
+PATH="/usr/local/share/android-sdk/tools:$PATH"
 
 # Coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
