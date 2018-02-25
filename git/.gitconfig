@@ -1,0 +1,44 @@
+[user]
+    name = Aaron Meier
+    email = aaron.e.meier@gmail.com 
+	editor = vim
+    signinkey = FEA58AF268EF584E63C28CE1719BA7B4D886FAE5
+
+[commit]
+    gpgsign = true
+
+[github]
+    user = cynja
+
+[rerere]
+    enabled = true
+
+[color]
+    diff = auto
+    status = auto
+    ui = auto
+
+[core]
+	editor = code
+	excludesfile = ~/.gitexcludes
+
+[diff]
+    tool = default-difftool
+
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[alias]
+	l = log --oneline --graph --decorate
+    st = status
+    ci = commit
+    br = branch
+    ch = checkout
+    df = diff
+    lg = log -p
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

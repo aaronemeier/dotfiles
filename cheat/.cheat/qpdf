@@ -1,0 +1,2 @@
+# Remove password protection
+qpdf --password="password" --decrypt input.pdf output.pdf

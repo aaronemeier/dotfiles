@@ -1,0 +1,14 @@
+# Keybindings for tmux
+Ctrl+b              = $Prefix
+$Prefix + $         = Rename session
+$Prefix + ,         = Rename window
+$Prefix + %         = Split pane horizontally
+$Prefix + "         = Split pane vertically
+$Prefix + &         = Kill window
+$Prefix + :         = Enter command mode
+$Prefix + ?         = List key bindings
+$Prefix + d         = Detach sesion
+$Prefix + o         = Rotate window
+$Prefix + Space     = Next layout
+$Prefix + !         = Break pane
+$Prefix + #         = List buffers

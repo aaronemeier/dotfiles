@@ -1,0 +1,45 @@
+# Beets configuration
+
+library: ~/Music/.library.db
+directory: ~/Music
+plugins: edit chroma fromfilename convert replaygain embedart fetchart
+ignore_hidden: yes
+replace:
+  # Replace slashes, dots and control chars with _
+  '[\\/]': _
+  '^\.': _
+  '[\x00-\x1f]': _
+  '[<>:"\?\*\|]': _
+  '\.$': _
+  '\s+$': ''
+  '^\s+': ''
+  '^-': _
+asciify_paths: yes
+ui:
+  color: yes
+
+import:
+  # Copy files on import and write tags
+  write: yes
+  move: yes
+  resume: ask
+  duplicate_action: ask
+
+paths:
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: $albumartist/Singles/$title
+  comp: Compilations/$album%aunique{}/$track $title
+
+convert:
+  auto: yes
+
+replaygain:
+  #auto: no
+  backend: command
+
+embedart:
+  remove_art_file: yes
+
+fetchart:
+  minwith: 100
+  sources: filesystem coverart amazon albumart

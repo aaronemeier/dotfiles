@@ -1,0 +1,2 @@
+# Expand disk to 100G
+VBoxManage modifyhd system.vdi --resize 107374

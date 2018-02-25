@@ -1,0 +1,21 @@
+# Shell-independent path for mac
+
+# Postgres
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+# Android
+PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+PATH="$ANDROID_SDK_ROOT/tools:$PATH"
+
+# Coreutils
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# fzf
+PATH="/usr/local/opt/fzf/bin:$PATH"
+
+# Homebrew
+PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+# Manuals
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"

@@ -1,0 +1,14 @@
+-- postgresql config
+
+-- Setup custom prompt
+--  %M = Hostname
+--  %> = Port
+--  %n = Username
+--  %/ = Database
+--  %R = Connection state: single mode (^), disconnected (!), normal =
+--  %# = User state: superuser (#), regular user (>)
+--  %x = Transaction state: blank unless in a transaction block (*)
+\set PROMPT1 '%M:%> %n@%/%R%#%x '
+
+-- Increase history limit
+\set HISTSIZE 5000

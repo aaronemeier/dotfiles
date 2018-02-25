@@ -1,0 +1,107 @@
+# Do whitelisting
+*
+
+# Ansible
+!ansible/
+!ansible/.ansible/
+!ansible/.ansible/vault_password_file
+!ansible/.ansible.cfg
+
+# Bash
+!bash/
+!bash/.bash_logout
+!bash/.bash_profile
+!bash/.bashrc
+
+# beets
+!beets/
+!beets/.config/
+!beets/.config/beets/
+!beets/.config/beets/config.yaml
+
+# bin
+!bin/
+!bin/.bin
+!bin/.bin/.gitkeep
+
+# cheat
+!cheat/
+!cheat/.cheat
+!cheat/.cheat/*
+
+# chunkwm
+!chunkwm/
+!chunkwm/.chunkwmrc
+
+# dircolors
+!dircolors/
+!dircolors/.dircolors
+
+# git
+!git/
+!git/.gitconfig
+!git/.gitexcludes
+
+# gnupg
+!gnupg/
+!gnupg/.gnupg
+!gnupg/.gnupg/gpg-agent.conf
+!gnupg/.gnupg/gpg.conf
+
+# google
+!google/
+!google/.gitkeep
+
+# ideavim
+!ideavim/
+!ideavim/.ideavimrc
+
+# khd
+!khd/
+!khd/.khdrc
+
+# nvim
+!nvim/
+!nvim/.config
+!nvim/.config/nvim
+!nvim/.config/nvim/init.vim
+
+# postgres
+!postgres/
+!postgres/.psqlrc
+
+# shell
+!shell/
+!shell/.shell
+!shell/.shell/*
+
+# ssh
+!ssh/
+!ssh/.ssh/
+!ssh/.ssh/config
+
+# tmux
+!tmux/
+!tmux/.tmux.conf
+
+# vim
+!vim/
+!vim/.vimrc
+!vim/.vim
+!vim/.vim/autoload
+!vim/.vim/autoload/*.vim
+
+# zsh
+!zsh/
+!zsh/.zsh
+!zsh/.zsh/functions
+!zsh/.zsh/functions/*.zsh
+!zsh/.zsh/prompt
+!zsh/.zsh_profile
+!zsh/.zshrc
+
+# scripts etc.
+!.gitattributes
+!.gitignore
+!init.sh
+!README.md

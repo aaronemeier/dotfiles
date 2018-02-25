@@ -1,0 +1,4 @@
+#!/bin/zsh
+# Profile for zsh (Gets executed on login shells)
+
+[ -r ~/.zshrc ] && source ~/.zshrc

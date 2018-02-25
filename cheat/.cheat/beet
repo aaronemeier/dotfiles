@@ -1,0 +1,11 @@
+# List music
+beet ls
+
+# Search for albums
+beet ls -a albumname
+
+# Show stats
+beet stats
+
+# Import music
+beet import some_music_folder

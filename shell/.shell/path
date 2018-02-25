@@ -1,0 +1,6 @@
+# Shell-independent path for all platforms
+
+# Binaries
+export PATH="$HOME/.bin/:$PATH"
+
+[[ "$(uname)" == 'Darwin' ]] && source "$HOME/.shell/path.mac"

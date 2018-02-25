@@ -1,0 +1,13 @@
+# Keybindings for chunkwm
+alt + {h,j,k,l}             = Focus {west, south, north, east} window
+shift + alt + {h,j,k,l}     = Move window to {west, south, north, east}
+alt + {a,s,w,d}             = Increase window size on {west, south, north, east}
+shift + alt + {a,s,w,d}     = Decrease window size on {west, south, north, east}
+shift + alt + 0             = Reset window sizes to normal
+alt + r                     = Rotate tree
+alt + y                     = Mirror on y-axis
+alt + x                     = Mirror on x-axis
+alt + f                     = Toggle window into fullscreen
+alt + e                     = Toggle split type
+alt + t                     = Toggle float mode
+cmd + return                = Open terminal

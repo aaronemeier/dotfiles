@@ -1,0 +1,42 @@
+# Shell-independent aliases
+
+# Enable aliases to run with sudo
+alias sudo='sudo '
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+
+# Colorize ls, set short and long output aliases
+alias ls='ls -G --color'
+alias l='ls -lFh'
+alias ll='l -A'
+
+# less is more
+alias more='less'
+
+# Colorize grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Enable interactive mode for rm/cp/mv
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+ 
+# Aliases for pip, which can be used outside virtualenvs
+alias gpip='PIP_REQUIRE_VIRTUALENV="" pip3 '
+alias gpip2='PIP_REQUIRE_VIRTUALENV="" pip2 '
+
+# Simple rsync
+alias rsync-copy="rsync -avz --progress -h"
+alias rsync-move="rsync -avz --progress -h --remove-source-files"
+alias rsync-update="rsync -avzu --progress -h"
+alias rsync-synchronize="rsync -avzu --delete --progress -h"
+
+# Tmux
+alias tmux-attach='tmux attach -t'
+alias tmux-session-new='tmux new-session -s'
+alias tmux-session-list='tmux list-sessions'
+alias tmux-session-kill='tmux kill-session -t'

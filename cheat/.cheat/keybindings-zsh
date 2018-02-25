@@ -1,0 +1,12 @@
+# Keybindings for zsh
+
+Esc + :         = Command mode
+Esc + v         = Visual mode
+Esc + i         = Insert mode
+Ctrl + p        = Search command in history upwards
+Ctrl + n        = Search command in history downwards
+Ctrl + w        = Delete previous word
+Ctrl + r        = Incremental history search 
+Fn + Right      = Go to end of line
+Fn + Left       = Go to beginning of line
+Shift + Tab     = Reverse jump in menus
