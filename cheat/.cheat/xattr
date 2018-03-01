@@ -1,2 +1,0 @@
-# Remove "download source" from files recursively
-xattr -d -r com.apple.quarantine ~/Downloads

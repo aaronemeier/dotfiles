@@ -1,0 +1,37 @@
+# Utilities
+
+## Create 10GB file with zeroes
+mkfile 10g /path/to/file
+
+## Convert file to html
+textutil -convert html file
+
+## Unlock file or folder
+sudo chflags -R nouchg /path/to/file/or/folder
+
+## Audiobook from text
+say -v Alex -f file.txt -o "output.m4a"
+
+## Renew ip
+sudo ipconfig set en0 DHCP
+
+## Clear DNS Cache
+sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+
+## Show Application Using a Certain Port
+sudo lsof -i :80
+
+## Securely Remove file
+srm /path/to/file
+
+## Execute apple script
+osascript /path/to/script.scpt
+
+## Prevent System Sleep for 1 hour
+caffeinate -u -t 3600
+
+## Remove "download source" from files recursively
+xattr -d -r com.apple.quarantine ~/Downloads
+
+## Remove password protection
+qpdf --password="password" --decrypt input.pdf output.pdf
