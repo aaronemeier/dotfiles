@@ -1,0 +1,13 @@
+# duti
+
+# Get an id for an app (Note: $appname=/Applications/$appname.app)
+osascript -e 'id of app "$appname"'
+
+# Associate
+duti -s com.microsoft.VSCode .md all
+
+# Get associated app for an extension
+duti -x "md"
+
+# Get handlers for a handler type
+duti -l public.plain-text
