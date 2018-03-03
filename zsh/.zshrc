@@ -210,7 +210,7 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[Z' reverse-menu-complete
 
 # Setup fzf autocompletion
-if [ -x "$(command -v npm)" ]; then
+if [ -x "$(command -v fzf)" ]; then
     # Trigger fzf with ~~
     export FZF_COMPLETION_TRIGGER='~~'
 
@@ -238,8 +238,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 [[ $( (cd ~/.dotfiles/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
             && echo -e "\n $fg[red] WARNING:  There are uncommited changes in your dotfiles. $reset_color \n"
 
-# Start tmux on local sessions automatically
-if [[ -z "${TMUX+x}" && -n $"SSH_CONNECTION" ]]; then
+# Start tmux on local sessions automatically, when not already running or root
+if [[ -z "${TMUX+x}" && -n $"SSH_CONNECTION" && ! "$USERNAME" == "root" ]]; then
     tmux -2 attach -t default ||  tmux new -s default
 fi
 
