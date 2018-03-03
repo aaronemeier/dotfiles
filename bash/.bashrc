@@ -75,4 +75,6 @@ bind "set convert-meta off"
 
 # Setup a very basic prompt
 PS1="\h:\W \u\$ "
+
+# Setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
