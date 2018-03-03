@@ -63,3 +63,11 @@ zsh-update-python() {
 zsh-cleanup-directory() {
     find "$@" -iname '.ds_store|desktop.ini|thumbs.db|' -type f -delete
 }
+
+zsh-setup-save(){
+    brew bundle dump --file "$HOME/.setup/Brewfile"
+}
+
+zsh-setup-run(){
+    run-setup='(cd "$HOME/.setup" && sh run.sh)'
+}
