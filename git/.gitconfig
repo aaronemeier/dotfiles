@@ -1,7 +1,7 @@
 [user]
     name = Aaron Meier
     email = aaron.e.meier@gmail.com 
-	editor = vim
+    editor = code
     signinkey = A49FE2BB01D33343
 
 [commit]
