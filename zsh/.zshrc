@@ -202,7 +202,8 @@ bindkey '^w' backward-kill-word
 # Enable backward search in history with ctrl+r
 bindkey '^r' history-incremental-search-backward
 
-# Enable moving to beginning/end of line with ctrl-a/ctrl-e and home/end
+# Enable moving to beginning/end of line with home/end
+# Note: Add key fn+left with esc sequence to [1~ and fn+right to [4~
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
@@ -214,9 +215,6 @@ if [ -x "$(command -v fzf)" ]; then
     # Trigger fzf with ~~
     export FZF_COMPLETION_TRIGGER='~~'
 
-    # Prefer tmux split pane
-    export FZF_TMUX=1
-
     source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
     # Key bindings
     # Ctrl+T - Search and paste selected to cli
@@ -226,7 +224,7 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # Setup prompt
-export TERM="screen-256color"
+export TERM="xterm-256color"
 DEFAULT_USER="cynja"
 POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator status vi_mode context dir dir_writable vcs virtualenv nvm)
@@ -238,8 +236,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 [[ $( (cd ~/.dotfiles/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
             && echo -e "\n $fg[red] WARNING:  There are uncommited changes in your dotfiles. $reset_color \n"
 
-# Start tmux on local sessions automatically, when not already running or root
-if [[ -z "${TMUX+x}" && -n $"SSH_CONNECTION" && ! "$USERNAME" == "root" ]]; then
+# Start tmux on remote sessions automatically, when not already running or root
+if [[ -z "${TMUX+x}" && -z $"SSH_CONNECTION" && ! "$USERNAME" == "root" ]]; then
     tmux -2 attach -t default ||  tmux new -s default
 fi
 
