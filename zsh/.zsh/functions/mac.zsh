@@ -65,7 +65,7 @@ zsh-cleanup-directory() {
 }
 
 zsh-setup-save(){
-    brew bundle dump --file "$HOME/.setup/Brewfile"
+    brew bundle dump --force --file="$HOME/.setup/Brewfile"
 }
 
 zsh-setup-run(){
