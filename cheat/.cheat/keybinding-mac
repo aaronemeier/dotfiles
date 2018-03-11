@@ -30,5 +30,7 @@ Cmd + H             = Hide window
 Cmd + M             = Minimize window
 Cmd + Ctrl + F      = Full screen
 
-## Alfred
-Cmd + Space         = Run Alfred
+# Mission control
+Ctrl + Up           = Show mission control
+Ctrl + Left         = Move to left space
+Ctrl + Right        = Move to right space
