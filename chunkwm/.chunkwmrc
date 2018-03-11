@@ -51,7 +51,23 @@ chunkc set window_region_locked 1
 chunkc set window_float_center 1
 
 # Tiling rules
-chunkc tiling::rule --owner "System Preferences" --state tile
+# See https://github.com/koekeishiya/chunkwm/blob/master/src/plugins/tiling/README.md
+# Get windows of focused desktop: chunkc tiling::query --desktop windows
+# Get state of a window by id: chunkc tiling::query --window $id
+chunkc tiling::rule --owner "System Preferences" --state float
 chunkc tiling::rule --owner "Xcode" --state float
 chunkc tiling::rule --owner "Finder" --name "Copy" --state float
 chunkc tiling::rule --owner "App Store" --state float
+chunkc tiling::rule --owner "Alfred" --state float
+chunkc tiling::rule --owner "Dash" --state float
+chunkc tiling::rule --owner "WhatsApp" --state float
+chunkc tiling::rule --owner "Telegram" --state float
+chunkc tiling::rule --owner "Skype" --state float
+chunkc tiling::rule --owner "Postgres" --state float
+chunkc tiling::rule --owner "Spotify" --state native-fullscreen
+chunkc tiling::rule --owner "IntelliJ IDEA" --name "^Preferences$" --state float
+chunkc tiling::rule --owner "IntelliJ IDEA" --name "^Default Preferences$" --state float
+chunkc tiling::rule --owner "IntelliJ IDEA" --name "^Project Structure$" --state float
+chunkc tiling::rule --owner "IntelliJ IDEA" --name "^Default Project Structure$" --state float
+chunkc tiling::rule --owner "IntelliJ IDEA" --name "^Reformat File" --state float
+chunkc tiling::rule --owner "IntelliJ IDEA" --name "^Rename$" --state float

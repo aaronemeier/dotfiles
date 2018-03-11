@@ -45,5 +45,10 @@ alt - e : chunkc tiling::window --toggle split
 # Map toggle float mode for window
 alt - t : chunkc tiling::window --toggle float
 
+# Reload chunkwm
+cmd + alt + ctrl - r : brew services restart chunkwm
+
 # App shortcuts
-cmd - return : open -a /Applications/iTerm.app
+cmd + alt + ctrl - 2: open -a /Applications/Spotify.app
+cmd + alt + ctrl - 3: open -a /Applications/iTerm.app
+cmd + alt + ctrl - 6: open -a /Applications/Telegram.app
