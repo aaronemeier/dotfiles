@@ -4,7 +4,7 @@
 if [[ "$(uname)" != 'Darwin' ]]; then
     echo "Not on a mac"
     return
-fi 
+fi
 
 zsh-update-system() {
     zsh-update-mas
@@ -44,15 +44,15 @@ zsh-update-npm() {
 zsh-update-python() {
     if [ -x "$(command -v pip2)" ]; then
         echo -e '\e[1mUpdating pip2 packages\e[0m\n'
-        (for pkg in $(gpip2 list --outdated --format=legacy | cut -d' ' -f1); do 
-            gpip2 install --user --upgrade $pkg; 
+        (for pkg in $(gpip2 list --outdated --format=legacy | cut -d' ' -f1); do
+            gpip2 install --user --upgrade $pkg;
         done) &
         python_pid="$!"
     fi
     if [ -x "$(command -v pip3)" ]; then
         echo -e '\e[1mUpdating pip3 packages\e[0m\n'
-        (for pkg in $(gpip list --outdated --format=legacy | cut -d' ' -f1); do 
-            gpip install --user --upgrade $pkg; 
+        (for pkg in $(gpip list --outdated --format=legacy | cut -d' ' -f1); do
+            gpip install --user --upgrade $pkg;
         done) &
         python3_pid="$!"
     fi
@@ -69,5 +69,5 @@ zsh-setup-save(){
 }
 
 zsh-setup-run(){
-    run-setup='(cd "$HOME/.setup" && sh run.sh)'
+    (cd "$HOME/.setup" && sh run.sh)
 }
