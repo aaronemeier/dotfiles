@@ -57,6 +57,8 @@ chunkc set window_float_center 1
 chunkc tiling::rule --owner "System Preferences" --state float
 chunkc tiling::rule --owner "Xcode" --state float
 chunkc tiling::rule --owner "Finder" --name "Copy" --state float
+chunkc tiling::rule --owner "Finder" --name "Connecting" --state float
+
 chunkc tiling::rule --owner "App Store" --state float
 chunkc tiling::rule --owner "Alfred" --state float
 chunkc tiling::rule --owner "Dash" --state float
