@@ -16,10 +16,12 @@ PATH="/usr/local/opt/fzf/bin:$PATH"
 # Python
 PATH="$HOME/Library/Python/3.6/bin/:$PATH"
 
+# Dotnet
+PATH="/usr/local/share/dotnet:$PATH"
+
 # Homebrew
 PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
 
 # Manuals
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
