@@ -3,10 +3,6 @@
 # Postgres
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
-# Android
-PATH="/usr/local/share/android-sdk/platform-tools:$PATH"
-PATH="/usr/local/share/android-sdk/tools:$PATH"
-
 # Coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
@@ -15,6 +11,12 @@ PATH="/usr/local/opt/fzf/bin:$PATH"
 
 # Python
 PATH="$HOME/Library/Python/3.6/bin/:$PATH"
+
+# TeX
+PATH="/Library/TeX/texbin:$PATH"
+
+# Wireshark
+PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
 
 # Dotnet
 PATH="/usr/local/share/dotnet:$PATH"
