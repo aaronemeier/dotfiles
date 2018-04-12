@@ -7,6 +7,7 @@ stow bash
 stow zsh
 stow bin
 stow dircolors
+stow tmux
 stow vim
 
 if [ "$(uname)" == 'Darwin' ]; then
@@ -22,7 +23,6 @@ if [ "$(uname)" == 'Darwin' ]; then
     stow nvim
     stow postgres
     stow ssh
-    stow tmux
 
     defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$HOME/.dotfiles/google/iterm"
     defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
