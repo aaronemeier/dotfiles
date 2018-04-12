@@ -17,4 +17,4 @@ export LESS_TERMCAP_so=$(printf "\e[0;37;102m")
 export LESS_TERMCAP_ue=$(printf "\e[0m")
 export LESS_TERMCAP_us=$(printf "\e[4;32m")
 
-[[ "$(/usr/bin/uname)" == 'Darwin' ]] && source "$HOME/.shell/exports.mac"
+[[ "$(uname)" == 'Darwin' ]] && source "$HOME/.shell/exports.mac"
