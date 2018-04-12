@@ -15,6 +15,20 @@ zsh-update() {
     zsh-update-system
     zsh-update-npm
     zsh-update-python
+    zsh-update-vscode
+}
+
+zsh-update-vscode(){
+    echo -e '\e[1mUpdating vscode extensions\e[0m\n'
+    while read extension
+    do
+        code --install-extension "$extension"
+    done < "$HOME/.setup/vscode-extensions"
+}
+
+zsh-sign-wm(){
+    codesign -fs "chunkwm-khd-cert" /usr/local/opt/chunkwm/bin/chunkwm
+    codesign -fs "chunkwm-khd-cert" /usr/local/opt/khd/bin/khd
 }
 
 zsh-update-mas() {
@@ -66,6 +80,7 @@ zsh-cleanup-directory() {
 
 zsh-setup-save(){
     brew bundle dump --force --file="$HOME/.setup/Brewfile"
+    code --list-extensions > vscode-extensions > "$HOME/.setup/vscode-extensions"
 }
 
 zsh-setup-run(){
