@@ -1,7 +1,0 @@
-" IdeaVim settings
-
-" Use neovim settings
-source ~/config/nvim/init.vimrc
-
-" Enable surroundings
-set vim-surround
