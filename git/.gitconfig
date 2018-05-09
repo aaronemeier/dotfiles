@@ -36,6 +36,7 @@
     ch = checkout
     df = diff
     lg = log -p
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
