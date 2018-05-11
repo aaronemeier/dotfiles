@@ -91,6 +91,17 @@
 !vim/.vim/autoload
 !vim/.vim/autoload/*.vim
 
+# vscode
+!vscode/
+!vscode/Library/
+!vscode/Library/Application Support/
+!vscode/Library/Application Support/Code/
+!vscode/Library/Application Support/Code/User/
+!vscode/Library/Application Support/Code/User/snippets/
+!vscode/Library/Application Support/Code/User/snippets/*
+!vscode/Library/Application Support/Code/User/keybindings.json
+!vscode/Library/Application Support/Code/User/settings.json
+
 # zsh
 !zsh/
 !zsh/.zsh

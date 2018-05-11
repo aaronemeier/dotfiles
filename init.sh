@@ -23,6 +23,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     stow nvim
     stow postgres
     stow ssh
+    stow vscode
 
     defaults write com.googlecode.iterm2 "PrefsCustomFolder" -string "$HOME/.dotfiles/google/iterm"
     defaults write com.googlecode.iterm2 "LoadPrefsFromCustomFolder" -bool true
