@@ -27,7 +27,6 @@ alias mv='mv -i'
  
 # Aliases for pip, which can be used outside virtualenvs
 alias gpip='PIP_REQUIRE_VIRTUALENV="" pip3 '
-alias gpip2='PIP_REQUIRE_VIRTUALENV="" pip2 '
 
 # Simple rsync
 alias rsync-copy="rsync -avz --progress -h"
