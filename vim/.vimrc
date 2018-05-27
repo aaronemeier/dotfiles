@@ -1,56 +1,17 @@
 " Vim config
 
-" Load vim-plug - Plugin manager
-call plug#begin('~/.vim/plugged')
-
-" Load surround - Quoting/parenthesizing made simple
-Plug 'tpope/vim-surround'
-Plug 'altercation/vim-colors-solarized'
-
-" Load auto-pairs - Insert or delete brackets, parents, quotes in pair
-Plug 'jiangmiao/auto-pairs'
-
-" fzf on homebrew
-if has('mac')
-  Plug '/usr/local/opt/fzf'
-  Plug 'junegunn/fzf.vim'
-endif
-
-" Initialize plugin system
-call plug#end()
-
-" Install plugins
-:PlugInstall
-
 " Strip trailing whitespaces on save
 autocmd BufWritePre * %s/\s\+$//e
 
 " Unify indentation on save
 autocmd BufWritePre * retab
 
-" Set location for backup files
-set backup
-set backupdir=$HOME/.vim/backup/
-
-" Set location for swap files (// means file will always be unique)
-set directory=$HOME/.vim/swap//
-
-" Write swap after 100 chars have been written
-set updatecount=100
-
-" Write no swap if only 5s have been passed since last write
-set updatetime=5000
-
-" Set location for undo files
-set undofile
-set undodir=$HOME/.vim/undo/
-
 " Not necessary to state explicitly, just to make it very clear that we want vim
 set nocompatible
 
 " Enable solarized theme
 syntax enable
-set background=dark
+"set background=light
 colorscheme solarized
 
 " Set spell check language
