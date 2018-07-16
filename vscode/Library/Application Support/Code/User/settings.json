@@ -1,13 +1,13 @@
 {
     "editor.accessibilitySupport": "off",
     "editor.cursorWidth": 2,
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": false,
     "editor.formatOnType": true,
     "editor.minimap.maxColumn": 100,
     "editor.quickSuggestionsDelay": 3,
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.colorTheme": "Solarized Light",
+    "workbench.colorTheme": "Solarized Dark",
     "workbench.statusBar.feedback.visible": false,
     "window.restoreFullscreen": true,
     "window.restoreWindows": "folders",
@@ -22,4 +22,6 @@
     "terminal.integrated.fontFamily": "'Source Code Pro'",
     "extensions.ignoreRecommendations": true,
     "latex-workshop.view.pdf.viewer": "tab",
+    "editor.renderWhitespace": "none",
+    "editor.minimap.enabled": false,
 }
