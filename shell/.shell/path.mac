@@ -21,6 +21,9 @@ PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
 # Dotnet
 PATH="/usr/local/share/dotnet:$PATH"
 
+# Android
+PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+
 # Homebrew
 PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
