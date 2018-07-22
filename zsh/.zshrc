@@ -11,12 +11,11 @@ esac
 
 # Source shell shared things
 for file in "$HOME/.shell/"{path,exports,aliases,profile}; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file"
+    source "$file"
 done
 
-# Include mac functions
-[[ "$(uname)" == 'Darwin' ]] && [ -r "$HOME/.zsh/functions/mac.zsh" ] && [ -r "$HOME/.zsh/functions/mac.zsh" ] \
-    && source "$HOME/.zsh/functions/mac.zsh"
+# Include functions
+source "$HOME/.zsh/functions.zsh"
 
 # Load colors for easier coloring
 autoload -U colors && colors
@@ -172,25 +171,7 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Enable completion of ssh hosts
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' \
-    hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })' 
-
-# Enable vi-mode for key bindings
-bindkey -v
-
-# Kill the 0.4 seconds lag for switching vi-modes
-KEYTIMEOUT=1
-
-# Enable vimode switching
-function zle-keymap-select { VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"; zle reset-prompt }
-zle -N zle-keymap-select
-
-# Enable cli editing
-zle -N edit-command-line
-autoload -Uz edit-command-line
-bindkey -M vicmd 'v' edit-command-line
-
-# Enable searching in command mode
-bindkey -M vicmd '/' history-incremental-search-backward
+    hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
 # Enable history navigation
 bindkey '^p' up-history
@@ -224,19 +205,13 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # Setup prompt
-export TERM="xterm-256color"
-DEFAULT_USER="cynja"
-POWERLEVEL9K_MODE='awesome-patched'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator status vi_mode context dir dir_writable vcs virtualenv nvm)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-[ -r "$HOME/.zsh/prompt" ] && [ -r "$HOME/.zsh/prompt" ] \
-    && source "$HOME/.zsh/prompt"
+source "$HOME/.zsh/theme.zsh"
 
 # Check dotfiles
 [[ $( (cd ~/.dotfiles/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
             && echo -e "\n $fg[red] WARNING:  There are uncommited changes in your dotfiles. $reset_color \n"
 
-# Start tmux on remote sessions automatically, when not already running or root
+# Autostart tmux on remote systems
 if [[ -z "${TMUX+x}" && -z $"SSH_CONNECTION" && ! "$USERNAME" == "root" ]]; then
     tmux -2 attach -t default ||  tmux new -s default
 fi
@@ -245,7 +220,7 @@ fi
 if [ -r "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
-    
+
     # Highlight commands, options, arguments, paths, strings and brackets
     # See: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
