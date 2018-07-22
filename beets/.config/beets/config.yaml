@@ -1,6 +1,6 @@
 # Beets configuration
-library: ~/Music/Library/.library.db
-directory: ~/Music/Library/
+library: ~/Music/.library.db
+directory: ~/Music/
 plugins: edit replaygain fromfilename convert embedart fetchart
 ignore_hidden: yes
 replace:
