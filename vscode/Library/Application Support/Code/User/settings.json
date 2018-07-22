@@ -24,4 +24,6 @@
     "latex-workshop.view.pdf.viewer": "tab",
     "editor.renderWhitespace": "none",
     "editor.minimap.enabled": false,
+    "latex-workshop.message.update.show": false,
+    "explorer.confirmDelete": false,
 }
