@@ -11,7 +11,7 @@ set nocompatible
 
 " Enable solarized theme
 syntax enable
-"set background=light
+set background=dark
 colorscheme solarized
 
 " Set spell check language
@@ -88,7 +88,7 @@ set ttyfast
 set lazyredraw
 
 " Enable relative line numbers
-set relativenumber
+"set relativenumber
 
 " Do not reset cursor to start of line when moving around
 set nostartofline
