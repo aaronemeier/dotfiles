@@ -1,13 +1,13 @@
 # Do whitelisting
 *
 
-# Ansible
+# ansible
 !ansible/
 !ansible/.ansible/
 !ansible/.ansible/vault_password_file
 !ansible/.ansible.cfg
 
-# Bash
+# bash
 !bash/
 !bash/.bash_logout
 !bash/.bash_profile
@@ -29,10 +29,6 @@
 !cheat/.cheat
 !cheat/.cheat/*
 
-# chunkwm
-!chunkwm/
-!chunkwm/.chunkwmrc
-
 # dircolors
 !dircolors/
 !dircolors/.dircolors
@@ -51,20 +47,6 @@
 # google
 !google/
 !google/.gitkeep
-
-# ideavim
-!ideavim/
-!ideavim/.ideavimrc
-
-# khd
-!khd/
-!khd/.khdrc
-
-# nvim
-!nvim/
-!nvim/.config
-!nvim/.config/nvim
-!nvim/.config/nvim/init.vim
 
 # postgres
 !postgres/
@@ -88,8 +70,8 @@
 !vim/
 !vim/.vimrc
 !vim/.vim
-!vim/.vim/autoload
-!vim/.vim/autoload/*.vim
+!vim/.vim/colors
+!vim/.vim/colors/solarized.vim
 
 # vscode
 !vscode/
@@ -105,9 +87,8 @@
 # zsh
 !zsh/
 !zsh/.zsh
-!zsh/.zsh/functions
-!zsh/.zsh/functions/*.zsh
-!zsh/.zsh/prompt
+!zsh/.zsh/functions.zsh
+!zsh/.zsh/theme.zsh
 !zsh/.zsh_profile
 !zsh/.zshrc
 
