@@ -1,8 +1,8 @@
 [user]
     name = Aaron Meier
-    email = aaron.e.meier@gmail.com
+    email = aaron@0x41.ch
     editor = code
-    signinkey = 105F32486C3498EF9458A604E3D538A97C92A8EA
+    signinkey = 54B6E3713490B2F985EBBC396882585F8C92DB90
 
 [commit]
     gpgsign = true
