@@ -1,0 +1,8 @@
+beets==1.4.7
+pip==18.0
+pyacoustid==1.1.5
+pylint==2.1.1
+setuptools==40.2.0
+typed-ast==1.1.0
+typing==3.6.4
+virtualenvwrapper==4.8.2

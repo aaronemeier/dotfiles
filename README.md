@@ -1,21 +1,14 @@
 # dotfiles
-My dotfiles
-
-## Install dependencies
-```bash
-# Mac
-brew install git stow
-
-# Debian
-apt-get install git stow
-```
+[![Build Status](https://travis-ci.org/cynja/dotfiles.svg?branch=master)](https://travis-ci.org/cynja/dotfiles)
+Dotfiles and setup script
 
 ## Setup
 ```bash
 git clone https://github.com/cynja/dotfiles.git ~/.dotfiles
 ```
 
-## Activate
+## Install
+You need to login in the App Store first.
 ```bash
-(cd ~/.dotfiles && sh init.sh)
+(cd ~/.dotfiles && sh setup.sh)
 ```

@@ -1,0 +1,342 @@
+---
+- hosts: localhost
+  gather_facts: false
+  vars:
+    hostname: "Dumbledore"
+    username: "cynja"
+    cleanup:
+      remove:
+        - "/Users/{{ username }}/Applications"
+        - "/Users/{{ username }}/Public"
+        - "/Applications/Microsoft OneNote.app"
+        - "/Applications/Microsoft Outlook.app"
+      disable:
+        - "/Applications/Utilities/Terminal.app"
+        - "/Applications/Chess.app"
+        - "/Applications/DVD Player.app"
+        - "/Applications/Dashboard.app"
+        - "/Applications/FaceTime.app"
+        - "/Applications/iBooks.app"
+        - "/Applications/Launchpad.app"
+        - "/Applications/Mail.app"
+        - "/Applications/Maps.app"
+        - "/Applications/Messages.app"
+        - "/Applications/Mission Control.app"
+        - "/Applications/Photo Booth.app"
+        - "/Applications/Reminders.app"
+        - "/Applications/Siri.app"
+        - "/Applications/Stickies.app"
+        - "/Applications/TextEdit.app"
+      hide:
+        - "/Applications/TeX/"
+        - "/Applications/Roland/"
+        - "/Users/{{ username }}/Music/GarageBand"
+        - "/Users/{{ username }}/Music/Audio Music Apps/"
+        - "/Users/{{ username }}/Movies/iMovie Library.imovielibrary"
+        - "/Users/{{ username }}/Movies/iMovie Theater.theater"
+        - "/Applications/Xcode.app"
+  tasks:
+    - name: "Enable brew bundle tap"
+      homebrew_tap: name="homebrew/bundle"
+      environment:
+        HOMEBREW_UPGRADE_CLEANUP: "1"
+        HOMEBREW_NO_ANALYTICS: "1"
+        HOMEBREW_NO_INSECURE_REDIRECT: "1"
+        HOMEBREW_CASK_OPTS: "--appdir=/Applications --fontdir=/Library/Fonts"
+
+    - name: "Check if brew has updates"
+      shell: brew bundle check --file="{{ lookup('env','PWD') }}/packages/brew"
+      register: bundle_check_result
+      ignore_errors: true
+      changed_when: false
+
+    - name: "Install brew packages"
+      shell: brew bundle install --file="{{ lookup('env','PWD') }}/packages/brew"
+      when: bundle_check_result is failed
+      environment:
+        HOMEBREW_UPGRADE_CLEANUP: "1"
+        HOMEBREW_NO_ANALYTICS: "1"
+        HOMEBREW_NO_INSECURE_REDIRECT: "1"
+        HOMEBREW_CASK_OPTS: "--appdir=/Applications --fontdir=/Library/Fonts"
+
+    - name: "Enable brew PATH in apps"
+      command: launchctl config user path "/usr/local/bin:$PATH"
+      become: true
+      become_user: root
+  
+    - name: "Install pip packages"
+      pip: requirements="{{ lookup('env','PWD') }}/packages/pip" state=latest executable=pip3 extra_args="--user"
+      environment:
+        PIP_REQUIRE_VIRTUALENV: ""
+      
+    - name: "Install npm packages"
+      npm: name="{{ item }}" global=true production=true state=present
+      with_lines: "cat {{ lookup('env','PWD') }}/packages/npm"
+
+    - name: "Install vscode packages"
+      shell: code --install-extension "{{ item }}"
+      with_lines: "cat packages/vscode"
+
+    - name: Check if Paragon ExtFS has been installed
+      stat: path="/Applications/extFS for Mac.app"
+      register: paragon_extfs_check
+      changed_when: false
+      ignore_errors: true
+
+    - name: Open Paragon ExtFS installer
+      command: open "/usr/local/Caskroom/paragon-extfs/11/FSInstaller.app"
+      when: not paragon_extfs_check.stat.exists
+
+    - name: Check if Paragon NTFS has been installed
+      stat: path="/Applications/Paragon NTFS for Mac 15.app"
+      register: paragon_ntfs_check
+      changed_when: false
+      ignore_errors: true
+
+    - name: Open Paragon NTFS installer
+      command: open "/usr/local/Caskroom/paragon-ntfs/15/FSInstaller.app"
+      when: not paragon_ntfs_check.stat.exists
+  
+    - name: Setup dotfiles
+      shell: cd "/Users/{{ username }}/.dotfiles/" && ./dotfiles.sh
+
+    - name: "Setup dnscrypt"
+      ini_file: path="/usr/local/etc/dnscrypt-proxy.toml" section="" option="{{ item.option }}" value="{{ item.value }}" state="{{ item.state }}"
+      with_items:
+        - { option: "server_names", value: "['cloudflare']", state: "present" }
+        - { option: "listen_addresses", value: "['127.0.0.1:53', '[::1]:53']", state: "present" }
+        - { option: "max_clients", value: "250", state: "present" }
+        - { option: "ipv4_servers", value: "true", state: "present" }
+        - { option: "ipv6_servers", value: "false", state: "present" }
+        - { option: "dnscrypt_servers", value: "true", state: "present" }
+        - { option: "doh_servers", value: "true", state: "present" }
+        - { option: "require_dnssec", value: "true", state: "present" }
+        - { option: "require_nolog", value: "true", state: "present" }
+        - { option: "require_nofilter", value: "true", state: "present" }
+        - { option: "fallback_resolver", value: "1.1.1.1:53", state: "present" }
+        - { option: "ignore_system_dns", value: "true", state: "present" }
+        - { option: "block_ipv6", value: "true", state: "present" }
+        - { option: "cache", value: "true", state: "present" }
+        - { option: "cache_size", value: "8192", state: "present" }
+      notify:
+        - Restart dnscrypt
+
+    - name: "Update dns resolver"
+      shell: networksetup -setdnsservers "{{ item }}" 127.0.0.1
+      with_items:
+        - "Wi-Fi"
+        - "Thunderbolt Ethernet"
+        - "Thunderbolt Bridge"
+        - "Bluetooth PAN"
+        - "Home"
+      become: true
+      become_user: root
+
+    - name: "Set shell"
+      user: shell="/bin/zsh" name="{{ username }}"
+      become: true
+      become_user: root
+
+    - name: "Set hostname"
+      shell: >
+            systemsetup -setcomputername "{{ hostname }}";
+            scutil --set ComputerName "{{ hostname }}";
+            scutil --set HostName "{{ hostname }}";
+            scutil --set LocalHostName "{{ hostname }}";
+      become: true
+      become_user: root
+
+    - name: "Set netbios name"
+      osx_defaults: domain="/Library/Preferences/SystemConfiguration/com.apple.smb.server" key=NetBIOSName value="{{ hostname }}"
+      become: true
+      become_user: root
+
+    - name: "Disable captitative portal assistant"
+      osx_defaults: domain="/Library/Preferences/SystemConfiguration/com.apple.captive.control" key="Active" state=present type=bool value=false
+      become: true
+      become_user: root
+
+    - name: "Disable hyperlink auditing beacon"
+      osx_defaults: domain="com.apple.Safari" key="com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled" state=present type=bool value=false
+    
+    - name: "Disable bootsound"
+      shell: >
+              nvram SystemAudioVolume=" ";
+              nvram SystemAudioVolumeDB=" ";
+      become: true
+      become_user: root
+
+    - name: "Set default apps"
+      command: "duti -s {{ item.app }} {{ item.ext }} all"
+      with_items:
+        # Set vscode as default for text files
+        - { app: "com.microsoft.VSCode", ext: "public.plain-text" }
+        # Set vscode as default for common files
+        - { app: "com.microsoft.VSCode", ext: "md" }
+        - { app: "com.microsoft.VSCode", ext: "cfg" }
+        - { app: "com.microsoft.VSCode", ext: "ini" }
+        - { app: "com.microsoft.VSCode", ext: "conf" }
+        - { app: "com.microsoft.VSCode", ext: "ini" }
+        - { app: "com.microsoft.VSCode", ext: "sh" }
+        - { app: "com.microsoft.VSCode", ext: "zsh" }
+        - { app: "com.microsoft.VSCode", ext: "bat" }
+        - { app: "com.microsoft.VSCode", ext: "cmd" }
+        - { app: "com.microsoft.VSCode", ext: "xml" }
+        - { app: "com.microsoft.VSCode", ext: "plist" }
+        # Set vscode as default for Java
+        - { app: "com.microsoft.VSCode", ext: "properties" }
+        - { app: "com.microsoft.VSCode", ext: "gradle" }
+        - { app: "com.microsoft.VSCode", ext: "java" }
+        # Set vscode as default for python
+        - { app: "com.microsoft.VSCode", ext: "py" }
+        - { app: "com.microsoft.VSCode", ext: "yml" }
+        - { app: "com.microsoft.VSCode", ext: "yaml" }
+        - { app: "com.microsoft.VSCode", ext: "j2" }
+        - { app: "com.microsoft.VSCode", ext: "jinja2" }
+        # Set vscode as default for C/C++
+        - { app: "com.microsoft.VSCode", ext: "cpp" }
+        - { app: "com.microsoft.VSCode", ext: "c" }
+        - { app: "com.microsoft.VSCode", ext: "h" }
+        # Set vscode as default for Posgres
+        - { app: "com.microsoft.VSCode", ext: "sql" }
+        - { app: "com.microsoft.VSCode", ext: "ddl" }
+        - { app: "com.microsoft.VSCode", ext: "dml" }
+        - { app: "com.microsoft.VSCode", ext: "pgsql" }
+        # Set Quick Time Player as default for music files
+        - { app: "com.apple.QuickTimePlayerX", ext: "mp3" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "flac" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "aac" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "wma" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "ogg" }
+        # Set Quick Time Player as default for video files
+        - { app: "com.apple.QuickTimePlayerX", ext: "mpg" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "mkv" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "mp4" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "wmv" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "m4a" }
+        # Mail
+        #- { app: "", ext: "mailto" }
+        # Browser
+        #- { app: "com.apple.safari", ext: "public.html" }
+
+    - name: "Remove all tags in Finder"
+      osx_defaults:
+        domain: "com.apple.finder"
+        key: FavoriteTagNames
+        state: present
+        type: array
+        value:
+          - ""
+
+    - name: "Enable spring loading folder when dragging items into it"
+      osx_defaults: key="com.apple.springing.enable" state=present type=bool value=true
+
+    - name: "[setup] Enable instant spring loading"
+      osx_defaults: key="com.apple.springing.delay" state=present type=float value=0.2
+
+    - name: "Disable scroll on Dock items"
+      osx_defaults: domain="com.apple.dock" key="scroll-to-open" state=present type=bool value=false
+
+    - name: "Remove all item from Dock"
+      osx_defaults: domain="com.apple.dock" key="persistent-apps" state=absent
+
+    - name: "Expand all panels by default"
+      osx_defaults: key={{ item }} state=present type=bool value=true
+      with_items:
+        - "NSNavPanelExpandedStateForSaveMode"
+        - "PMPrintingExpandedStateForPrint2"
+        - "PMPrintingExpandedStateForPrint"
+    
+    - name: "Expand info panes by default"
+      osx_defaults: domain="com.apple.finder.FXInfoPanesExpanded" key="{{ item }}" state=present type=bool value=true
+      with_items:
+        - "General"
+        - "OpenWith"
+        - "Privileges"
+
+    - name: "Close printer app automatically"
+      osx_defaults: domain="com.apple.print.PrintingPrefs" key="Quit When Finished" state=present type=bool value=true
+
+    - name: "Disable saving new files to iCloud"
+      osx_defaults: key=NSDocumentSaveNewDocumentsToCloud state=present type=bool value=false
+
+    - name: "Disable creating .DS_STORE files on network"
+      osx_defaults: domain="com.apple.desktopservices" key=DSDontWriteNetworkStores state=present value=true
+
+    - name: "Disable creating .DS_STORE files on usb volumes"
+      osx_defaults: domain="com.apple.desktopservices" key=DSDontWriteUSBStores state=present value=true
+
+    - name: "Check for software updates daily"
+      osx_defaults: domain="com.apple.SoftwareUpdate" key="ScheduleFrequency" state=present type=int value=1
+
+    - name: "Disable Airdrop"
+      osx_defaults: domain="com.apple.NetworkBrowser" key=DisableAirDrop state=present type=bool value=true
+
+    - name: "Speedup window resize"
+      osx_defaults: key=NSWindowResizeTime state=present type=float value=0.1
+
+    - name: "Disable crash reporting"
+      osx_defaults: domain="com.apple.CrashReporter" key=DialogType state=present value=none
+
+    - name: "Set screenshot location to Desktop"
+      osx_defaults: domain="com.apple.screencapture" key="location" state=present value="/Users/{{ username }}/Desktop"
+
+    - name: "Set screenshot image type to png"
+      osx_defaults: domain="com.apple.screencapture" key=type state=present value=png
+
+    - name: "Disable shadow in screenshots"
+      osx_defaults: domain="com.apple.screencapture" key="disable-shadow" state=present type=bool value=true
+
+    - name: "Disable bonjour service"
+      osx_defaults: domain="/Library/Preferences/com.apple.mDNSResponder.plist" key="NoMulticastAdvertisements" state=present type=bool value="YES"
+      become: true
+      become_user: root
+
+    - name: "Empty trash securely by default"
+      osx_defaults: domain="com.apple.finder" key=EmptyTrashSecurely state=present type=bool value=true
+
+    - name: "Set timemachine backup interval to 24h"
+      osx_defaults: domain="/System/Library/LaunchDaemons/com.apple.backupd-auto" key=StartInterval state=present type=int value=86400
+      become: yes
+      become_user: root
+
+    - name: "Set timemachine backup size to 900GB"
+      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key=MaxSize state=present type=int value=921600
+      become: yes
+      become_user: root
+
+    - name: Disable time machine prompt for new disks as backup volume
+      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key=DoNotOfferNewDisksForBackup state=present type=bool value=true
+      become: true
+      become_user: root
+
+    - name: Disable time machine backup while on battery
+      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key=RequiresACPower state=present type=bool value=true
+      become: true
+      become_user: root
+
+    - name: "Remove items"
+      file: dest="{{ item }}" state=absent
+      with_items: "{{ cleanup.remove }}"
+      become: true
+      become_user: root
+
+    - name: "Disable items "
+      file: path="{{ item }}" mode=0000
+      with_items: "{{ cleanup.disable }}"
+      become: true
+      become_user: root
+      
+    - name: "Hide items"
+      command: "chflags hidden '{{ item }}'"
+      with_items:
+        - "{{ cleanup.hide }}"
+        - "{{ cleanup.disable }}"
+      become: true
+      become_user: root
+
+  handlers:
+    - name: Restart dnscrypt
+      service: name="dnscrypt-proxy" state="restarted"
+      become: True
+      become_user: root

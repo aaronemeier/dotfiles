@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 mac-run-setup(){
-    (cd "$HOME/.setup" && sh run.sh)
+    (cd "$HOME/.dotfiles" && sh setup.sh)
 }
 
 mac-update() {
@@ -30,8 +30,7 @@ mac-update-brew() {
         brew update
         brew upgrade
         brew cask upgrade
-        brew cleanup --outdated
-        brew cask cleanup --outdated
+        brew cleanup -s
     else
         echo -e '==> \e[1m Error: brew not found\e[0m\n'
     fi        
@@ -50,7 +49,7 @@ mac-update-npm() {
 mac-update-python() {
     if [ -x "$(command -v pip)" ]; then
         echo -e '==> \e[1m Updating pip packages \e[0m\n'
-        gpip install --upgrade pip
+        gpip install --upgrade pip setuptools wheel
         for pkg in $(gpip list --outdated --format=freeze | cut -d'=' -f1); do
             gpip install --user --upgrade $pkg;
         done
@@ -63,10 +62,10 @@ mac-save-setup(){
     if [ -x "$(command -v brew)" ] || [ -x "$(command -v code)" ] ||
         [ -x "$(command -v pip)" ] ||[ -x "$(command -v npm)" ]; then
         echo -e '==> \e[1m Saving setup \e[0m\n'        
-        brew bundle dump --force --file="$HOME/.setup/Brewfile"
-        code --list-extensions > "$HOME/.setup/Vscodefile"
-        gpip list --user --not-required --format=freeze > "$HOME/.setup/Pipfile"
-        npm list -g --depth=0 | sed -n 's/^├── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.setup/Npmfile"
+        brew bundle dump --force --file="$HOME/.dotfiles/packages/brew"
+        code --list-extensions > "$HOME/.dotfiles/packages/vscode"
+        gpip list --user --not-required --format=freeze > "$HOME/.dotfiles/pip"
+        npm list -g --depth=0 | sed -n 's/^├── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.dotfiles/npm"
     else
         echo -e '==> \e[1m Error: at least one package manager is not installed \e[0m\n'
     fi

@@ -44,9 +44,9 @@
 !gnupg/.gnupg/gpg-agent.conf
 !gnupg/.gnupg/gpg.conf
 
-# google
-!google/
-!google/.gitkeep
+# packages
+!packages/
+!packages/*
 
 # postgres
 !postgres/
@@ -61,6 +61,10 @@
 !ssh/
 !ssh/.ssh/
 !ssh/.ssh/config
+
+# sync
+!sync/
+!sync/.gitkeep
 
 # tmux
 !tmux/
@@ -92,8 +96,17 @@
 !zsh/.zsh_profile
 !zsh/.zshrc
 
-# scripts etc.
+# git
 !.gitattributes
 !.gitignore
-!init.sh
+
+# travis
+!.travis.yml
+
+# setup scripts
+!.ansible.cfg
+!dotfiles.sh
+!inventory
 !README.md
+!setup.sh
+!setup.yml
