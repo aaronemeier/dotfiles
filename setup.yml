@@ -10,31 +10,33 @@
         - "/Users/{{ username }}/Public"
         - "/Applications/Microsoft OneNote.app"
         - "/Applications/Microsoft Outlook.app"
-      disable:
-        - "/Applications/Utilities/Terminal.app"
+        - "/Applications/OneDrive.app"
+        - "/Library/Keyboard Layouts/Logitech.bundle"
+      hide:
+        - "/Applications/Books.app"
         - "/Applications/Chess.app"
-        - "/Applications/DVD Player.app"
         - "/Applications/Dashboard.app"
         - "/Applications/FaceTime.app"
-        - "/Applications/iBooks.app"
+        - "/Applications/Home.app"
         - "/Applications/Launchpad.app"
         - "/Applications/Mail.app"
         - "/Applications/Maps.app"
-        - "/Applications/Messages.app"
         - "/Applications/Mission Control.app"
         - "/Applications/Photo Booth.app"
         - "/Applications/Reminders.app"
         - "/Applications/Siri.app"
         - "/Applications/Stickies.app"
+        - "/Applications/Stocks.app"
         - "/Applications/TextEdit.app"
-      hide:
+        - "/Applications/Utilities/Terminal.app"
+        - "/Applications/VoiceMemos.app"
         - "/Applications/TeX/"
-        - "/Applications/Roland/"
         - "/Users/{{ username }}/Music/GarageBand"
         - "/Users/{{ username }}/Music/Audio Music Apps/"
         - "/Users/{{ username }}/Movies/iMovie Library.imovielibrary"
         - "/Users/{{ username }}/Movies/iMovie Theater.theater"
         - "/Applications/Xcode.app"
+        - "/Volumes"
   tasks:
     - name: "Enable brew bundle tap"
       homebrew_tap: name="homebrew/bundle"
@@ -43,7 +45,7 @@
         HOMEBREW_NO_ANALYTICS: "1"
         HOMEBREW_NO_INSECURE_REDIRECT: "1"
         HOMEBREW_CASK_OPTS: "--appdir=/Applications --fontdir=/Library/Fonts"
-
+      
     - name: "Check if brew has updates"
       shell: brew bundle check --file="{{ lookup('env','PWD') }}/packages/brew"
       register: bundle_check_result
@@ -59,16 +61,16 @@
         HOMEBREW_NO_INSECURE_REDIRECT: "1"
         HOMEBREW_CASK_OPTS: "--appdir=/Applications --fontdir=/Library/Fonts"
 
-    - name: "Enable brew PATH in apps"
-      command: launchctl config user path "/usr/local/bin:$PATH"
+    - name: "Enable brew PATH in GUI"
+      command: launchctl config user path '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
       become: true
       become_user: root
-  
+
     - name: "Install pip packages"
       pip: requirements="{{ lookup('env','PWD') }}/packages/pip" state=latest executable=pip3 extra_args="--user"
       environment:
         PIP_REQUIRE_VIRTUALENV: ""
-      
+
     - name: "Install npm packages"
       npm: name="{{ item }}" global=true production=true state=present
       with_lines: "cat {{ lookup('env','PWD') }}/packages/npm"
@@ -76,28 +78,26 @@
     - name: "Install vscode packages"
       shell: code --install-extension "{{ item }}"
       with_lines: "cat packages/vscode"
-
-    - name: Check if Paragon ExtFS has been installed
-      stat: path="/Applications/extFS for Mac.app"
-      register: paragon_extfs_check
-      changed_when: false
-      ignore_errors: true
-
-    - name: Open Paragon ExtFS installer
-      command: open "/usr/local/Caskroom/paragon-extfs/11/FSInstaller.app"
-      when: not paragon_extfs_check.stat.exists
-
-    - name: Check if Paragon NTFS has been installed
-      stat: path="/Applications/Paragon NTFS for Mac 15.app"
+    
+    - name: "Install keyboard layout"
+      copy: dest="/Library/Keyboard Layouts/{{ item }}" src="files/{{ item }}" mode=0755
+      with_items:
+        - "LogitechSwissGerman.icns"
+        - "LogitechSwissGerman.keylayout"
+      become: true
+      become_user: root
+  
+    - name: "Check if Paragon NTFS has been installed"
+      stat: path="/Applications/NTFS for Mac.app"
       register: paragon_ntfs_check
       changed_when: false
       ignore_errors: true
 
-    - name: Open Paragon NTFS installer
+    - name: "Open Paragon NTFS installer"
       command: open "/usr/local/Caskroom/paragon-ntfs/15/FSInstaller.app"
       when: not paragon_ntfs_check.stat.exists
-  
-    - name: Setup dotfiles
+
+    - name: "Setup dotfiles"
       shell: cd "/Users/{{ username }}/.dotfiles/" && ./dotfiles.sh
 
     - name: "Setup dnscrypt"
@@ -113,7 +113,7 @@
         - { option: "require_dnssec", value: "true", state: "present" }
         - { option: "require_nolog", value: "true", state: "present" }
         - { option: "require_nofilter", value: "true", state: "present" }
-        - { option: "fallback_resolver", value: "1.1.1.1:53", state: "present" }
+        - { option: "fallback_resolver", value: "'1.1.1.1:53'", state: "present" }
         - { option: "ignore_system_dns", value: "true", state: "present" }
         - { option: "block_ipv6", value: "true", state: "present" }
         - { option: "cache", value: "true", state: "present" }
@@ -125,7 +125,8 @@
       shell: networksetup -setdnsservers "{{ item }}" 127.0.0.1
       with_items:
         - "Wi-Fi"
-        - "Thunderbolt Ethernet"
+        #- "Thunderbolt Ethernet"
+        - "iPhone USB"
         - "Thunderbolt Bridge"
         - "Bluetooth PAN"
         - "Home"
@@ -158,7 +159,7 @@
 
     - name: "Disable hyperlink auditing beacon"
       osx_defaults: domain="com.apple.Safari" key="com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled" state=present type=bool value=false
-    
+
     - name: "Disable bootsound"
       shell: >
               nvram SystemAudioVolume=" ";
@@ -212,12 +213,9 @@
         - { app: "com.apple.QuickTimePlayerX", ext: "mpg" }
         - { app: "com.apple.QuickTimePlayerX", ext: "mkv" }
         - { app: "com.apple.QuickTimePlayerX", ext: "mp4" }
+        - { app: "com.apple.QuickTimePlayerX", ext: "m4v" }
         - { app: "com.apple.QuickTimePlayerX", ext: "wmv" }
         - { app: "com.apple.QuickTimePlayerX", ext: "m4a" }
-        # Mail
-        #- { app: "", ext: "mailto" }
-        # Browser
-        #- { app: "com.apple.safari", ext: "public.html" }
 
     - name: "Remove all tags in Finder"
       osx_defaults:
@@ -239,6 +237,11 @@
 
     - name: "Remove all item from Dock"
       osx_defaults: domain="com.apple.dock" key="persistent-apps" state=absent
+      notify:
+        - Restart dock
+
+    - name: "Disable desktop"
+      osx_defaults: domain="com.apple.finder" key=CreateDesktop state=present type=bool value=false
 
     - name: "Expand all panels by default"
       osx_defaults: key={{ item }} state=present type=bool value=true
@@ -246,7 +249,7 @@
         - "NSNavPanelExpandedStateForSaveMode"
         - "PMPrintingExpandedStateForPrint2"
         - "PMPrintingExpandedStateForPrint"
-    
+
     - name: "Expand info panes by default"
       osx_defaults: domain="com.apple.finder.FXInfoPanesExpanded" key="{{ item }}" state=present type=bool value=true
       with_items:
@@ -305,38 +308,48 @@
       become: yes
       become_user: root
 
-    - name: Disable time machine prompt for new disks as backup volume
+    - name: "Disable time machine prompt for new disks as backup volume"
       osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key=DoNotOfferNewDisksForBackup state=present type=bool value=true
       become: true
       become_user: root
 
-    - name: Disable time machine backup while on battery
+    - name: "Disable time machine backup while on battery"
       osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key=RequiresACPower state=present type=bool value=true
       become: true
       become_user: root
+    
+    - name: "Set key repetition speed"
+      osx_defaults: key=KeyRepeat state=present type=int value=0
+
+    - name: "Set initial time until key repetition gets started"
+      osx_defaults: key=InitialKeyRepeat state=present type=int value=35
 
     - name: "Remove items"
       file: dest="{{ item }}" state=absent
       with_items: "{{ cleanup.remove }}"
       become: true
       become_user: root
+      ignore_errors: true
 
-    - name: "Disable items "
-      file: path="{{ item }}" mode=0000
-      with_items: "{{ cleanup.disable }}"
+    - name: "Set spotlight exclusions"
+      osx_defaults: domain="/.Spotlight-V100/VolumeConfiguration.plist" key=Exclusions state=present type=array value="{{ item }}"
+      loop:
+        - "{{ cleanup.hide }}"
       become: true
       become_user: root
       
     - name: "Hide items"
       command: "chflags hidden '{{ item }}'"
-      with_items:
-        - "{{ cleanup.hide }}"
-        - "{{ cleanup.disable }}"
+      with_items: "{{ cleanup.hide }}"
       become: true
       become_user: root
+      ignore_errors: true
 
   handlers:
     - name: Restart dnscrypt
       service: name="dnscrypt-proxy" state="restarted"
       become: True
       become_user: root
+
+    - name: Restart dock
+      shell: killall Dock

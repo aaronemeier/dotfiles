@@ -10,7 +10,7 @@ fi
 
 if [ -z "$(command -v brew)" ]; then
     echo "Install homebrew"
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Check ansible
@@ -19,4 +19,4 @@ if [ -z "$(command -v ansible)" ]; then
 fi
 
 # Run ansible
-ansible-playbook -c local --ask-pass setup.yml
+ansible-playbook -c local --ask-become-pass setup.yml
