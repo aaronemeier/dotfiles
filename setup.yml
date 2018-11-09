@@ -6,7 +6,6 @@
     username: "cynja"
     cleanup:
       remove:
-        - "/Users/{{ username }}/Applications"
         - "/Users/{{ username }}/Public"
         - "/Applications/Microsoft OneNote.app"
         - "/Applications/Microsoft Outlook.app"

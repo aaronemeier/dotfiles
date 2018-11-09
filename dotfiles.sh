@@ -19,6 +19,5 @@ if [ "$(uname)" == 'Darwin' ]; then
     stow postgres
     stow ssh
     stow vscode
-
     
 fi
