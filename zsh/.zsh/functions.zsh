@@ -64,8 +64,8 @@ mac-save-setup(){
         echo -e '==> \e[1m Saving setup \e[0m\n'        
         brew bundle dump --force --file="$HOME/.dotfiles/packages/brew"
         code --list-extensions > "$HOME/.dotfiles/packages/vscode"
-        gpip list --user --not-required --format=freeze > "$HOME/.dotfiles/pip"
-        npm list -g --depth=0 | sed -n 's/^├── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.dotfiles/npm"
+        gpip list --user --not-required --format=freeze > "$HOME/.dotfiles/packages/pip"
+        npm list -g --depth=0 | sed -n 's/^├── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.dotfiles/packages/npm"
     else
         echo -e '==> \e[1m Error: at least one package manager is not installed \e[0m\n'
     fi
