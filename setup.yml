@@ -7,9 +7,6 @@
     cleanup:
       remove:
         - "/Users/{{ username }}/Public"
-        - "/Applications/Microsoft OneNote.app"
-        - "/Applications/Microsoft Outlook.app"
-        - "/Applications/OneDrive.app"
         - "/Library/Keyboard Layouts/Logitech.bundle"
       hide:
         - "/Applications/Books.app"
@@ -115,7 +112,6 @@
         - { option: "require_nofilter", value: "true", state: "present" }
         - { option: "fallback_resolver", value: "'1.1.1.1:53'", state: "present" }
         - { option: "ignore_system_dns", value: "true", state: "present" }
-        - { option: "block_ipv6", value: "true", state: "present" }
         - { option: "cache", value: "true", state: "present" }
         - { option: "cache_size", value: "8192", state: "present" }
       notify:
