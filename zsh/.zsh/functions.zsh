@@ -47,24 +47,28 @@ mac-update-npm() {
 }
 
 mac-update-python() {
-    if [ -x "$(command -v pip)" ]; then
+    if [ -x "$(command -v pip3)" ]; then
         echo -e '==> \e[1m Updating pip packages \e[0m\n'
-        gpip install --upgrade pip setuptools wheel
+        export PIP_REQUIRE_VIRTUALENV=""
+        pip3 install --upgrade pip setuptools wheel
         for pkg in $(gpip list --outdated --format=freeze | cut -d'=' -f1); do
-            gpip install --user --upgrade $pkg;
+            pip3 install --user --upgrade $pkg;
         done
+        unset PIP_REQUIRE_VIRTUALENV
     else
         echo -e '==> \e[1m Error: pip not found\e[0m\n'
     fi
 }
 
 mac-save-setup(){
-    if [ -x "$(command -v brew)" ] || [ -x "$(command -v code)" ] ||
-        [ -x "$(command -v pip)" ] ||[ -x "$(command -v npm)" ]; then
+    if [ -x "$(command -v brew)" ] && [ -x "$(command -v code)" ] &&
+        [ -x "$(command -v pip3)" ] && [ -x "$(command -v npm)" ]; then
         echo -e '==> \e[1m Saving setup \e[0m\n'        
         brew bundle dump --force --file="$HOME/.dotfiles/packages/brew"
         code --list-extensions > "$HOME/.dotfiles/packages/vscode"
-        gpip list --user --not-required --format=freeze > "$HOME/.dotfiles/packages/pip"
+        export PIP_REQUIRE_VIRTUALENV=""
+        pip3 list --user --not-required --format=freeze > "$HOME/.dotfiles/packages/pip"
+        unset PIP_REQUIRE_VIRTUALENV
         npm list -g --depth=0 | sed -n 's/^├── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.dotfiles/packages/npm"
     else
         echo -e '==> \e[1m Error: at least one package manager is not installed \e[0m\n'
