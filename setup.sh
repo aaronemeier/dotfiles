@@ -19,4 +19,5 @@ if [ -z "$(command -v ansible)" ]; then
 fi
 
 # Run ansible
-ansible-playbook -c local --ask-become-pass setup.yml
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+(cd setup && ansible-playbook --ask-become-pass --inventory hosts.yml setup.yml)

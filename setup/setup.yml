@@ -1,0 +1,416 @@
+---
+- hosts: local
+  gather_facts: false
+  vars_files:
+    - config.yml
+    - "{{ vault|default('~/.dotfiles/setup/vault.dist.yml') }}"
+  tasks:
+    - name: Enable brew bundle tap
+      homebrew_tap: name="homebrew/bundle"
+      environment:
+        HOMEBREW_NO_ANALYTICS: 1
+        HOMEBREW_NO_INSECURE_REDIRECT: 1
+        HOMEBREW_CASK_OPTS: "--appdir=/Applications --fo ntdir=/Library/Fonts"
+      
+    - name: Check if brew has updates
+      shell: brew bundle check --file="{{ dotfiles }}/packages/brew"
+      register: result_brew_bundle
+      ignore_errors: true
+      changed_when: false
+
+    - name: Install and upgrade brew packages
+      shell: brew bundle install --file="{{ dotfiles }}/packages/brew"
+      when: result_brew_bundle is failed 
+      register: result_brew_packages
+      environment:
+        HOMEBREW_NO_ANALYTICS: 1
+        HOMEBREW_NO_INSECURE_REDIRECT: 1
+        HOMEBREW_CASK_OPTS: "--appdir=/Applications --fontdir=/Library/Fonts"
+
+    - name: Cleanup brew packages
+      shell: brew cleanup
+      when: result_brew_packages.changed 
+      
+    - name: Enable brew PATH in GUI
+      command: launchctl config user path '/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+      changed_when: false
+      become: true
+      become_user: root
+
+    - name: Install pip packages
+      pip: requirements="{{ dotfiles }}/packages/pip" state=latest executable=pip3 extra_args="--user"
+      environment:
+        PIP_REQUIRE_VIRTUALENV: ""
+
+    - name: Install npm packages
+      npm: name="{{ item }}" global=true production=true state=present
+      with_lines: "cat {{ dotfiles }}/packages/npm"
+
+    - name: Install vscode packages
+      shell: code --install-extension "{{ item }}"
+      with_lines: "cat {{ dotfiles }}/packages/vscode"
+      register: result_vscode
+      changed_when: "'Installing...' in result_vscode.stdout_lines"
+    
+    - name: Install keyboard layout
+      copy: dest="/Library/Keyboard Layouts/{{ item }}" src="files/{{ item }}" mode=0755
+      with_items:
+        - "{{ settings.keyboard_layout }}.icns"
+        - "{{ settings.keyboard_layout }}.keylayout"
+      become: true
+      become_user: root
+  
+    - name: Check if Paragon NTFS has been installed
+      stat: path="/Applications/NTFS for Mac.app"
+      register: result_paragon_ntfs
+      changed_when: false
+      ignore_errors: true
+
+    - name: Open Paragon NTFS installer
+      command: open "/usr/local/Caskroom/paragon-ntfs/15/FSInstaller.app"
+      when: not result_paragon_ntfs.stat.exists
+
+    - name: Setup dotfiles
+      shell: cd "/Users/{{ ansible_user }}/.dotfiles/" && ./dotfiles.sh
+      register: result_dotfiles
+      changed_when: "'LINK' in result_dotfiles.stdout_lines"
+
+    - name: Setup dnscrypt
+      ini_file: owner=root group=wheel mode=0644 path="/usr/local/etc/dnscrypt-proxy.toml" section="" option="{{ item.option }}" value="{{ item.value }}" state="{{ item.state }}"
+      with_items:
+        - { option: "server_names", value: "{{ settings.dnscrypt.servers|default(['cloudflare']) }}", state: "present" }
+        - { option: "listen_addresses", value: "['127.0.0.1:53', '[::1]:53']", state: "present" }
+        - { option: "max_clients", value: 250, state: "present" }
+        - { option: "ipv4_servers", value: "true", state: "present" }
+        - { option: "ipv6_servers", value: "false", state: "present" }
+        - { option: "dnscrypt_servers", value: "true", state: "present" }
+        - { option: "doh_servers", value: "true", state: "present" }
+        - { option: "require_dnssec", value: "true", state: "present" }
+        - { option: "require_nolog", value: "true", state: "present" }
+        - { option: "require_nofilter", value: "true", state: "present" }
+        - { option: "fallback_resolver", value: "{{ settings.dnscrypt.fallback|default('1.1.1.1:53') }}", state: "present" }
+        - { option: "ignore_system_dns", value: "true", state: "present" }
+        - { option: "cache", value: "true", state: "present" }
+        - { option: "cache_size", value: 8192, state: "present" }
+        - { option: "forwarding_rules", value: "'forwarding_rules.txt'", state: "present" }
+        - { option: "cloaking_rules", value: "'cloaking_rules.txt'", state: "present" }
+      become: true
+      become_user: root
+      notify:
+        - Restart dnscrypt
+
+    - name: Copy forwarding rules
+      copy: src="files/forwarding_rules.txt" dest="/usr/local/etc/forwarding_rules.txt" owner=root group=wheel mode=0644
+      become: true
+      become_user: root
+      notify:
+        - Restart dnscrypt
+      
+    - name: Copy cloaking rules
+      copy: src="files/cloaking_rules.txt" dest="/usr/local/etc/cloaking_rules.txt" owner=root group=wheel mode=0644
+      become: true
+      become_user: root
+      notify:
+        - Restart dnscrypt
+      
+    - name: Register brew services
+      shell: brew services list | sed '1 d' | cut -d ' ' -f 1
+      register: result_brew_services
+      changed_when: false
+
+    - name: Enable dnscrypt service
+      command: brew services start dnscrypt-proxy
+      when: "'dnscrypt-proxy' in result_brew_services.stdout_lines"
+      changed_when: false
+      become: true
+      become_user: root
+    
+    - name: Update dns resolver
+      shell: networksetup -setdnsservers "{{ item }}" 127.0.0.1
+      with_items: "{{ settings.dnscrypt.interfaces|default('Wi-Fi') }}"
+      become: true
+      become_user: root
+
+    - name: Set shell
+      user: shell="{{ settings.shell|default('/bin/bash') }}" name="{{ ansible_user }}"
+      become: true
+      become_user: root
+
+    - name: Set hostname
+      shell: >
+            systemsetup -setcomputername "{{ inventory_hostname_short }}";
+            scutil --set ComputerName "{{ inventory_hostname_short }}";
+            scutil --set HostName "{{ inventory_hostname_short }}";
+            scutil --set LocalHostName "{{ inventory_hostname_short }}";
+      changed_when: false
+      become: true
+      become_user: root
+
+    - name: Set netbios name
+      osx_defaults: domain="/Library/Preferences/SystemConfiguration/com.apple.smb.server" key="NetBIOSName" value="{{ inventory_hostname_short }}"
+      become: true
+      become_user: root
+
+    - name: Disable captitative portal assistant
+      osx_defaults: domain="/Library/Preferences/SystemConfiguration/com.apple.captive.control" key="Active" state=present type=bool value=false
+      when: settings.disable_captitative_portal_assistant|default(false)
+      become: true
+      become_user: root
+
+    - name: Disable hyperlink auditing beacon
+      osx_defaults: domain="com.apple.Safari" key="com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled" state=present type=bool value=false
+      when: settings.disable_hyperlink_auditing_beacon|default(false)
+
+    - name: Disable bootsound
+      shell: nvram SystemAudioVolume=" " && nvram SystemAudioVolumeDB=" "
+      when: settings.disable_bootsound|default(false)
+      changed_when: false
+      become: true
+      become_user: root
+
+    - name: Set vscode file associations
+      command: duti -s "com.microsoft.VSCode" {{ item }} all
+      changed_when: false
+      with_items: "{{ settings.extensions.vscode|default('md') }}"
+
+    - name: Set QuickTime file associations
+      command: duti -s "com.apple.QuickTimePlayerX" {{ item }} all
+      changed_when: false
+      with_items: "{{ settings.extensions.vscode|default('mp3') }}"
+
+    - name: Remove all tags in Finder
+      osx_defaults:
+        domain: "com.apple.finder"
+        key: "FavoriteTagNames"
+        state: present
+        type: array
+        value:
+          - ""
+      when: settings.remove_all_finder_tags|default(false)
+      
+    - name: Set wallpaper
+      # Note: Wallpaper will only be set for connected monitors
+      command: osascript -e 'tell application "System Events" to tell every desktop to set picture to "{{ settings.wallpaper }}"'
+      changed_when: false
+
+    - name: Enable spring loading folder when dragging items into it
+      osx_defaults: key="com.apple.springing.enable" state=present type=bool value=true
+      when: settings.enable_spring_loading|default(false)
+
+    - name: Enable instant spring loading
+      osx_defaults: key="com.apple.springing.delay" state=present type=float value=0.2
+      when: settings.enable_spring_loading|default(false)
+
+    - name: Disable scroll on Dock items
+      osx_defaults: domain="com.apple.dock" key="scroll-to-open" state=present type=bool value=false
+      when: settings.disable_scroll_on_dock_items|default(false)
+
+    - name: Remove all Dock items
+      osx_defaults: domain="com.apple.dock" key="persistent-apps" state=absent
+      notify:
+        - Restart dock
+      when: settings.remove_all_dock_items|default(false)
+
+    - name: Disable desktop icons
+      osx_defaults: domain="com.apple.finder" key="CreateDesktop" state=present type=bool value=false
+      when: settings.disable_desktop_icons|default(false)
+
+    - name: Expand all panes by default
+      osx_defaults: key="{{ item }}" state=present type=bool value=true
+      with_items:
+        - "NSNavPanelExpandedStateForSaveMode"
+        - "PMPrintingExpandedStateForPrint2"
+        - "PMPrintingExpandedStateForPrint"
+      when: settings.enable_expanded_panes_by_default|default(false)
+
+    - name: Expand info panes by default
+      osx_defaults: domain="com.apple.finder.FXInfoPanesExpanded" key="{{ item }}" state=present type=bool value=true
+      with_items:
+        - "General"
+        - "OpenWith"
+        - "Privileges"
+      when: settings.enable_expanded_panes_by_default|default(false)
+      
+    - name: Enable auto closing printer queue
+      osx_defaults: domain="com.apple.print.PrintingPrefs" key="Quit When Finished" state=present type=bool value=true
+      when: settings.enable_auto_closing_printer_queue|default(false)
+
+    - name: Disable saving new files to iCloud
+      osx_defaults: key="NSDocumentSaveNewDocumentsToCloud" state=present type=bool value=false
+      when: settings.disable_saving_new_files_to_icloud|default(false)
+
+    - name: Disable creating .DS_STORE files on network
+      osx_defaults: domain="com.apple.desktopservices" key="DSDontWriteNetworkStores" state=present value=true
+      when: settings.disable_creating_dstore_files_on_network|default(false)
+  
+    - name: Disable creating .DS_STORE files on usb volumes
+      osx_defaults: domain="com.apple.desktopservices" key="DSDontWriteUSBStores" state=present value=true
+      when: settings.disable_creating_dstore_files_on_usb|default(false)
+
+    - name: Check for software updates daily
+      osx_defaults: domain="com.apple.SoftwareUpdate" key="ScheduleFrequency" state=present type=int value=1
+      when: settings.enable_daily_software_updates|default(false)
+
+    - name: Disable Airdrop
+      osx_defaults: domain="com.apple.NetworkBrowser" key="DisableAirDrop" state=present type=bool value=true
+      when: settings.disable_airdrop|default(false)
+
+    - name: Speedup window resize
+      osx_defaults: key=NSWindowResizeTime state=present type=float value=0.1
+      when: settings.enable_speedup_window_resize|default(false)
+
+    - name: Disable crash reporting
+      osx_defaults: domain="com.apple.CrashReporter" key="DialogType" state=present value=none
+      when: settings.disable_crash_reporting|default(false)
+
+    - name: Create screenshot location
+      file: path="{{ settings.screenshot_location }}" state=directory mode=0755
+    
+    - name: Set screenshot location
+      osx_defaults: domain="com.apple.screencapture" key="location" state=present value="{{ settings.screenshot_location }}"
+    
+    - name: Set screenshot image type to png
+      osx_defaults: domain="com.apple.screencapture" key="type" state=present value=png
+      when: settings.set_screenshot_type_to_png|default(false)
+
+    - name: Disable shadow in screenshots
+      osx_defaults: domain="com.apple.screencapture" key="disable-shadow" state=present type=bool value=true
+      when: settings.disable_shadow_in_screenshots
+
+    - name: Disable bonjour service
+      osx_defaults: domain="/Library/Preferences/com.apple.mDNSResponder.plist" key="NoMulticastAdvertisements" state=present type=bool value="yes"
+      when: settings.disable_bonjour_service|default(false)
+      become: true
+      become_user: root
+
+    - name: Empty trash securely by default
+      osx_defaults: domain="com.apple.finder" key="EmptyTrashSecurely" state=present type=bool value=true
+      when: settings.clear_trash_securely|default(false)
+
+    - name: Set timemachine backup interval to 24h
+      osx_defaults: domain="/System/Library/LaunchDaemons/com.apple.backupd-auto" key="StartInterval" state=present type=int value=86400
+      when: settings.limit_timemachine_to_once_per_day|default(false)
+      become: yes
+      become_user: root
+
+    - name: Disable time machine prompt for new disks as backup volume
+      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key="DoNotOfferNewDisksForBackup" state=present type=bool value=true
+      when: settings.disable_timemachine_prompt_for_new_disks|default(false)
+      become: true
+      become_user: root
+
+    - name: Disable time machine backup while on battery
+      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key="RequiresACPower" state=present type=bool value=true
+      when: settings.disable_timemachine_backup_on_battery|default(false)
+      become: true
+      become_user: root
+    
+    - name: Set faster key repetition speed
+      osx_defaults: key="KeyRepeat" state=present type=int value=1
+      when: settings.enable_faster_key_repetition|default(false)
+
+    - name: Set faster initial time until key repetition gets started
+      osx_defaults: key="InitialKeyRepeat" state=present type=int value=25
+      when: settings.enable_faster_key_repetition|default(false)
+
+    - name: Remove items
+      file: dest="{{ item }}" state=absent
+      with_items: "{{ cleanup.remove }}"
+      become: true
+      become_user: root
+      ignore_errors: true
+
+    - name: Set spotlight exclusions
+      osx_defaults: domain="/.Spotlight-V100/VolumeConfiguration.plist" key="Exclusions" state=present type=array value="{{ item }}"
+      loop:
+        - "{{ cleanup.hide }}"
+      become: true
+      become_user: root
+      
+    - name: Hide items
+      command: "chflags hidden '{{ item }}'"
+      with_items: "{{ cleanup.hide }}"
+      become: true
+      become_user: root
+      ignore_errors: true
+
+  handlers:
+    - name: Restart dnscrypt
+      command: brew services restart dnscrypt-proxy
+      become: True
+      become_user: root
+
+    - name: Restart dock
+      shell: killall Dock
+  
+- hosts: vm
+  gather_facts: false
+  vars_files:
+    - config.yml
+    - "{{ vault|default('~/.dotfiles/setup/vault.dist.yml') }}"
+  tasks:
+    - name: Check if host is running if not skip setup
+      wait_for: host="{{ ansible_host }}" port=5986 timeout=3 delay=1
+      ignore_errors: true
+      register: result_host_alive
+      changed_when: result_host_alive
+      delegate_to: localhost
+
+    - name: Install chocolatey packages
+      # Note: Ansible installs chocolatey automatically if not present
+      win_chocolatey: name="{{ vm.packages.chocolatey }}" state=present
+      become_user: Administrator
+      become_method: runas
+      when: not result_host_alive is failed
+
+    - name: Upgrade chocolatey packages
+      win_chocolatey: name=all state=latest
+      when: not result_host_alive is failed
+
+    - name: Set hostname
+      win_domain_membership: domain_admin_user="{{ ansible_user }}" domain_admin_password="{{ ansible_password }}" hostname="{{ inventory_hostname_short }}" state=workgroup workgroup_name=WORKGROUP
+      when: not result_host_alive is failed
+
+    - name: Enable firewall
+      win_firewall:
+        state: enabled
+        profiles:
+          - Domain
+          - Private
+          - Public
+      when: not result_host_alive is failed and vm.settings.enable_firewall|default(false)
+    
+    - name: Get script
+      win_get_url: dest='C:\Windows\Temp\Win10Settings.zip' url="{{ vm.settings.setup_script.url }}"
+      become_user: Administrator
+      become_method: runas
+      when: not result_host_alive is failed
+    
+    - name: Create script destination
+      win_file: path='C:\Windows\Temp\Win10Settings' state=directory
+      become_user: Administrator
+      become_method: runas
+      when: not result_host_alive is failed
+    
+    - name: Unzip script
+      win_unzip: delete_archive=true dest='C:\Windows\Temp\Win10Settings' src='C:\Windows\Temp\Win10Settings.zip'
+      become_user: Administrator
+      become_method: runas
+      when: not result_host_alive is failed
+    
+    - name: Set custom settings via setup script
+      win_command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File Win10.ps1 -include Win10.psm1 "{{ item }}"
+      args:
+        chdir: 'C:\Windows\Temp\Win10Settings\Win10-Initial-Setup-Script-3.6'
+      with_flattened: "{{ vm.settings.setup_script.presets }}"
+      when: not result_host_alive is failed
+    
+    - name: Copy wallpaper
+      win_copy: src="{{ settings.wallpaper }}" dest='C:\Windows\Web\Wallpaper\wallpaper.png'
+      become_user: Administrator
+      become_method: runas
+      when: not result_host_alive is failed
+    
+    - name: Set wallpaper
+      win_regedit: path='HKCU:\Control Panel\Desktop' name='Wallpaper' data='C:\Windows\Web\Wallpaper\wallpaper.png' type='string'
+      when: not result_host_alive is failed

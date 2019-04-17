@@ -1,0 +1,10 @@
+# hsr.ch
+hsr.ch 152.96.12.19,152.96.12.18,152.96.12.17
+
+# skripte.hsr.ch
+skripte.hsr.ch	sidv0012.hsr.ch
+sidv0012.hsr.ch 152.96.21.12
+
+# c206.hsr.ch
+c206.hsr.ch svm-c213.hsr.ch.
+svm-c213.hsr.ch 152.96.90.13
