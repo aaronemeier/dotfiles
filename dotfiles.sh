@@ -2,22 +2,24 @@
 
 cd ~/.dotfiles
 
-stow shell
-stow bash
-stow zsh
-stow bin
-stow dircolors
-stow tmux
-stow vim
+install(){
+    stow -v1 "$1"
+}
+install shell
+install bash
+install zsh
+install bin
+install dircolors
+install tmux
+install vim
 
 if [ "$(uname)" == 'Darwin' ]; then
-    stow ansible
-    stow beets
-    stow cheat
-    stow git
-    stow gnupg
-    stow postgres
-    stow ssh
-    stow vscode
-    
+    install ansible
+    install beets
+    install cheat
+    install git
+    install gnupg
+    install postgres
+    install ssh
+    install vscode
 fi
