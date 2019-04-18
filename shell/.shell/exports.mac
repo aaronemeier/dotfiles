@@ -8,4 +8,4 @@ export PIP_REQUIRE_VIRTUALENV=true
 # Brew
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
-export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts"
+export HOMEBREW_CASK_OPTS="--fontdir=/Library/Fonts"
