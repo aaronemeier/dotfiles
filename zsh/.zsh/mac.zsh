@@ -1,4 +1,4 @@
-#!/bin/zsh
+# Helper functions for zsh on macOS
 
 mac-run-setup(){
     (cd "$HOME/.dotfiles" && sh setup.sh)

@@ -14,8 +14,8 @@ for file in "$HOME/.shell/"{path,exports,aliases,profile}; do
     source "$file"
 done
 
-# Include functions
-source "$HOME/.zsh/functions.zsh"
+# Include mac functions
+[[ "$(uname)" == 'Darwin' ]] && source "$HOME/.zsh/mac.zsh"
 
 # Load colors for easier coloring
 autoload -U colors && colors
@@ -152,10 +152,14 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
         rpc rpcuser rpm rtkit scard shutdown squid sshd statd svn sync tftp \
         usbmux uucp vcsa wwwrun xfs '_*'
 
+
+# Use emacs style keybindings
+bindkey -e
+
 # Display red dots on completion
-_zsh-expand-red-dots() { echo -n "\e[31m......\e[0m"; zle expand-or-complete; zle redisplay }
-zle -N _zsh-expand-red-dots
-bindkey "^I" _zsh-expand-red-dots
+_zsh_expand_red_dots() { echo -n "\e[31m......\e[0m"; zle expand-or-complete; zle redisplay }
+zle -N _zsh_expand_red_dots
+bindkey "^I" _zsh_expand_red_dots
 
 # Enable verbose output
 zstyle ':completion:*' verbose true
@@ -173,48 +177,46 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' \
     hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-# Enable history navigation
-bindkey '^p' up-history
-bindkey '^n' down-history
 
-# Enable word deletion with ctrl+w
-bindkey '^w' backward-kill-word
+# # ctrl+w - Remove previous word
+# # ctrl+u - Remove line
 
-# Enable backward search in history with ctrl+r
-bindkey '^r' history-incremental-search-backward
+# ctrl+r - Search in history 
+bindkey '^R' history-incremental-search-backward
 
-# Enable moving to beginning/end of line with home/end
-# Note: Add key fn+left with esc sequence to [1~ and fn+right to [4~
+# fn+left - Move to beginning of line
 bindkey '^[[1~' beginning-of-line
+
+# fn+right - Move to end of line
 bindkey '^[[4~' end-of-line
 
-# Enable to jump back in a menu with shift+tab
+# shift+tab - Jump back in menu entries
 bindkey '^[[Z' reverse-menu-complete
+
+# alt+right_arrow  - Move one word forward
+bindkey "^[[F" forward-word
+
+# alt+right_arrow  - Move one word back
+bindkey "^[[B" backward-word
 
 # Setup fzf autocompletion
 if [ -x "$(command -v fzf)" ]; then
-    # Trigger fzf with ~~
     export FZF_COMPLETION_TRIGGER='~~'
-
     source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-    # Key bindings
-    # Ctrl+T - Search and paste selected to cli
-    # Alt+C - cd into selected directory
-    # Ctrl+R - Use fzf for history search
+    # ctrl+t - Search and paste selected to cli
+    # ctrl+r - Use fzf for history search
     source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+    bindkey -r '\EC'
+
 fi
 
 # Setup prompt
-source "$HOME/.zsh/theme.zsh"
+ZSH_PROMPT_DEFAULT_USERNAME="cynja"
+source "$HOME/.zsh/prompt.zsh"
 
 # Check dotfiles
 [[ $( (cd ~/.dotfiles/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
             && echo -e "\n $fg[red] WARNING:  There are uncommited changes in your dotfiles. $reset_color \n"
-
-# Autostart tmux on remote systems
-if [[ -z "${TMUX+x}" && -z $"SSH_CONNECTION" && ! "$USERNAME" == "root" ]]; then
-    tmux -2 attach -t default ||  tmux new -s default
-fi
 
 # Syntax highlighting (this must be at the end of .zshrc)
 if [ -r "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
