@@ -96,22 +96,26 @@
 # zsh
 !zsh/
 !zsh/.zsh
-!zsh/.zsh/functions.zsh
-!zsh/.zsh/theme.zsh
+!zsh/.zsh/mac.zsh
+!zsh/.zsh/prompt.zsh
 !zsh/.zsh_profile
 !zsh/.zshrc
 
 # git
-!.gitattributes
-!.gitignore
 
 # travis
-!.travis.yml
 
-# setup scripts
-!ansible.cfg
+# ansible setup
+!setup/
+!setup/files/
+!setup/files/**
+!setup/config.yml
+!setup/hosts.yml
+!setup/setup.yml
+!setup/vault.dist.yml
+
+!.gitignore
+!.travis.yml
 !dotfiles.sh
-!inventory
 !README.md
 !setup.sh
-!setup.yml
