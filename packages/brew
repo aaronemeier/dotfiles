@@ -7,6 +7,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
 cask "java"
+cask "java8"
 brew "ansible"
 brew "asciinema"
 brew "bash"
@@ -52,8 +53,9 @@ cask "docker"
 cask "dotnet-sdk"
 cask "drivedx"
 cask "firefox"
+cask "firefox-developer-edition"
 cask "font-source-code-pro"
-cask "gitkraken"
+cask "fork"
 cask "iterm2"
 cask "jdownloader"
 cask "jetbrains-toolbox"
@@ -70,17 +72,17 @@ cask "spotify"
 cask "staruml"
 cask "visual-studio-code"
 cask "wireshark"
-mas "1Password 7", id: 1333542190
-mas "Affinity Designer", id: 824171161
-mas "Affinity Photo", id: 824183456
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
-mas "Magnet", id: 441258766
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Microsoft Word", id: 462054704
-mas "Slack", id: 803453959
-mas "Telegram", id: 747648890
-mas "WhatsApp", id: 1147396723
-mas "Xcode", id: 497799835
+mas "com.agilebits.onepassword7", id: 1333542190
+mas "com.apple.dt.Xcode", id: 497799835
+mas "com.apple.garageband10", id: 682658836
+mas "com.apple.iMovieApp", id: 408981434
+mas "com.crowdcafe.windowmagnet", id: 441258766
+mas "com.microsoft.Excel", id: 462058435
+mas "com.microsoft.Powerpoint", id: 462062816
+mas "com.microsoft.rdc.macos", id: 1295203466
+mas "com.microsoft.Word", id: 462054704
+mas "com.seriflabs.affinitydesigner", id: 824171161
+mas "com.seriflabs.affinityphoto", id: 824183456
+mas "com.tinyspeck.slackmacgap", id: 803453959
+mas "desktop.WhatsApp", id: 1147396723
+mas "ru.keepcoder.Telegram", id: 747648890
