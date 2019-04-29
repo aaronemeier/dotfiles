@@ -177,7 +177,6 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' \
     hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-
 # # ctrl+w - Remove previous word
 # # ctrl+u - Remove line
 
@@ -194,10 +193,10 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[Z' reverse-menu-complete
 
 # alt+right_arrow  - Move one word forward
-bindkey "^[[F" forward-word
+bindkey "^[[1;9C" forward-word
 
 # alt+right_arrow  - Move one word back
-bindkey "^[[B" backward-word
+bindkey "^[[1;9D" backward-word
 
 # Setup fzf autocompletion
 if [ -x "$(command -v fzf)" ]; then
