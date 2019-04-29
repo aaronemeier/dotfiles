@@ -3,7 +3,7 @@
   gather_facts: false
   vars_files:
     - config.yml
-    - "{{ vault|default('~/.dotfiles/setup/vault.dist.yml') }}"
+    - "{{ vault }}"
   tasks:
     - name: Enable brew bundle tap
       homebrew_tap: name="homebrew/bundle"
