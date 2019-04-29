@@ -69,7 +69,7 @@ mac-save-setup(){
         export PIP_REQUIRE_VIRTUALENV=""
         pip3 list --user --not-required --format=freeze > "$HOME/.dotfiles/packages/pip"
         unset PIP_REQUIRE_VIRTUALENV
-        npm list -g --depth=0 | sed -n 's/^├── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.dotfiles/packages/npm"
+        npm list -g --depth=0 | sed -n 's/^.── \([a-zA-Z-]*\)@.*$/\1/p' > "$HOME/.dotfiles/packages/npm"
     else
         echo -e '==> \e[1m Error: at least one package manager is not installed \e[0m\n'
     fi
