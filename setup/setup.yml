@@ -176,7 +176,7 @@
     - name: Set QuickTime file associations
       command: duti -s "com.apple.QuickTimePlayerX" {{ item }} all
       changed_when: false
-      with_items: "{{ settings.extensions.vscode|default('mp3') }}"
+      with_items: "{{ settings.extensions.quicktime_extensions|default('mp3') }}"
 
     - name: Remove all tags in Finder
       osx_defaults:
