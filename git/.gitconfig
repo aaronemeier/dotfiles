@@ -1,7 +1,7 @@
 [user]
     name = Aaron Meier
     email = aaron@0x41.ch
-    editor = code
+    editor = code --new-window --wait
     signinkey = 54B6E3713490B2F985EBBC396882585F8C92DB90
 
 [commit]
@@ -19,14 +19,8 @@
     ui = auto
 
 [core]
-    editor = code
+    editor = code --new-window --wait
     excludesfile = ~/.gitexcludes
-
-[diff]
-    tool = default-difftool
-
-[difftool "default-difftool"]
-    cmd = code --wait --diff $LOCAL $REMOTE
 
 [alias]
     l = log --oneline --graph --decorate
@@ -52,3 +46,15 @@
 
 [tag]
     forceSignAnnotated = true
+
+[merge]
+	tool = vscode
+
+[diff]
+    tool = vscode
+
+[mergetool "vscode"]
+    cmd = code --new-window --wait "$MERGED"
+
+[difftool "vscode"]
+    cmd = code --new-window --wait --diff "$LOCAL" "$REMOTE"
