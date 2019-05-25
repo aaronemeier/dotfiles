@@ -53,6 +53,7 @@ cask "drivedx"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "font-source-code-pro"
+cask "franz"
 cask "iterm2"
 cask "java"
 cask "java8"
@@ -83,6 +84,3 @@ mas "com.microsoft.rdc.macos", id: 1295203466
 mas "com.microsoft.Word", id: 462054704
 mas "com.seriflabs.affinitydesigner", id: 824171161
 mas "com.seriflabs.affinityphoto", id: 824183456
-mas "com.tinyspeck.slackmacgap", id: 803453959
-mas "desktop.WhatsApp", id: 1147396723
-mas "ru.keepcoder.Telegram", id: 747648890

@@ -1,6 +1,6 @@
-beets==1.4.7
+beets==1.4.8
 cryptography==2.6.1
-pyacoustid==1.1.5
+pyacoustid==1.1.6
 pylint==2.3.1
 typing==3.6.6
 virtualenvwrapper==4.8.4
