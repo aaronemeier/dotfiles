@@ -18,6 +18,8 @@ if [ -z "$(command -v ansible)" ]; then
     brew install ansible
 fi
 
+sudo -v
+
 # Run ansible
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-(cd setup && ansible-playbook --ask-become-pass --inventory hosts.yml setup.yml)
+(cd setup && ansible-playbook  --inventory hosts.yml setup.yml)
