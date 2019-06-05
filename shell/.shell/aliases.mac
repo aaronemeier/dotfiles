@@ -1,0 +1,4 @@
+# Shell-independent aliases for mac
+
+# DNSCrypt
+alias restart-dnscrypt='sudo brew services stop dnscrypt-proxy; sudo brew services start dnscrypt-proxy'
