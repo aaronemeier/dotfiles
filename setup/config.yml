@@ -5,7 +5,8 @@ dotfiles: "{{ userhome }}/.dotfiles/"
 settings:
   keyboard_layout: "LogitechSwissGerman"
   dnscrypt:
-    servers: "['cloudflare']"
+    servers: "['cloudflare',  'cloudflare-ipv6']"
+    listen: "['127.0.0.1:53', '[::1]:53']" 
     fallback: "'1.1.1.1:53'"
     interfaces:
       - "Wi-Fi"
@@ -15,7 +16,7 @@ settings:
       - "Home"
   shell: "/bin/zsh"
   wallpaper: "{{ userhome }}/.dotfiles/setup/files/wallpaper.png"
-  screenshot_location: "{{ userhome }}/Pictures/Screenshots/"
+  screenshot_location: "/tmp/"
   disable_captitative_portal_assistant: true
   disable_hyperlink_auditing_beacon: true
   disable_bootsound: true

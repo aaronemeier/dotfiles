@@ -78,8 +78,8 @@
     - name: Setup dnscrypt
       ini_file: owner=root group=wheel mode=0644 path="/usr/local/etc/dnscrypt-proxy.toml" section="" option="{{ item.option }}" value="{{ item.value }}" state="{{ item.state }}"
       with_items:
-        - { option: "server_names", value: "{{ settings.dnscrypt.servers|default(['cloudflare']) }}", state: "present" }
-        - { option: "listen_addresses", value: "['127.0.0.1:53', '[::1]:53']", state: "present" }
+        - { option: "server_names", value: "{{ settings.dnscrypt.servers|default(['cloudflare']) |string }}", state: "present" }
+        - { option: "listen_addresses", value: "{{ settings.dnscrypt.listen|default(['127.0.0.1:53']) |string }}" , state: "present" }
         - { option: "max_clients", value: 250, state: "present" }
         - { option: "ipv4_servers", value: "true", state: "present" }
         - { option: "ipv6_servers", value: "false", state: "present" }
@@ -262,9 +262,6 @@
     - name: Disable crash reporting
       osx_defaults: domain="com.apple.CrashReporter" key="DialogType" state=present value=none
       when: settings.disable_crash_reporting|default(false)
-
-    - name: Create screenshot location
-      file: path="{{ settings.screenshot_location }}" state=directory mode=0755
     
     - name: Set screenshot location
       osx_defaults: domain="com.apple.screencapture" key="location" state=present value="{{ settings.screenshot_location }}"
@@ -353,7 +350,7 @@
       wait_for: host="{{ ansible_host }}" port=5986 timeout=3 delay=1
       ignore_errors: true
       register: result_host_alive
-      changed_when: result_host_alive
+      changed_when: result_host_alive|bool
       delegate_to: localhost
 
     - name: Install chocolatey packages
