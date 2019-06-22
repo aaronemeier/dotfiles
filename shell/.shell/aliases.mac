@@ -1,4 +1,10 @@
 # Shell-independent aliases for mac
 
+# System
+alias restart-usb='sudo launchctl stop com.apple.usbd; sudo launchctl start com.apple.usbd'
+
 # DNSCrypt
 alias restart-dnscrypt='sudo brew services stop dnscrypt-proxy; sudo brew services start dnscrypt-proxy'
+
+# History
+alias history-search='history 0 | fzf --tac'
