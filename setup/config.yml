@@ -5,8 +5,8 @@ dotfiles: "{{ userhome }}/.dotfiles/"
 settings:
   keyboard_layout: "LogitechSwissGerman"
   dnscrypt:
-    servers: "['cloudflare',  'cloudflare-ipv6']"
-    listen: "['127.0.0.1:53', '[::1]:53']" 
+    servers: "'cloudflare',  'cloudflare-ipv6'"
+    listen: "'127.0.0.1:53', '[::1]:53'" 
     fallback: "'1.1.1.1:53'"
     interfaces:
       - "Wi-Fi"
@@ -15,7 +15,6 @@ settings:
       - "Bluetooth PAN"
       - "Home"
   shell: "/bin/zsh"
-  wallpaper: "{{ userhome }}/.dotfiles/setup/files/wallpaper.png"
   screenshot_location: "/tmp/"
   disable_captitative_portal_assistant: true
   disable_hyperlink_auditing_beacon: true
@@ -76,20 +75,21 @@ settings:
       - "ddl"
       - "dml"
       - "pgsql"
-  quicktime_extensions:
-        # Music
-        - "mp3"
-        - "flac"
-        - "aac"
-        - "wma"
-        - "ogg"
-        # Video
-        - "mpg"
-        - "mkv"
-        - "mp4"
-        - "m4v"
-        - "wmv"
-        - "m4a"
+    iina:
+      # Music
+      - "mp3"
+      - "flac"
+      - "aac"
+      - "wma"
+      - "ogg"
+      # Video
+      - "mpg"
+      - "mkv"
+      - "mp4"
+      - "m4v"
+      - "wmv"
+      - "m4a"
+    mail: "com.microsoft.Outlook"
 cleanup:
   remove:
     - "{{ userhome }}/Public"
@@ -100,6 +100,7 @@ cleanup:
     - "{{ userhome }}/Movies/iMovie Library.imovielibrary"
     - "{{ userhome }}/Movies/iMovie Theater.theater"
     - "/Applications/Books.app"
+    - "/Applications/Calendar.app"
     - "/Applications/Chess.app"
     - "/Applications/Dashboard.app"
     - "/Applications/FaceTime.app"
@@ -109,6 +110,7 @@ cleanup:
     - "/Applications/Maps.app"
     - "/Applications/Mission Control.app"
     - "/Applications/Photo Booth.app"
+    - "/Applications/QuickTime Player.app"
     - "/Applications/Reminders.app"
     - "/Applications/Safari.app"
     - "/Applications/Siri.app"
@@ -123,12 +125,14 @@ cleanup:
 vm:
   packages:
     chocolatey:
-      - visualstudio2017community
-      - office365proplus      
+      - visualstudio2019community
+      - office365proplus
   settings:
+    wallpaper: "{{ userhome }}/.dotfiles/setup/files/wallpaper.png"
     enable_firewall: true
     setup_script:
-      url: "https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/3.6.zip"
+      version: "3.7"
+      url: 
       # See: https://github.com/Disassembler0/Win10-Initial-Setup-Script/blob/master/Default.preset
       presets:
         # Privacy tweaks
@@ -139,7 +143,7 @@ vm:
         - DisableAppSuggestions
         - DisableActivityHistory 
         - DisableBackgroundApps
-        - DisableLocationTracking
+        - DisableLocation
         - DisableMapUpdates
         - DisableFeedback
         - DisableTailoredExperiences
@@ -179,7 +183,7 @@ vm:
         # Security tweaks
         - DisableUpdateMSRT
         - DisableUpdateDriver
-        - DisableUpdateRestart
+        - DisableMaintenanceWakeUp
         - DisableHomeGroups
         - DisableSharedExperiences
         - DisableRemoteAssistance

@@ -78,8 +78,8 @@
     - name: Setup dnscrypt
       ini_file: owner=root group=wheel mode=0644 path="/usr/local/etc/dnscrypt-proxy.toml" section="" option="{{ item.option }}" value="{{ item.value }}" state="{{ item.state }}"
       with_items:
-        - { option: "server_names", value: "{{ settings.dnscrypt.servers|default(['cloudflare']) |string }}", state: "present" }
-        - { option: "listen_addresses", value: "{{ settings.dnscrypt.listen|default(['127.0.0.1:53']) |string }}" , state: "present" }
+        - { option: "server_names", value: "[{{ settings.dnscrypt.servers|default('cloudflare'|quote)|string }}]", state: "present" }
+        - { option: "listen_addresses", value: "[{{ settings.dnscrypt.listen|default('127.0.0.1:53'|quote)|string }}]" , state: "present" }
         - { option: "max_clients", value: 250, state: "present" }
         - { option: "ipv4_servers", value: "true", state: "present" }
         - { option: "ipv6_servers", value: "false", state: "present" }
@@ -169,14 +169,28 @@
       become_user: root
 
     - name: Set vscode file associations
-      command: duti -s "com.microsoft.VSCode" {{ item }} all
+      command: duti -s "com.microsoft.VSCode" .{{ item }} all
       changed_when: false
       with_items: "{{ settings.extensions.vscode|default('md') }}"
 
-    - name: Set QuickTime file associations
-      command: duti -s "com.apple.QuickTimePlayerX" {{ item }} all
+    - name: Set IINA file associations
+      command: duti -s "com.colliderli.iina" .{{ item }} all
       changed_when: false
-      with_items: "{{ settings.extensions.quicktime_extensions|default('mp3') }}"
+      with_items: "{{ settings.extensions.iina|default('mp3') }}"
+
+    - name: Set mailto associations
+      command: duti -s "{{ item }}" mailto
+      changed_when: false
+      with_items: "{{ settings.extensions.mail|default('com.microsoft.Outlook') }}"
+
+    - name: Set language for Microsoft Office Excel
+      osx_defaults:
+        domain: "com.microsoft.Excel"
+        key: "AppleLanguages"
+        state: present
+        type: array
+        value: 
+          - "de-CH"
 
     - name: Remove all tags in Finder
       osx_defaults:
@@ -187,11 +201,6 @@
         value:
           - ""
       when: settings.remove_all_finder_tags|default(false)
-      
-    - name: Set wallpaper
-      # Note: Wallpaper will only be set for connected monitors
-      command: osascript -e 'tell application "System Events" to tell every desktop to set picture to "{{ settings.wallpaper }}"'
-      changed_when: false
 
     - name: Enable spring loading folder when dragging items into it
       osx_defaults: key="com.apple.springing.enable" state=present type=bool value=true
@@ -323,7 +332,7 @@
         - "{{ cleanup.hide }}"
       become: true
       become_user: root
-      
+
     - name: Hide items
       command: "chflags hidden '{{ item }}'"
       with_items: "{{ cleanup.hide }}"
@@ -378,7 +387,7 @@
       when: not result_host_alive is failed and vm.settings.enable_firewall|default(false)
     
     - name: Get script
-      win_get_url: dest='C:\Windows\Temp\Win10Settings.zip' url="{{ vm.settings.setup_script.url }}"
+      win_get_url: dest='C:\Windows\Temp\Win10Settings.zip' url="https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/{{ vm.settings.setup_script.version }}.zip"
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
@@ -398,12 +407,12 @@
     - name: Set custom settings via setup script
       win_command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File Win10.ps1 -include Win10.psm1 "{{ item }}"
       args:
-        chdir: 'C:\Windows\Temp\Win10Settings\Win10-Initial-Setup-Script-3.6'
+        chdir: 'C:\Windows\Temp\Win10Settings\Win10-Initial-Setup-Script-{{ vm.settings.setup_script.version }}'
       with_flattened: "{{ vm.settings.setup_script.presets }}"
       when: not result_host_alive is failed
     
     - name: Copy wallpaper
-      win_copy: src="{{ settings.wallpaper }}" dest='C:\Windows\Web\Wallpaper\wallpaper.png'
+      win_copy: src="{{ vm.settings.wallpaper }}" dest='C:\Windows\Web\Wallpaper\wallpaper.png'
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
