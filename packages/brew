@@ -53,34 +53,37 @@ cask "drivedx"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "font-source-code-pro"
-cask "franz"
+cask "iina"
 cask "iterm2"
 cask "java"
 cask "java8"
 cask "jdownloader"
 cask "jetbrains-toolbox"
-cask "logitech-control-center"
+cask "logitech-options"
 cask "mactex"
-cask "megasync"
 cask "mono-mdk"
 cask "paragon-ntfs"
-cask "parallels"
 cask "postgres"
 cask "postman"
-cask "protonmail-unofficial"
 cask "spotify"
 cask "staruml"
 cask "tower"
 cask "visual-studio-code"
+cask "vmware-fusion"
+cask "whatsapp"
 cask "wireshark"
-mas "com.agilebits.onepassword7", id: 1333542190
-mas "com.apple.dt.Xcode", id: 497799835
-mas "com.apple.garageband10", id: 682658836
-mas "com.apple.iMovieApp", id: 408981434
-mas "com.crowdcafe.windowmagnet", id: 441258766
-mas "com.microsoft.Excel", id: 462058435
-mas "com.microsoft.Powerpoint", id: 462062816
-mas "com.microsoft.rdc.macos", id: 1295203466
-mas "com.microsoft.Word", id: 462054704
-mas "com.seriflabs.affinitydesigner", id: 824171161
-mas "com.seriflabs.affinityphoto", id: 824183456
+mas "1Password 7", id: 1333542190
+mas "Affinity Designer", id: 824171161
+mas "Affinity Photo", id: 824183456
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Magnet", id: 441258766
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Microsoft Word", id: 462054704
+mas "OneDrive", id: 823766827
+mas "Slack", id: 803453959
+mas "Telegram Desktop", id: 946399090
+mas "Xcode", id: 497799835
