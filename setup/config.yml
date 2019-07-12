@@ -75,6 +75,8 @@ settings:
       - "ddl"
       - "dml"
       - "pgsql"
+      # LaTEX
+      - "tex"
     iina:
       # Music
       - "mp3"
@@ -99,6 +101,9 @@ cleanup:
     - "{{ userhome }}/Music/Audio Music Apps/"
     - "{{ userhome }}/Movies/iMovie Library.imovielibrary"
     - "{{ userhome }}/Movies/iMovie Theater.theater"
+    - "{{ userhome }}/Documents"
+    - "{{ userhome }}/Movies"
+    - "{{ userhome }}/Music/"
     - "/Applications/Books.app"
     - "/Applications/Calendar.app"
     - "/Applications/Chess.app"
@@ -120,7 +125,6 @@ cleanup:
     - "/Applications/Utilities/Terminal.app"
     - "/Applications/VoiceMemos.app"
     - "/Applications/TeX/"
-    - "/Applications/Xcode.app"
     - "/Volumes"
 vm:
   packages:

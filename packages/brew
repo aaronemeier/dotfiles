@@ -46,20 +46,19 @@ brew "heroku/brew/heroku"
 cask "alfred"
 cask "blackscreen-screensaver"
 cask "calibre"
-cask "dash"
 cask "docker"
 cask "dotnet-sdk"
-cask "drivedx"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "font-source-code-pro"
-cask "iina"
+cask "franz"
+cask "gitkraken"
 cask "iterm2"
 cask "java"
 cask "java8"
 cask "jdownloader"
 cask "jetbrains-toolbox"
-cask "logitech-options"
+cask "logitech-control-center"
 cask "mactex"
 cask "mono-mdk"
 cask "paragon-ntfs"
@@ -67,10 +66,8 @@ cask "postgres"
 cask "postman"
 cask "spotify"
 cask "staruml"
-cask "tower"
 cask "visual-studio-code"
 cask "vmware-fusion"
-cask "whatsapp"
 cask "wireshark"
 mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
@@ -84,6 +81,4 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "OneDrive", id: 823766827
-mas "Slack", id: 803453959
-mas "Telegram Desktop", id: 946399090
 mas "Xcode", id: 497799835
