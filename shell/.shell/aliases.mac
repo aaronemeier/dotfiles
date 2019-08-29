@@ -8,3 +8,6 @@ alias restart-dnscrypt='sudo brew services stop dnscrypt-proxy; sudo brew servic
 
 # History
 alias history-search='history 0 | fzf --tac'
+
+# Locations
+alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'

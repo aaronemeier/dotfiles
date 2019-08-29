@@ -22,4 +22,5 @@ sudo -v
 
 # Run ansible
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+export ANSIBLE_STRING_CONVERSION_ACTION=ignore
 (cd setup && ansible-playbook  --inventory hosts.yml setup.yml)

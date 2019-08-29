@@ -101,7 +101,6 @@ cleanup:
     - "{{ userhome }}/Music/Audio Music Apps/"
     - "{{ userhome }}/Movies/iMovie Library.imovielibrary"
     - "{{ userhome }}/Movies/iMovie Theater.theater"
-    - "{{ userhome }}/Documents"
     - "{{ userhome }}/Movies"
     - "{{ userhome }}/Music/"
     - "/Applications/Books.app"

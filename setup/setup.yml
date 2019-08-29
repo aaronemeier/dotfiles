@@ -411,12 +411,13 @@
       with_flattened: "{{ vm.settings.setup_script.presets }}"
       when: not result_host_alive is failed
     
-    - name: Copy wallpaper
-      win_copy: src="{{ vm.settings.wallpaper }}" dest='C:\Windows\Web\Wallpaper\wallpaper.png'
-      become_user: Administrator
-      become_method: runas
+    - name: Set wallpaper
+      win_regedit: path='{{ item.path }}' name='{{ item.name }}' data='{{ item.data }}' type='string'
+      with_items:
+        - {path: 'HKCU:\Control Panel\Desktop', name: 'Wallpaper', data: '' }
+        - {path: 'HKCU:\Control Panel\Colors', name: 'Background', data: '000' }
       when: not result_host_alive is failed
     
-    - name: Set wallpaper
-      win_regedit: path='HKCU:\Control Panel\Desktop' name='Wallpaper' data='C:\Windows\Web\Wallpaper\wallpaper.png' type='string'
+    - name: Disable lockscreen background
+      win_regedit: path='HKLM:\Software\Policies\Microsoft\Windows\System' name='DisableLogonBackgroundImage' data='1' type='dword'
       when: not result_host_alive is failed

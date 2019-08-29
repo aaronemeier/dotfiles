@@ -19,6 +19,7 @@ brew "ffmpeg"
 brew "fzf"
 brew "gcc"
 brew "gdb"
+brew "ghostscript"
 brew "git"
 brew "git-lfs"
 brew "gnu-tar"
@@ -43,7 +44,9 @@ brew "zsh"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "heroku/brew/heroku"
+cask "adobe-acrobat-reader"
 cask "alfred"
+cask "bettertouchtool"
 cask "blackscreen-screensaver"
 cask "calibre"
 cask "dash"
@@ -52,6 +55,7 @@ cask "dotnet-sdk"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "font-source-code-pro"
+cask "iina"
 cask "iterm2"
 cask "java"
 cask "java8"
@@ -59,10 +63,12 @@ cask "jdownloader"
 cask "jetbrains-toolbox"
 cask "logitech-control-center"
 cask "mactex"
+cask "megasync"
 cask "mono-mdk"
 cask "paragon-ntfs"
 cask "postgres"
 cask "postman"
+cask "protonmail-unofficial"
 cask "spotify"
 cask "staruml"
 cask "tower"
@@ -75,13 +81,11 @@ mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
-mas "Magnet", id: 441258766
 mas "Microsoft Excel", id: 462058435
-mas "Microsoft Outlook", id: 985367838
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
-mas "OneDrive", id: 823766827
+mas "Moodle Desktop", id: 1255924440
 mas "Slack", id: 803453959
 mas "Telegram", id: 747648890
 mas "WhatsApp", id: 1147396723
