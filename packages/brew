@@ -44,12 +44,14 @@ brew "zsh"
 brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 brew "heroku/brew/heroku"
-cask "adobe-acrobat-reader"
 cask "alfred"
+cask "android-file-transfer"
 cask "bettertouchtool"
 cask "blackscreen-screensaver"
 cask "calibre"
+cask "cevelop"
 cask "dash"
+cask "digikam"
 cask "docker"
 cask "dotnet-sdk"
 cask "firefox"
@@ -61,9 +63,11 @@ cask "java"
 cask "java8"
 cask "jdownloader"
 cask "jetbrains-toolbox"
+cask "joplin"
 cask "logitech-control-center"
 cask "mactex"
 cask "megasync"
+cask "monitorcontrol"
 cask "mono-mdk"
 cask "paragon-ntfs"
 cask "postgres"
@@ -83,7 +87,6 @@ mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "Moodle Desktop", id: 1255924440
 mas "Slack", id: 803453959

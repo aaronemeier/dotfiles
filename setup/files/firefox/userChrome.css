@@ -18,7 +18,7 @@
 #tabbrowser-tabpanels,
 browser[type=content-primary],
 browser[type=content] > html {
-  background: var(--in-content-page-background)!important
+  background: #2A2A2E !important;
 }
 
 /* Remove back button when there's nothing to go back to */

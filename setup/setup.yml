@@ -51,14 +51,6 @@
       with_lines: "cat {{ dotfiles }}/packages/vscode"
       register: result_vscode
       changed_when: "'Installing...' in result_vscode.stdout_lines"
-    
-    - name: Install keyboard layout
-      copy: dest="/Library/Keyboard Layouts/{{ item }}" src="files/{{ item }}" mode=0755
-      with_items:
-        - "{{ settings.keyboard_layout }}.icns"
-        - "{{ settings.keyboard_layout }}.keylayout"
-      become: true
-      become_user: root
   
     - name: Check if Paragon NTFS has been installed
       stat: path="/Applications/NTFS for Mac.app"
@@ -177,6 +169,11 @@
       command: duti -s "com.colliderli.iina" .{{ item }} all
       changed_when: false
       with_items: "{{ settings.extensions.iina|default('mp3') }}"
+
+    - name: Set Quicktime file associations
+      command: duti -s "com.apple.QuickTimePlayerX" .{{ item }} all
+      changed_when: false
+      with_items: "{{ settings.extensions.quicktime|default('mp3') }}"
 
     - name: Set mailto associations
       command: duti -s "{{ item }}" mailto
