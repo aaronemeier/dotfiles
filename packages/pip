@@ -1,7 +1,8 @@
+asn1crypto==1.2.0
 beets==1.4.9
-cryptography==2.7
+cryptography==2.8
 pipenv==2018.11.26
 pyacoustid==1.1.7
-pylint==2.4.1
+pylint==2.4.3
 typing==3.7.4.1
 virtualenvwrapper==4.8.4

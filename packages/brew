@@ -13,7 +13,7 @@ brew "bash-completion"
 brew "bchunk"
 brew "cheat"
 brew "coreutils"
-brew "dnscrypt-proxy", restart_service: true
+brew "dnscrypt-proxy", restart_service: true, link: false
 brew "duti"
 brew "ffmpeg"
 brew "fzf"
@@ -57,6 +57,7 @@ cask "dotnet-sdk"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "font-source-code-pro"
+cask "gns3"
 cask "iina"
 cask "iterm2"
 cask "java"
@@ -88,7 +89,6 @@ mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
-mas "Moodle Desktop", id: 1255924440
 mas "Slack", id: 803453959
 mas "Telegram", id: 747648890
 mas "WhatsApp", id: 1147396723
