@@ -17,3 +17,9 @@ alias history-search='history 0 | fzf --tac'
 
 # Locations
 alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
+
+# System cleanup
+# - /private/var/log/DiagnosticMessages
+# - /Library/Logs/*
+alias cleanup-logs='rm -rf /Users/cynja/Library/Logs/*'
+#alias cleanup-caches=''
