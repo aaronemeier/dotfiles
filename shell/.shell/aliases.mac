@@ -7,7 +7,7 @@ alias restart-usb='sudo launchctl stop com.apple.usbd; sudo launchctl start com.
 alias restart-dnscrypt='sudo brew services stop dnscrypt-proxy; sudo brew services start dnscrypt-proxy'
 alias update-dnscrypt='sudo brew services stop dnscrypt-proxy;
                         brew uninstall dnscrypt-proxy;
-                        sudo rm -rfv /usr/local/Cellar/dnscrypt-proxy/2.0.25;
+                        sudo rm -rfv /usr/local/Cellar/dnscrypt-proxy/;
                         brew install dnscrypt-proxy;
                         brew services stop dnscrypt-proxy;
                         sudo brew services restart dnscrypt-proxy;'
@@ -19,7 +19,4 @@ alias history-search='history 0 | fzf --tac'
 alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
 
 # System cleanup
-# - /private/var/log/DiagnosticMessages
-# - /Library/Logs/*
-alias cleanup-logs='rm -rf /Users/cynja/Library/Logs/*'
-#alias cleanup-caches=''
+alias cleanup-logs='rm -rvf ~/Library/Logs/*'
