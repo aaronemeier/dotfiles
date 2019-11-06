@@ -1,4 +1,4 @@
-@-moz-document url(about:privatebrowsing), url(about:newtab), url(about:home), url(about:blank) {
+@-moz-document url(about:privatebrowsing), url(about:newtab), url(about:home) {
     html {
         background-color: #2A2A2E !important;
     }
