@@ -1,0 +1,14 @@
+---
+editor: vim
+colorize: true
+style: solarized-dark
+formatter: terminal16m
+cheatpaths:
+  - name: community
+    path: ~/.dotfiles/cheat/.cheat/community
+    tags: [ community ]
+    readonly: true
+  - name: personal
+    path: ~/.dotfiles/cheat/.cheat/personal
+    tags: [ personal ]
+    readonly: false
