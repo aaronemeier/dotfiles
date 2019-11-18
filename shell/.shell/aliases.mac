@@ -20,3 +20,7 @@ alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Reso
 
 # System cleanup
 alias cleanup-logs='rm -rvf ~/Library/Logs/*'
+
+# Haskell
+alias ghc='stack ghc --'
+alias ghci='stack ghci --'
