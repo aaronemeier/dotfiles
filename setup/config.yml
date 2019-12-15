@@ -39,6 +39,7 @@ settings:
   disable_timemachine_prompt_for_new_disks: true
   disable_timemachine_backup_on_battery: true
   enable_faster_key_repetition: true
+  change_excel_language: true
   extensions:
     vscode:
       # Common files
@@ -76,7 +77,7 @@ settings:
       - "pgsql"
       # LaTEX
       - "tex"
-    iina:
+    quicktime:
       # Music
       - "mp3"
       - "flac"
@@ -88,25 +89,16 @@ settings:
       - "mpg"
       - "mkv"
       - "wmv"
-    quicktime:
       # Video
       - "mp4"
       - "m4v"
-    mail: "com.microsoft.Outlook"
+    # mail: "com.microsoft.Outlook"
 cleanup:
   remove:
     - "{{ userhome }}/Public"
-    - "/Library/Keyboard Layouts/Logitech.bundle"
   hide:
-    - "{{ userhome }}/Music/GarageBand"
-    - "{{ userhome }}/Music/Audio Music Apps/"
-    - "{{ userhome }}/Movies/iMovie Library.imovielibrary"
-    - "{{ userhome }}/Movies/iMovie Theater.theater"
-    - "{{ userhome }}/Movies"
-    - "{{ userhome }}/Music/"
     - "/Applications/Books.app"
     - "/Applications/Calculator.app"
-    - "/Applications/Calendar.app"
     - "/Applications/Chess.app"
     - "/Applications/Dashboard.app"
     - "/Applications/FaceTime.app"
@@ -115,23 +107,17 @@ cleanup:
     - "/Applications/Launchpad.app"
     - "/Applications/Mail.app"
     - "/Applications/Maps.app"
-    - "/Applications/Messages.app"
     - "/Applications/Mission Control.app"
-    - "/Applications/Notes.app"
     - "/Applications/Photo Booth.app"
-    - "/Applications/Photos.app"
     - "/Applications/Reminders.app"
     - "/Applications/Safari.app"
     - "/Applications/Siri.app"
     - "/Applications/Stickies.app"
     - "/Applications/Stocks.app"
     - "/Applications/TextEdit.app"
-    - "/Applications/TI-Diagnostic.app"
     - "/Applications/Utilities/Terminal.app"
     - "/Applications/VoiceMemos.app"
-    - "/Applications/Xcode.app"
     - "/Applications/TeX/"
-    - "/Applications/digiKam/"
     - "/Volumes"
 vm:
   packages:

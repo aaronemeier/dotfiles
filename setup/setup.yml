@@ -165,20 +165,10 @@
       changed_when: false
       with_items: "{{ settings.extensions.vscode|default('md') }}"
 
-    - name: Set IINA file associations
-      command: duti -s "com.colliderli.iina" .{{ item }} all
-      changed_when: false
-      with_items: "{{ settings.extensions.iina|default('mp3') }}"
-
     - name: Set Quicktime file associations
       command: duti -s "com.apple.QuickTimePlayerX" .{{ item }} all
       changed_when: false
       with_items: "{{ settings.extensions.quicktime|default('mp3') }}"
-
-    - name: Set mailto associations
-      command: duti -s "{{ item }}" mailto
-      changed_when: false
-      with_items: "{{ settings.extensions.mail|default('com.microsoft.Outlook') }}"
 
     - name: Set language for Microsoft Office Excel
       osx_defaults:
@@ -188,6 +178,7 @@
         type: array
         value: 
           - "de-CH"
+      when: settings.change_excel_language|default(false)
 
     - name: Remove all tags in Finder
       osx_defaults:
