@@ -2,6 +2,7 @@
 
 # System
 alias restart-usb='sudo launchctl stop com.apple.usbd; sudo launchctl start com.apple.usbd'
+alias reset-wifi='sudo ifconfig en0 down; sudo ifconfig en0 mtu 1500 up'
 
 # DNSCrypt
 alias restart-dnscrypt='sudo brew services stop dnscrypt-proxy; sudo brew services start dnscrypt-proxy'

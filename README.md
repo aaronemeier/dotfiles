@@ -1,13 +1,24 @@
 # dotfiles
 [![Build Status](https://travis-ci.org/cynja/dotfiles.svg?branch=master)](https://travis-ci.org/cynja/dotfiles)
+
 Dotfiles and Ansible setup script
 
 ## Preparation
+### Requirements
 - Log into App Store
-- Install Xcode
-- Edit setup/config.yml
-- Edit setup/hosts.yml
-- Optional: Setup Windows VM
+- Install Xcode via App Store
+
+### Security
+- Enable Filevault
+- Enable Firewall
+- Enable Firmware password
+
+### Customization
+- Adjust setup configuration
+    - Edit setup/config.yml
+    - Edit setup/hosts.yml
+    - Edit setup/defaults.sh
+- Setup Windows VM
     - Set network adapter to Shared (NAT)
     - Enable remote access via WinRM
 ```cmd

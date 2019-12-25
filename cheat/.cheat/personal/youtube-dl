@@ -21,3 +21,6 @@ youtube-dl -s example.com/watch?v=id
 
 # Download MP3 from youtube
 youtube-dl --quiet --extract-audio --audio-format mp3 --audio-quality 0 -o "%(title)s.%(ext)s" $UrlOrPlaylist
+
+# Download MP3 from youtube by text file
+youtube-dl --quiet --extract-audio --audio-format mp3 --audio-quality 0 -o "%(title)s.%(ext)s" -a liste.txt

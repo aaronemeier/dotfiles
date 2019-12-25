@@ -1,0 +1,2 @@
+# List apps by port
+lsof -i TCP:8000

@@ -1,225 +1,95 @@
 ---
 userhome: "{{ lookup('env','HOME')|default('~') }}"
-vault: "{{ userhome }}/.ansible-vault/vault.yml"
-dotfiles: "{{ userhome }}/.dotfiles/"
+vault: '{{ userhome }}/.ansible-vault/vault.yml'
+dotfiles: '{{ userhome }}/.dotfiles/'
 settings:
   dnscrypt:
     servers: "'cloudflare',  'cloudflare-ipv6'"
     listen: "'127.0.0.1:53', '[::1]:53'" 
     fallback: "'1.1.1.1:53'"
-    interfaces:
-      - "Wi-Fi"
-      - "iPhone USB"
-      - "Thunderbolt Bridge"
-      - "Bluetooth PAN"
-      - "Home"
-  shell: "/bin/zsh"
-  screenshot_location: "/tmp/"
-  disable_captitative_portal_assistant: true
-  disable_hyperlink_auditing_beacon: true
-  disable_bootsound: true
-  remove_all_finder_tags: true
-  enable_spring_loading: true
-  disable_scroll_on_dock_items: true
-  remove_all_dock_items: true
-  disable_desktop_icons: true
-  enable_expanded_panes_by_default: true
-  enable_auto_closing_printer_queue: true
-  disable_saving_new_files_to_icloud: true
-  disable_creating_dstore_files_on_network: true
-  disable_creating_dstore_files_on_usb: true
-  enable_daily_software_updates: true
-  disable_airdrop: true
-  enable_speedup_window_resize: true
-  set_screenshot_type_to_png: true
-  disable_shadow_in_screenshots: true
-  disable_bonjour_service: true
-  enable_secure_trash_deletion:  true
-  limit_timemachine_to_once_per_day: true
-  disable_timemachine_prompt_for_new_disks: true
-  disable_timemachine_backup_on_battery: true
-  enable_faster_key_repetition: true
-  change_excel_language: true
+    interfaces: ['Wi-Fi', 'Bluetooth PAN', 'Home', 
+                  'Thunderbolt Bridge', 'Thunderbolt Ethernet']
+  shell: '/bin/zsh'
+  setup_defaults: True
   extensions:
-    vscode:
-      # Common files
-      - "public.plain-text"
-      - "md"
-      - "cfg"
-      - "ini"
-      - "conf"
-      - "ini"
-      - "sh"
-      - "zsh"
-      - "bat"
-      - "cmd"
-      - "xml"
-      - "plist"
-      - "nfo"
-      # Java
-      - "properties"
-      - "gradle"
-      - "java"
-      # Python
-      - "py"
-      - "yml"
-      - "yaml"
-      - "j2"
-      - "jinja2"
-      # C/C++
-      - "cpp"
-      - "c"
-      - "h"
-      # Posgres
-      - "sql"
-      - "ddl"
-      - "dml"
-      - "pgsql"
-      # LaTEX
-      - "tex"
-    quicktime:
+    vscode: [
+        # Common
+        public.plain-text, md, cfg, ini, conf, ini, 
+        sh, zsh, bat, cmd, xml, plist, nfo,
+         # LaTEX
+        tex
+    ]
+    quicktime: [
       # Music
-      - "mp3"
-      - "flac"
-      - "aac"
-      - "wma"
-      - "ogg"
-      - "m4a"
+      'mp3', 'flac', 'aac', 'wma', 'ogg', 'm4a',
       # Video
-      - "mpg"
-      - "mkv"
-      - "wmv"
+      'mpg', 'mkv', 'wmv',
       # Video
-      - "mp4"
-      - "m4v"
-    # mail: "com.microsoft.Outlook"
-cleanup:
-  remove:
-    - "{{ userhome }}/Public"
-  hide:
-    - "/Applications/Books.app"
-    - "/Applications/Calculator.app"
-    - "/Applications/Chess.app"
-    - "/Applications/Dashboard.app"
-    - "/Applications/FaceTime.app"
-    - "/Applications/Home.app"
-    - "/Applications/iTunes.app"
-    - "/Applications/Launchpad.app"
-    - "/Applications/Mail.app"
-    - "/Applications/Maps.app"
-    - "/Applications/Mission Control.app"
-    - "/Applications/Photo Booth.app"
-    - "/Applications/Reminders.app"
-    - "/Applications/Safari.app"
-    - "/Applications/Siri.app"
-    - "/Applications/Stickies.app"
-    - "/Applications/Stocks.app"
-    - "/Applications/TextEdit.app"
-    - "/Applications/Utilities/Terminal.app"
-    - "/Applications/VoiceMemos.app"
-    - "/Applications/TeX/"
-    - "/Volumes"
+      'mp4', 'm4v'
+    ]
+  spotlight:
+    hidden:
+      # Elements, which are hidden in Spotlight
+      - '/Applications/Automator.app'
+      - '/Applications/Books.app'
+      - '/Applications/Calculator.app'
+      - '/Applications/Chess.app'
+      - '/Applications/Contacts.app'
+      - '/Applications/Dashboard.app'
+      - '/Applications/FaceTime.app'
+      - '/Applications/Home.app'
+      - '/Applications/iTunes.app'
+      - '/Applications/Launchpad.app'
+      - '/Applications/Mail.app'
+      - '/Applications/Maps.app'
+      - '/Applications/Messages.app'
+      - '/Applications/Mission Control.app'
+      - '/Applications/News.app'
+      - '/Applications/Notes.app'
+      - '/Applications/Photo Booth.app'
+      - '/Applications/Photos.app'
+      - '/Applications/Reminders.app'
+      - '/Applications/Safari.app'
+      - '/Applications/Siri.app'
+      - '/Applications/Stickies.app'
+      - '/Applications/Stocks.app'
+      - '/Applications/TextEdit.app'
+      - '/Applications/Utilities/Terminal.app'
+      - '/Applications/VoiceMemos.app'
+      - '/Applications/TeX/'
+      - '/Volumes'
 vm:
   packages:
-    chocolatey:
-      - visualstudio2019community
-      - office365proplus
+    chocolatey: [visualstudio2019community]
   settings:
-    enable_firewall: true
+    enable_firewall: True
     setup_script:
-      version: "3.8"
-      url: 
-      # See: https://github.com/Disassembler0/Win10-Initial-Setup-Script/blob/master/Default.preset
-      presets:
+      version: 3.8
+      presets: [
+        # Reference: https://github.com/Disassembler0/Win10-Initial-Setup-Script/blob/master/Default.preset
         # Privacy tweaks
-        - DisableTelemetry
-        - DisableWiFiSense
-        - DisableSmartScreen
-        - DisableWebSearch
-        - DisableAppSuggestions
-        - DisableActivityHistory 
-        - DisableBackgroundApps
-        - DisableLocation
-        - DisableMapUpdates
-        - DisableFeedback
-        - DisableTailoredExperiences
-        - DisableAdvertisingID
-        - DisableWebLangList
-        - DisableCortana
-        - DisableErrorReporting
-        - SetP2PUpdateDisable
-        - DisableDiagTrack
-        - DisableWAPPush
+        DisableTelemetry, DisableWiFiSense, DisableSmartScreen, DisableWebSearch, DisableAppSuggestions,
+        DisableActivityHistory, DisableBackgroundApps, DisableLocation, DisableMapUpdates, DisableFeedback, 
+        DisableTailoredExperiences, DisableAdvertisingID, DisableWebLangList, DisableCortana, 
+        DisableErrorReporting, SetP2PUpdateDisable, DisableDiagTrack,  DisableWAPPush,
         ## Security tweaks
-        - DisableSharingMappedDrives
-        - DisableAdminShares
-        - DisableSMB1
-        - DisableSMBServer
-        - DisableLLMNR
-        - DisableNCSIProbe
-        - SetCurrentNetworkPrivate
-        - SetUnknownNetworksPublic
-        - DisableNetDevicesAutoInst
-        - EnableFirewall
-        - HideDefenderTrayIcon
-        - EnableDefender
-        - EnableDefenderCloud
-        - EnableCtrldFolderAccess
-        - EnableCIMemoryIntegrity
-        - EnableDefenderAppGuard
-        - HideAccountProtectionWarn
-        - EnableDownloadBlocking
-        - DisableScriptHost
-        - EnableDotNetStrongCrypto
-        - EnableMeltdownCompatFlag
-        - EnableF8BootMenu
-        - DisableBootRecovery
-        - DisableRecoveryAndReset
-        - SetDEPOptOut
-        # Security tweaks
-        - DisableUpdateMSRT
-        - DisableUpdateDriver
-        - DisableMaintenanceWakeUp
-        - DisableHomeGroups
-        - DisableSharedExperiences
-        - DisableRemoteAssistance
-        - DisableRemoteDesktop
-        - DisableAutoplay
-        - DisableAutorun
-        - EnableRestorePoints
-        - EnableStorageSense
-        - DisableDefragmentation
-        - DisableSuperfetch
-        - DisableIndexing
-        - EnableSwapFile
-        - EnableNTFSLastAccess
-        - SetBIOSTimeLocal
-        - EnableHibernation
-        - DisableSleepButton
-        - DisableSleepTimeout
-        - EnableFastStartup
-        - DisableAutoRebootOnCrash
-        # Explorer UI tweaks
-        - DisableThumbnailCache
-        - DisableThumbsDBOnNetwork
+        DisableSharingMappedDrives, DisableAdminShares, DisableSMB1, DisableSMBServer, DisableLLMNR,
+        DisableNCSIProbe, SetCurrentNetworkPrivate, SetUnknownNetworksPublic, DisableNetDevicesAutoInst,
+        EnableFirewall, HideDefenderTrayIcon, EnableDefender, EnableDefenderCloud, EnableCtrldFolderAccess,
+        EnableCIMemoryIntegrity, EnableDefenderAppGuard, HideAccountProtectionWarn, EnableDownloadBlocking,
+        DisableScriptHost, EnableDotNetStrongCrypto, EnableMeltdownCompatFlag, EnableF8BootMenu,
+        DisableBootRecovery, DisableRecoveryAndReset, SetDEPOptOut,
+        # System tweaks
+        DisableUpdateMSRT, DisableUpdateDriver, DisableMaintenanceWakeUp, DisableHomeGroups,
+        DisableSharedExperiences, DisableRemoteAssistance, DisableRemoteDesktop, DisableAutoplay,
+        DisableAutorun, EnableRestorePoints, EnableStorageSense, DisableDefragmentation, DisableSuperfetch,
+        DisableIndexing, EnableSwapFile, EnableNTFSLastAccess, SetBIOSTimeLocal, EnableHibernation,
+        DisableSleepButton, DisableSleepTimeout, EnableFastStartup, DisableAutoRebootOnCrash,
         # Application tweaks
-        - DisableOneDrive
-        - UninstallOneDrive
-        - UninstallMsftBloat
-        - UninstallThirdPartyBloat
-        - DisableXboxFeatures
-        - DisableAdobeFlash
-        - DisableEdgePreload
-        - DisableEdgeShortcutCreation
-        - DisableIEFirstRun
-        - UninstallMediaPlayer
-        - UninstallInternetExplorer
-        - UninstallWorkFolders
-        - UninstallPowerShellV2
-        - SetPhotoViewerAssociation
-        - InstallPDFPrinter
-        - UninstallXPSPrinter
-        - UninstallFaxAndScan
-        # Unpinning
-        - UnpinStartMenuTiles
-        - UnpinTaskbarIcons
+        DisableOneDrive, UninstallOneDrive, UninstallMsftBloat, UninstallThirdPartyBloat,
+        DisableXboxFeatures, DisableAdobeFlash, DisableEdgePreload, DisableEdgeShortcutCreation,
+        DisableIEFirstRun, UninstallMediaPlayer, UninstallInternetExplorer, UninstallWorkFolders,
+        UninstallPowerShellV2, SetPhotoViewerAssociation, InstallPDFPrinter, UninstallXPSPrinter, 
+        UninstallFaxAndScan, DisableThumbnailCache, DisableThumbsDBOnNetwork,
+        UnpinStartMenuTiles, UnpinTaskbarIcons,
+      ]

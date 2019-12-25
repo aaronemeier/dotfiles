@@ -92,14 +92,14 @@
         - Restart dnscrypt
 
     - name: Copy forwarding rules
-      copy: src="files/forwarding_rules.txt" dest="/usr/local/etc/forwarding_rules.txt" owner=root group=wheel mode=0644
+      copy: src="dnscrypt/forwarding_rules.txt" dest="/usr/local/etc/forwarding_rules.txt" owner=root group=wheel mode=0644
       become: true
       become_user: root
       notify:
         - Restart dnscrypt
       
     - name: Copy cloaking rules
-      copy: src="files/cloaking_rules.txt" dest="/usr/local/etc/cloaking_rules.txt" owner=root group=wheel mode=0644
+      copy: src="dnscrypt/cloaking_rules.txt" dest="/usr/local/etc/cloaking_rules.txt" owner=root group=wheel mode=0644
       become: true
       become_user: root
       notify:
@@ -143,23 +143,6 @@
       become: true
       become_user: root
 
-    - name: Disable captitative portal assistant
-      osx_defaults: domain="/Library/Preferences/SystemConfiguration/com.apple.captive.control" key="Active" state=present type=bool value=false
-      when: settings.disable_captitative_portal_assistant|default(false)
-      become: true
-      become_user: root
-
-    - name: Disable hyperlink auditing beacon
-      osx_defaults: domain="com.apple.Safari" key="com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled" state=present type=bool value=false
-      when: settings.disable_hyperlink_auditing_beacon|default(false)
-
-    - name: Disable bootsound
-      shell: nvram SystemAudioVolume=" " && nvram SystemAudioVolumeDB=" "
-      when: settings.disable_bootsound|default(false)
-      changed_when: false
-      become: true
-      become_user: root
-
     - name: Set vscode file associations
       command: duti -s "com.microsoft.VSCode" .{{ item }} all
       changed_when: false
@@ -170,163 +153,18 @@
       changed_when: false
       with_items: "{{ settings.extensions.quicktime|default('mp3') }}"
 
-    - name: Set language for Microsoft Office Excel
-      osx_defaults:
-        domain: "com.microsoft.Excel"
-        key: "AppleLanguages"
-        state: present
-        type: array
-        value: 
-          - "de-CH"
-      when: settings.change_excel_language|default(false)
-
-    - name: Remove all tags in Finder
-      osx_defaults:
-        domain: "com.apple.finder"
-        key: "FavoriteTagNames"
-        state: present
-        type: array
-        value:
-          - ""
-      when: settings.remove_all_finder_tags|default(false)
-
-    - name: Enable spring loading folder when dragging items into it
-      osx_defaults: key="com.apple.springing.enable" state=present type=bool value=true
-      when: settings.enable_spring_loading|default(false)
-
-    - name: Enable instant spring loading
-      osx_defaults: key="com.apple.springing.delay" state=present type=float value=0.2
-      when: settings.enable_spring_loading|default(false)
-
-    - name: Disable scroll on Dock items
-      osx_defaults: domain="com.apple.dock" key="scroll-to-open" state=present type=bool value=false
-      when: settings.disable_scroll_on_dock_items|default(false)
-
-    - name: Remove all Dock items
-      osx_defaults: domain="com.apple.dock" key="persistent-apps" state=absent
-      notify:
-        - Restart dock
-      when: settings.remove_all_dock_items|default(false)
-
-    - name: Disable desktop icons
-      osx_defaults: domain="com.apple.finder" key="CreateDesktop" state=present type=bool value=false
-      when: settings.disable_desktop_icons|default(false)
-
-    - name: Expand all panes by default
-      osx_defaults: key="{{ item }}" state=present type=bool value=true
-      with_items:
-        - "NSNavPanelExpandedStateForSaveMode"
-        - "PMPrintingExpandedStateForPrint2"
-        - "PMPrintingExpandedStateForPrint"
-      when: settings.enable_expanded_panes_by_default|default(false)
-
-    - name: Expand info panes by default
-      osx_defaults: domain="com.apple.finder.FXInfoPanesExpanded" key="{{ item }}" state=present type=bool value=true
-      with_items:
-        - "General"
-        - "OpenWith"
-        - "Privileges"
-      when: settings.enable_expanded_panes_by_default|default(false)
-      
-    - name: Enable auto closing printer queue
-      osx_defaults: domain="com.apple.print.PrintingPrefs" key="Quit When Finished" state=present type=bool value=true
-      when: settings.enable_auto_closing_printer_queue|default(false)
-
-    - name: Disable saving new files to iCloud
-      osx_defaults: key="NSDocumentSaveNewDocumentsToCloud" state=present type=bool value=false
-      when: settings.disable_saving_new_files_to_icloud|default(false)
-
-    - name: Disable creating .DS_STORE files on network
-      osx_defaults: domain="com.apple.desktopservices" key="DSDontWriteNetworkStores" state=present value=true
-      when: settings.disable_creating_dstore_files_on_network|default(false)
-  
-    - name: Disable creating .DS_STORE files on usb volumes
-      osx_defaults: domain="com.apple.desktopservices" key="DSDontWriteUSBStores" state=present value=true
-      when: settings.disable_creating_dstore_files_on_usb|default(false)
-
-    - name: Check for software updates daily
-      osx_defaults: domain="com.apple.SoftwareUpdate" key="ScheduleFrequency" state=present type=int value=1
-      when: settings.enable_daily_software_updates|default(false)
-
-    - name: Disable Airdrop
-      osx_defaults: domain="com.apple.NetworkBrowser" key="DisableAirDrop" state=present type=bool value=true
-      when: settings.disable_airdrop|default(false)
-
-    - name: Speedup window resize
-      osx_defaults: key=NSWindowResizeTime state=present type=float value=0.1
-      when: settings.enable_speedup_window_resize|default(false)
-
-    - name: Disable crash reporting
-      osx_defaults: domain="com.apple.CrashReporter" key="DialogType" state=present value=none
-      when: settings.disable_crash_reporting|default(false)
-    
-    - name: Set screenshot location
-      osx_defaults: domain="com.apple.screencapture" key="location" state=present value="{{ settings.screenshot_location }}"
-    
-    - name: Set screenshot image type to png
-      osx_defaults: domain="com.apple.screencapture" key="type" state=present value=png
-      when: settings.set_screenshot_type_to_png|default(false)
-
-    - name: Disable shadow in screenshots
-      osx_defaults: domain="com.apple.screencapture" key="disable-shadow" state=present type=bool value=true
-      when: settings.disable_shadow_in_screenshots
-
-    - name: Disable bonjour service
-      osx_defaults: domain="/Library/Preferences/com.apple.mDNSResponder.plist" key="NoMulticastAdvertisements" state=present type=bool value="yes"
-      when: settings.disable_bonjour_service|default(false)
-      become: true
-      become_user: root
-
-    - name: Empty trash securely by default
-      osx_defaults: domain="com.apple.finder" key="EmptyTrashSecurely" state=present type=bool value=true
-      when: settings.clear_trash_securely|default(false)
-
-    - name: Set timemachine backup interval to 24h
-      osx_defaults: domain="/System/Library/LaunchDaemons/com.apple.backupd-auto" key="StartInterval" state=present type=int value=86400
-      when: settings.limit_timemachine_to_once_per_day|default(false)
-      become: yes
-      become_user: root
-
-    - name: Disable time machine prompt for new disks as backup volume
-      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key="DoNotOfferNewDisksForBackup" state=present type=bool value=true
-      when: settings.disable_timemachine_prompt_for_new_disks|default(false)
-      become: true
-      become_user: root
-
-    - name: Disable time machine backup while on battery
-      osx_defaults: domain="/Library/Preferences/com.apple.TimeMachine" key="RequiresACPower" state=present type=bool value=true
-      when: settings.disable_timemachine_backup_on_battery|default(false)
-      become: true
-      become_user: root
-    
-    - name: Set faster key repetition speed
-      osx_defaults: key="KeyRepeat" state=present type=int value=1
-      when: settings.enable_faster_key_repetition|default(false)
-
-    - name: Set faster initial time until key repetition gets started
-      osx_defaults: key="InitialKeyRepeat" state=present type=int value=25
-      when: settings.enable_faster_key_repetition|default(false)
-
-    - name: Remove items
-      file: dest="{{ item }}" state=absent
-      with_items: "{{ cleanup.remove }}"
-      become: true
-      become_user: root
-      ignore_errors: true
-
     - name: Set spotlight exclusions
       osx_defaults: domain="/.Spotlight-V100/VolumeConfiguration.plist" key="Exclusions" state=present type=array value="{{ item }}"
       loop:
-        - "{{ cleanup.hide }}"
+        - "{{ settings.spotlight.hidden|default([]) }}"
       become: true
       become_user: root
 
-    - name: Hide items
-      command: "chflags hidden '{{ item }}'"
-      with_items: "{{ cleanup.hide }}"
-      become: true
-      become_user: root
-      ignore_errors: true
+    - name: Setup macOS defaults
+      script: ./defaults.sh
+      when: settings.setup_defaults|default(false)
+      notify:
+        - Restart dock
 
   handlers:
     - name: Restart dnscrypt
@@ -375,19 +213,19 @@
       when: not result_host_alive is failed and vm.settings.enable_firewall|default(false)
     
     - name: Get script
-      win_get_url: dest='C:\Windows\Temp\Win10Settings.zip' url="https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/{{ vm.settings.setup_script.version }}.zip"
+      win_get_url: dest='C:\Windows\Temp\Win10Settings.zip' url='https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/{{ vm.settings.setup_script.version }}.zip'
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
     
     - name: Create script destination
-      win_file: path='C:\Windows\Temp\Win10Settings' state=directory
+      win_file: path='C:\Temp\Win10Settings' state=directory
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
-    
+
     - name: Unzip script
-      win_unzip: delete_archive=true dest='C:\Windows\Temp\Win10Settings' src='C:\Windows\Temp\Win10Settings.zip'
+      win_unzip: delete_archive=yes src='C:\Windows\Temp\Win10Settings.zip' dest='C:\Windows\Temp\Win10Settings'
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
@@ -397,6 +235,8 @@
       args:
         chdir: 'C:\Windows\Temp\Win10Settings\Win10-Initial-Setup-Script-{{ vm.settings.setup_script.version }}'
       with_flattened: "{{ vm.settings.setup_script.presets }}"
+      become_user: Administrator
+      become_method: runas
       when: not result_host_alive is failed
     
     - name: Set wallpaper
