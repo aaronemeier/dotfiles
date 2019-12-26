@@ -64,6 +64,16 @@
 !postgres/
 !postgres/.psqlrc
 
+# setup
+!setup/
+!setup/dnscrypt/
+!setup/dnscrypt/**
+!setup/config.yml
+!setup/defaults.sh
+!setup/hosts.yml
+!setup/setup.yml
+!setup/vault.dist.yml
+
 # shell
 !shell/
 !shell/.shell
@@ -107,19 +117,6 @@
 !zsh/.zsh/prompt.zsh
 !zsh/.zsh_profile
 !zsh/.zshrc
-
-# git
-
-# travis
-
-# ansible setup
-!setup/
-!setup/files/
-!setup/files/**
-!setup/config.yml
-!setup/hosts.yml
-!setup/setup.yml
-!setup/vault.dist.yml
 
 !.gitignore
 !.travis.yml

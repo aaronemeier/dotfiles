@@ -212,20 +212,20 @@
           - Public
       when: not result_host_alive is failed and vm.settings.enable_firewall|default(false)
     
-    - name: Get script
-      win_get_url: dest='C:\Windows\Temp\Win10Settings.zip' url='https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/{{ vm.settings.setup_script.version }}.zip'
-      become_user: Administrator
-      become_method: runas
-      when: not result_host_alive is failed
-    
     - name: Create script destination
       win_file: path='C:\Temp\Win10Settings' state=directory
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
 
+    - name: Get script
+      win_get_url: follow_redirects=all dest='C:\Temp\Win10Settings.zip' url='https://github.com/Disassembler0/Win10-Initial-Setup-Script/archive/{{ vm.settings.setup_script.version }}.zip'
+      become_user: Administrator
+      become_method: runas
+      when: not result_host_alive is failed
+    
     - name: Unzip script
-      win_unzip: delete_archive=yes src='C:\Windows\Temp\Win10Settings.zip' dest='C:\Windows\Temp\Win10Settings'
+      win_unzip: delete_archive=yes src='C:\Temp\Win10Settings.zip' dest='C:\Temp\Win10Settings'
       become_user: Administrator
       become_method: runas
       when: not result_host_alive is failed
@@ -233,7 +233,7 @@
     - name: Set custom settings via setup script
       win_command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File Win10.ps1 -include Win10.psm1 "{{ item }}"
       args:
-        chdir: 'C:\Windows\Temp\Win10Settings\Win10-Initial-Setup-Script-{{ vm.settings.setup_script.version }}'
+        chdir: 'C:\Temp\Win10Settings\Win10-Initial-Setup-Script-{{ vm.settings.setup_script.version }}'
       with_flattened: "{{ vm.settings.setup_script.presets }}"
       become_user: Administrator
       become_method: runas
