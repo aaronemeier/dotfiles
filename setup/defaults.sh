@@ -3,7 +3,7 @@
 #       It's easier to test for new macOS versions and deprecated settings
 
 # Disable captitative portal assistant
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active state=present -bool false
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
 # Disable hyperlink auditing beacon
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled -bool false
@@ -41,23 +41,8 @@ defaults write com.apple.CrashReporter DialogType -string none
 # Set screenshot location to temp
 defaults write com.apple.screencapture location -string "/tmp/"
 
-# Set screenshot image type to png
-defaults write com.apple.screencapture type -string "png"
-
-#  Disable Apple Bonjour service
-sudo defaults write /Library/Preferences/com.apple.mDNSResponder.plist NoMulticastAdvertisements -bool true
-
 # Empty trash securely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool true
-
-# Set timemachine backup interval to 24h
-sudo defaults write /System/Library/LaunchDaemons/com.apple.backupd-auto StartInterval -int 86400
-
-# Disable time machine prompt for new disks as backup volume
-sudo defaults write /Library/Preferences/com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
-
-# Disable time machine backup while on battery
-sudo defaults write /Library/Preferences/com.apple.TimeMachine RequiresACPower -bool true
 
 # Set faster key repetition speeds
 defaults write -g KeyRepeat -int 1
@@ -79,9 +64,3 @@ sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController Devi
 
 # Wake on Network Access feature is disabled
 sudo systemsetup -setwakeonnetworkaccess off
-
-# Destroy the File Vault key when going to standby mode
-sudo pmset -a destroyfvkeyonstandby 1
-
-# Store a copy of memory to persistent storage
-sudo pmset -a hibernatemode 3

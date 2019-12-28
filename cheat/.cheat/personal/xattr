@@ -1,0 +1,2 @@
+# Remove quarantine flag
+xattr -r -d com.apple.quarantine /Library/Java/JavaVirtualMachines/openjdk-13.0.1.jdk

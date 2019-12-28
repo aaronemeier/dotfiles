@@ -12,7 +12,6 @@ esac
 
 # Source shell shared things
 for file in ~/.shell/{path,exports,aliases,profile}; do
-    echo "sourcing $file"
     [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 

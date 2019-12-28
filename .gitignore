@@ -58,7 +58,10 @@
 
 # packages
 !packages/
-!packages/*
+!packages/brew
+!packages/npm
+!packages/pip
+!packages/vscode
 
 # postgres
 !postgres/
