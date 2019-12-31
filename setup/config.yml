@@ -7,7 +7,7 @@ settings:
     servers: "'cloudflare',  'cloudflare-ipv6'"
     listen: "'127.0.0.1:53', '[::1]:53'" 
     fallback: "'1.1.1.1:53'"
-    interfaces: ['Wi-Fi', 'Bluetooth PAN', 'Thunderbolt Bridge']
+    interfaces: ['Wi-Fi', 'Bluetooth PAN', 'Thunderbolt Bridge', 'Home', 'Mobile']
   shell: '/bin/zsh'
   setup_defaults: True
   extensions:
