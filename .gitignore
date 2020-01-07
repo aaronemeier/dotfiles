@@ -98,9 +98,6 @@
 # vim
 !vim/
 !vim/.vimrc
-!vim/.vim
-!vim/.vim/colors
-!vim/.vim/colors/solarized.vim
 
 # vscode
 !vscode/

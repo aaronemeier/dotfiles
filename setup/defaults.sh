@@ -62,5 +62,18 @@ defaults write ~/Library/Preferences/com.apple.alf stealthenabled -bool true
 # Disable infrared receiver
 sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
 
-# Wake on Network Access feature is disabled
-sudo systemsetup -setwakeonnetworkaccess off
+# Disable power chime
+sudo defaults write com.apple.PowerChime ChimeOnAllHardware -bool false
+defaults write com.apple.PowerChime ChimeOnAllHardware -bool false
+
+sudo defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
+defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
+
+# Disable system sounds
+sudo nvram SystemAudioVolume=" "
+sudo nvram SystemAudioVolumeDB=" "
+
+# Expand all panes by default
+defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
+defaults write -g PMPrintingExpandedStateForPrint2 -bool true
+defaults write -g PMPrintingExpandedStateForPrint -bool true

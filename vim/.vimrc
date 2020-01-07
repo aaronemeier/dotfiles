@@ -11,8 +11,6 @@ set nocompatible
 
 " Enable solarized theme
 syntax enable
-set background=dark
-colorscheme solarized
 
 " Set spell check language
 set spelllang=en_us
