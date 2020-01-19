@@ -39,7 +39,7 @@ mac-update-brew() {
 mac-update-npm() {
     if [ -x "$(command -v npm)" ]; then
         echo -e '==>\e[1m Updating globally installed npm packages \e[0m\n'
-        npm update -g
+        npm update -g --force
     else
         echo -e '==> \e[1m Error: npm not found\e[0m\n'
     fi
