@@ -1,0 +1,19 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+#browser vbox#appcontent tabbrowser,
+#content,
+#tabbrowser-tabpanels,
+browser[type=content-primary],
+browser[type=content] > html {
+  background: #2A2A2E !important;
+}
+
+/* Remove back button when there's nothing to go back to */
+#back-button[disabled="true"] {
+    display: none;
+}
+
+/* Remove forward button when there's nothing to go forward to */
+#forward-button[disabled="true"] {
+    display: none;
+}

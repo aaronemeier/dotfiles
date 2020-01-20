@@ -1,0 +1,8 @@
+@-moz-document url(about:privatebrowsing), url(about:newtab), url(about:home) {
+    html {
+        background-color: #2A2A2E !important;
+    }
+    body {
+        display: none !important;
+    }
+}

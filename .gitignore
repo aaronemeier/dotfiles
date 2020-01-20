@@ -71,6 +71,8 @@
 !setup/
 !setup/dnscrypt/
 !setup/dnscrypt/**
+!setup/firefox/
+!setup/firefox/**
 !setup/config.yml
 !setup/defaults.sh
 !setup/hosts.yml

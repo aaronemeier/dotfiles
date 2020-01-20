@@ -13,7 +13,7 @@ settings:
   extensions:
     vscode: [
         # Common
-        public.plain-text, md, cfg, ini, conf, ini, 
+        md, cfg, ini, conf, ini, 
         sh, zsh, bat, cmd, xml, plist, nfo,
          # LaTEX
         tex

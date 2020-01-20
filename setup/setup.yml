@@ -148,6 +148,11 @@
       changed_when: false
       with_items: "{{ settings.extensions.vscode|default('md') }}"
 
+    - name: Set vscode as default for plain text files
+      command: duti -s "com.microsoft.VSCode" public.plain-text all
+      changed_when: false
+      with_items: "{{ settings.extensions.vscode|default('md') }}"
+
     - name: Set Quicktime file associations
       command: duti -s "com.apple.QuickTimePlayerX" .{{ item }} all
       changed_when: false
