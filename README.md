@@ -1,5 +1,5 @@
 # dotfiles
-[![Build Status](https://travis-ci.org/cynja/dotfiles.svg?branch=master)](https://travis-ci.org/cynja/dotfiles)
+[![Build Status](https://travis-ci.org/aaronemeier/dotfiles.svg?branch=master)](https://travis-ci.org/aaronemeier/dotfiles)
 
 Dotfiles and Ansible setup script
 
@@ -31,7 +31,7 @@ powershell.exe  -ExecutionPolicy Bypass -File $env:temp/ConfigureRemotingForAnsi
 
 ## Setup
 ```bash
-git clone https://github.com/cynja/dotfiles.git ~/.dotfiles
+git clone https://github.com/aaronemeier/dotfiles.git ~/.dotfiles
 ```
 
 ## Install

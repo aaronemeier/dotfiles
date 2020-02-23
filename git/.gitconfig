@@ -8,7 +8,7 @@
     gpgsign = true
 
 [github]
-    user = cynja
+    user = aaronemeier
 
 [rerere]
     enabled = true

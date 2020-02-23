@@ -210,7 +210,7 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # Setup prompt
-ZSH_PROMPT_DEFAULT_USERNAME="cynja"
+ZSH_PROMPT_DEFAULT_USERNAME="aaron"
 source "$HOME/.zsh/prompt.zsh"
 
 # Check dotfiles
