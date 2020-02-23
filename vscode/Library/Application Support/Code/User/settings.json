@@ -42,4 +42,5 @@
     "update.showReleaseNotes": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
+    "workbench.sideBar.location": "left",
 }

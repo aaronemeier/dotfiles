@@ -20,11 +20,30 @@ alias history-search='history 0 | fzf --tac'
 alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
 
 # Cleanup
-alias cleanup-switch='rm -rvf /Volumes/Switch/.Spotlight-V100/;
-                      rm -rvf /Volumes/Switch/.Trashes/;
-                      rm -rvf /Volumes/Switch/._*;
-                      rm -rvf /Volumes/Switch/.fseventsd/;
-                      sudo chflags -R arch /Volumes/Switch/'
+alias cleanup-brew='brew cleanup --prune 0'
+alias cleanup-python="find . -name '*.pyc' -delete"
+
+alias cleanup-history='
+    rm -rvf ~/.bash_history;
+    rm -rvf ~/.lesshst;
+    rm -rvf ~/.node_repl_history;
+    rm -rvf ~/.viminfo;
+    rm -rvf ~/.zsh_history;
+'
+
+alias cleanup-logs='
+    rm -rvf ~/.docker/application-template/logs/com.docker.log;
+    sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent";
+    rm -rvf ~/Library/Logs/*
+'
+
+alias cleanup-caches='
+    rm -rvf ~/.ansible/tmp/
+    rm -rvf ~/.zcompcache/
+    rm -rvf ~/.npm/
+    rm -rvf ~/.flutter/flutter/bin/cache/
+    rm -rvf ~/Library/Caches/*
+'
 
 # Haskell
 alias ghc='stack ghc --'
