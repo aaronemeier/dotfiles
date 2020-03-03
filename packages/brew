@@ -52,8 +52,9 @@ cask "calibre"
 cask "docker"
 cask "dotnet-sdk"
 cask "electronmail"
+cask "firefox"
+cask "firefox-developer-edition"
 cask "font-source-code-pro"
-cask "google-chrome"
 cask "iterm2"
 cask "java"
 cask "jdownloader"
@@ -80,5 +81,6 @@ mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
+mas "Telegram", id: 747648890
 mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835
