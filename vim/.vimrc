@@ -9,7 +9,6 @@ autocmd BufWritePre * retab
 " Not necessary to state explicitly, just to make it very clear that we want vim
 set nocompatible
 
-" Enable solarized theme
 syntax enable
 
 " Set spell check language

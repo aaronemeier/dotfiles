@@ -9,7 +9,6 @@ install shell
 install bash
 install zsh
 install bin
-install dircolors
 install tmux
 install vim
 

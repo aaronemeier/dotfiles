@@ -37,10 +37,6 @@
 !cheat/.config/
 !cheat/.config/cheat/*
 
-# dircolors
-!dircolors/
-!dircolors/.dircolors
-
 # files
 !files/
 !files/*

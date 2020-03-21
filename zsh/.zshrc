@@ -225,11 +225,12 @@ if [ -r "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
     # Highlight commands, options, arguments, paths, strings and brackets
     # See: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
     ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-    ZSH_HIGHLIGHT_STYLES[default]='fg=cyan'
-    ZSH_HIGHLIGHT_STYLES[path]='fg=cyan,bold'
+    ZSH_HIGHLIGHT_STYLES[arg0]='fg=white'
+    ZSH_HIGHLIGHT_STYLES[default]='fg=white'
+    ZSH_HIGHLIGHT_STYLES[path]='fg=blue,bold'
     ZSH_HIGHLIGHT_STYLES[globbing]='fg=cyan'
-    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=magenta'
-    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=magenta'
+    ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=cyan'
+    ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=cyan'
     ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow'
     ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 fi
