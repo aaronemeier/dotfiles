@@ -73,6 +73,8 @@
 !setup/dnscrypt/**
 !setup/firefox/
 !setup/firefox/**
+!setup/keylayouts/
+!setup/keylayouts/**
 !setup/config.yml
 !setup/defaults.sh
 !setup/hosts.yml

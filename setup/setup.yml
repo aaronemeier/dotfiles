@@ -52,6 +52,12 @@
       register: result_vscode
       changed_when: "'Installing...' in result_vscode.stdout_lines"
   
+    - name: Install custom keyboard layouts
+      copy: src="keylayouts/{{ item }}" dest="{{ userhome }}/Library/Keyboard Layouts/"
+      with_items:
+        - "ABC with Umlauts.icns"
+        - "ABC with Umlauts.keylayout"
+
     - name: Check if Paragon NTFS has been installed
       stat: path="/Applications/NTFS for Mac.app"
       register: result_paragon_ntfs
