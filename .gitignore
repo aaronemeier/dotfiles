@@ -25,6 +25,7 @@
 !bin/.bin/.gitkeep
 !bin/.bin/hsrvpn
 !bin/.bin/insvpn
+!bin/.bin/jdownloader
 
 # cheat
 !cheat/

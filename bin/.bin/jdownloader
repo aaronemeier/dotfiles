@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+APP_DIR="$HOME/.jdownloader"
+APP_FILE="JDownloader.jar"
+URL="http://installer.jdownloader.org/JDownloader.jar"
+[ ! -d "$APP_DIR" ] && mkdir -p "$APP_DIR"
+[ ! -f "$APP_DIR/$APP_FILE" ] && curl "$URL" -o "$APP_DIR/$APP_FILE"
+chmod +x "$APP_DIR/$APP_FILE"
+cd "$APP_DIR"
+java -jar "$APP_DIR/$APP_FILE" & 
