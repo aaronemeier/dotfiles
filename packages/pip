@@ -1,6 +1,6 @@
 asn1crypto==1.3.0
 beets==1.4.9
-cryptography==2.8
+cryptography==2.9
 pipenv==2018.11.26
 pyacoustid==1.1.7
 pylint==2.4.4
