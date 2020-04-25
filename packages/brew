@@ -10,7 +10,7 @@ brew "python@3.8"
 brew "ansible"
 brew "bash"
 brew "bash-completion"
-brew "gettext", link: true
+brew "gettext"
 brew "cheat"
 brew "cloc"
 brew "coreutils"
