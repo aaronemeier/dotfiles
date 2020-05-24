@@ -16,12 +16,12 @@ alias update-dnscrypt='sudo brew services stop dnscrypt-proxy;
 # History
 alias history-search='history 0 | fzf --tac'
 
-# Locations
-alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
+# Location
+alias location-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
 
 # Cleanup
 alias cleanup-brew='brew cleanup --prune 0'
-alias cleanup-python="find . -name '*.pyc' -delete"
+alias cleanup-python-current-directory="find . -name '*.pyc' -delete"
 
 alias cleanup-history='
     rm -rvf ~/.bash_history;
@@ -34,7 +34,8 @@ alias cleanup-history='
 alias cleanup-logs='
     rm -rvf ~/.docker/application-template/logs/com.docker.log;
     sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent";
-    rm -rvf ~/Library/Logs/*
+    rm -rvf ~/Library/Logs/*;
+    rm -rvf /Library/Logs/DiagnosticReports/*;
 '
 
 alias cleanup-caches='
