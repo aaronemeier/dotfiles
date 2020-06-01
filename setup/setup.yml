@@ -80,60 +80,20 @@
       shell: cd "/Users/{{ ansible_user }}/.dotfiles/" && ./dotfiles.sh
       register: result_dotfiles
       changed_when: "'LINK' in result_dotfiles.stdout_lines"
-
-    - name: Setup dnscrypt
-      ini_file: owner=root group=wheel mode=0644 path="/usr/local/etc/dnscrypt-proxy.toml" section="" option="{{ item.option }}" value="{{ item.value }}" state="{{ item.state }}"
-      with_items:
-        - { option: "server_names", value: "[{{ settings.dnscrypt.servers|default('cloudflare'|quote)|string }}]", state: "present" }
-        - { option: "listen_addresses", value: "[{{ settings.dnscrypt.listen|default('127.0.0.1:53'|quote)|string }}]" , state: "present" }
-        - { option: "max_clients", value: 250, state: "present" }
-        - { option: "ipv4_servers", value: "true", state: "present" }
-        - { option: "ipv6_servers", value: "false", state: "present" }
-        - { option: "dnscrypt_servers", value: "true", state: "present" }
-        - { option: "doh_servers", value: "true", state: "present" }
-        - { option: "require_dnssec", value: "true", state: "present" }
-        - { option: "require_nolog", value: "true", state: "present" }
-        - { option: "require_nofilter", value: "true", state: "present" }
-        - { option: "fallback_resolver", value: "{{ settings.dnscrypt.fallback|default('1.1.1.1:53') }}", state: "present" }
-        - { option: "ignore_system_dns", value: "true", state: "present" }
-        - { option: "cache", value: "true", state: "present" }
-        - { option: "cache_size", value: 8192, state: "present" }
-        - { option: "forwarding_rules", value: "'forwarding_rules.txt'", state: "present" }
-        - { option: "cloaking_rules", value: "'cloaking_rules.txt'", state: "present" }
-      become: true
-      become_user: root
-      notify:
-        - Restart dnscrypt
-
-    - name: Copy forwarding rules
-      copy: src="dnscrypt/forwarding_rules.txt" dest="/usr/local/etc/forwarding_rules.txt" owner=root group=wheel mode=0644
-      become: true
-      become_user: root
-      notify:
-        - Restart dnscrypt
-      
-    - name: Copy cloaking rules
-      copy: src="dnscrypt/cloaking_rules.txt" dest="/usr/local/etc/cloaking_rules.txt" owner=root group=wheel mode=0644
-      become: true
-      become_user: root
-      notify:
-        - Restart dnscrypt
-      
-    - name: Register brew services
-      shell: brew services list | sed '1 d' | cut -d ' ' -f 1
-      register: result_brew_services
-      changed_when: false
-
-    - name: Enable dnscrypt service
-      command: brew services start dnscrypt-proxy
-      when: "'dnscrypt-proxy' in result_brew_services.stdout_lines"
-      changed_when: false
-      become: true
-      become_user: root
     
+    - name: Setup cloudflared
+      template: src="cloudflared/config.yml" dest="/usr/local/etc/cloudflared/config.yml"
+      notify:
+        - Restart cloudflared
+    
+    - name: Enable cludflared
+      shell: cloudflared service install
+      become: True
+      become_user: root
+
     - name: Update dns resolver
       shell: networksetup -setdnsservers "{{ item }}" 127.0.0.1
-      with_items: "{{ settings.dnscrypt.interfaces|default('Wi-Fi') }}"
+      with_items: "{{ settings.cloudflared.interfaces|default('Wi-Fi') }}"
       become: true
       become_user: root
 
@@ -179,8 +139,8 @@
         - Restart dock
 
   handlers:
-    - name: Restart dnscrypt
-      command: brew services restart dnscrypt-proxy
+    - name: Restart cloudflared
+      command: launchctl stop com.cloudflare.cloudflared && launchctl start com.cloudflare.cloudflared
       become: True
       become_user: root
 

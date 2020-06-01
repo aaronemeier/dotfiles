@@ -3,10 +3,9 @@ userhome: "{{ lookup('env','HOME')|default('~') }}"
 vault: '{{ userhome }}/.ansible-vault/vault.yml'
 dotfiles: '{{ userhome }}/.dotfiles/'
 settings:
-  dnscrypt:
-    servers: "'cloudflare',  'cloudflare-ipv6'"
-    listen: "'127.0.0.1:53', '[::1]:53'" 
-    fallback: "'1.1.1.1:53'"
+  cloudflared:
+    server1: "1.1.1.3"
+    server2: "1.0.0.3"
     interfaces: ['Wi-Fi', 'Bluetooth PAN', 'Thunderbolt Bridge', 'Home', 'Mobile']
   shell: '/bin/zsh'
   setup_defaults: True

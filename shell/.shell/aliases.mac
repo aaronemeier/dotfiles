@@ -13,6 +13,9 @@ alias update-dnscrypt='sudo brew services stop dnscrypt-proxy;
                         brew services stop dnscrypt-proxy;
                         sudo brew services restart dnscrypt-proxy;'
 
+# Cloudflared
+alias restart-cloudflared='sudo launchctl stop com.cloudflare.cloudflared; sudo launchctl start com.cloudflare.cloudflared'
+
 # History
 alias history-search='history 0 | fzf --tac'
 
