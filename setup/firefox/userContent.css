@@ -1,8 +1,0 @@
-@-moz-document url(about:privatebrowsing) {
-    html {
-        background-color: #2A2A2E !important;
-    }
-    body {
-        display: none !important;
-    }
-}

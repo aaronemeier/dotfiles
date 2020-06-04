@@ -1,6 +1,9 @@
 
 @angular/cli
+@ionic/cli
+cordova-res
 create-react-app
 eslint
+native-run
 npm
 prettier

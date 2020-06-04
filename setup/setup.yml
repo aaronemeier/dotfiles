@@ -82,7 +82,7 @@
       changed_when: "'LINK' in result_dotfiles.stdout_lines"
     
     - name: Setup cloudflared
-      template: src="cloudflared/config.yml" dest="/usr/local/etc/cloudflared/config.yml"
+      template: src="cloudflared/config.jinja2" dest="/usr/local/etc/cloudflared/config.yml"
       notify:
         - Restart cloudflared
     
@@ -127,10 +127,10 @@
       changed_when: false
       with_items: "{{ settings.extensions.vscode|default('md') }}"
 
-    - name: Set Quicktime file associations
-      command: duti -s "com.apple.QuickTimePlayerX" .{{ item }} all
+    - name: Set IINA file associations
+      command: duti -s "com.colliderli.iina" .{{ item }} all
       changed_when: false
-      with_items: "{{ settings.extensions.quicktime|default('mp3') }}"
+      with_items: "{{ settings.extensions.iina|default('mp3') }}"
 
     - name: Setup macOS defaults
       script: ./defaults.sh

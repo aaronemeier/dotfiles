@@ -65,10 +65,8 @@
 
 # setup
 !setup/
-!setup/dnscrypt/
-!setup/dnscrypt/**
-!setup/firefox/
-!setup/firefox/**
+!cloudflared/
+!cloudflared/**
 !setup/keylayouts/
 !setup/keylayouts/**
 !setup/config.yml
@@ -118,6 +116,7 @@
 !zsh/.zsh_profile
 !zsh/.zshrc
 
+!.editorconfig
 !.gitignore
 !.travis.yml
 !dotfiles.sh

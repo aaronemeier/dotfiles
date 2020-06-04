@@ -51,22 +51,25 @@ brew "zsh-syntax-highlighting"
 brew "cloudflare/cloudflare/cloudflared"
 brew "heroku/brew/heroku"
 cask "alfred"
+cask "android-file-transfer"
 cask "calibre"
 cask "docker"
 cask "dotnet-sdk"
 cask "electronmail"
-cask "firefox"
 cask "font-source-code-pro"
 cask "google-chrome"
+cask "iina"
 cask "iterm2"
 cask "java"
-cask "jdownloader"
 cask "jetbrains-toolbox"
+cask "joplin"
 cask "logitech-control-center"
 cask "mactex"
 cask "microsoft-teams"
 cask "mono-mdk"
+cask "ngrok"
 cask "paragon-ntfs"
+cask "plex-media-player"
 cask "postgres"
 cask "postman"
 cask "rectangle"
@@ -80,7 +83,6 @@ mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "GarageBand", id: 682658836
-mas "iFlicks 3", id: 1274494218
 mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816

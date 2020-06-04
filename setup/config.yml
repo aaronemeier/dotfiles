@@ -17,7 +17,7 @@ settings:
          # LaTEX
         tex
     ]
-    quicktime: [
+    iina: [
       # Music
       'mp3', 'flac', 'aac', 'wma', 'ogg', 'm4a',
       # Video
@@ -31,7 +31,7 @@ vm:
   settings:
     enable_firewall: True
     setup_script:
-      version: 3.8
+      version: 3.9
       presets: [
         # Reference: https://github.com/Disassembler0/Win10-Initial-Setup-Script/blob/master/Default.preset
         # Privacy tweaks
