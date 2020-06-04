@@ -1,5 +1,5 @@
 # dotfiles
-[![Build Status](https://travis-ci.org/aaronemeier/dotfiles.svg?branch=master)](https://travis-ci.org/aaronemeier/dotfiles)
+[![Build Status](https://gitlab.com/aaronemeier/dotfiles/badges/master/pipeline.svg)](https://gitlab.com/aaronemeier/dotfiles/-/commits/master)
 
 Dotfiles and Ansible setup script
 

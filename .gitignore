@@ -118,7 +118,7 @@
 
 !.editorconfig
 !.gitignore
-!.travis.yml
+!.gitlab-ci.yml
 !dotfiles.sh
 !README.md
 !setup.sh
