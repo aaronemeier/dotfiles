@@ -4,6 +4,7 @@
 cordova-res
 create-react-app
 eslint
+expo-cli
 native-run
 npm
 prettier
