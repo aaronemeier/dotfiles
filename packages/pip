@@ -3,6 +3,6 @@ beets==1.4.9
 cryptography==2.9.2
 pipenv==2020.6.2
 pyacoustid==1.2.0
-pylint==2.5.2
+pylint==2.5.3
 typing==3.7.4.1
 virtualenvwrapper==4.8.4
