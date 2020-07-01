@@ -234,3 +234,6 @@ if [ -r "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]
     ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=yellow'
     ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=red'
 fi
+
+# Pyenv
+[ -x "$(command -v pyenv)" ] && eval "$(pyenv init -)"
