@@ -54,7 +54,6 @@ brew "zsh-syntax-highlighting"
 brew "cloudflare/cloudflare/cloudflared"
 brew "heroku/brew/heroku"
 cask "alfred"
-cask "android-file-transfer"
 cask "calibre"
 cask "docker"
 cask "dotnet-sdk"
@@ -65,14 +64,13 @@ cask "iina"
 cask "iterm2"
 cask "java"
 cask "jetbrains-toolbox"
-cask "joplin"
 cask "logitech-control-center"
 cask "mactex"
 cask "microsoft-teams"
 cask "mono-mdk"
 cask "ngrok"
 cask "paragon-ntfs"
-cask "plex-media-player"
+cask "plex"
 cask "postgres"
 cask "postman"
 cask "rectangle"
@@ -81,12 +79,12 @@ cask "tower"
 cask "unity-hub"
 cask "visual-studio-code"
 cask "vmware-fusion"
-cask "vysor"
 cask "webex-teams"
 cask "wireshark"
 mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
+mas "Bear", id: 1091189122
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
