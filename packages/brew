@@ -12,12 +12,12 @@ brew "ansible"
 brew "bash"
 brew "bash-completion"
 brew "gettext"
+brew "glib"
 brew "cheat"
 brew "cloc"
 brew "cocoapods"
 brew "coreutils"
 brew "duti"
-brew "python"
 brew "ffmpeg"
 brew "fzf"
 brew "gcc"
@@ -25,6 +25,7 @@ brew "git"
 brew "git-lfs"
 brew "gnu-tar"
 brew "gnupg"
+brew "graphviz"
 brew "haskell-stack"
 brew "node"
 brew "pandoc"
@@ -79,7 +80,6 @@ cask "tower"
 cask "unity-hub"
 cask "visual-studio-code"
 cask "vmware-fusion"
-cask "webex-teams"
 cask "wireshark"
 mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
@@ -89,6 +89,7 @@ mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
+mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "Telegram", id: 747648890
 mas "WhatsApp", id: 1147396723
