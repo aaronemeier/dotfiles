@@ -4,6 +4,7 @@
 cordova-res
 create-react-app
 eslint
+ios-sim
 native-run
 npm
 prettier
