@@ -22,7 +22,10 @@ PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
 PATH="/usr/local/share/dotnet:$PATH"
 
 # Android
-PATH="$HOME/Library/Android/sdk/platform-tools:$PATH"
+ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+PATH="$ANDROID_SDK_ROOTtools/bin:$PATH"
+PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
+PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
 
 # Homebrew
 PATH="/usr/local/bin:$PATH"
