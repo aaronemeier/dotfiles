@@ -23,7 +23,7 @@ PATH="/usr/local/share/dotnet:$PATH"
 
 # Android
 ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-PATH="$ANDROID_SDK_ROOTtools/bin:$PATH"
+PATH="$ANDROID_SDK_ROOT/tools/bin:$PATH"
 PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
 
