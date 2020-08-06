@@ -58,3 +58,6 @@
 
 [difftool "vscode"]
     cmd = code --new-window --wait --diff "$LOCAL" "$REMOTE"
+
+[init]
+    defaultBranch = master
