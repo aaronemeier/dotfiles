@@ -48,5 +48,6 @@ alias docker-cleanup='docker system prune --all --force'
 
 # Misc
 alias duh='du -hs ./* | sort -h'
+alias duha='du -ha ./* | sort -h'
 
 [[ "$(uname)" == 'Darwin' ]] && source "$HOME/.shell/aliases.mac"
