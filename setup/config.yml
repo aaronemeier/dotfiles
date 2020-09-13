@@ -4,7 +4,9 @@ vault: '{{ userhome }}/.ansible-vault/vault.yml'
 dotfiles: '{{ userhome }}/.dotfiles/'
 settings:
   cloudflared:
-    url: "https://security.cloudflare-dns.com/dns-query"
+    urls:
+      - "https://1.1.1.2/dns-query"
+      - "https://1.0.0.2/dns-query"
     interfaces: ['Wi-Fi', 'Bluetooth PAN', 'Thunderbolt Bridge', 'Home', 'Mobile']
   shell: '/bin/zsh'
   setup_defaults: True
