@@ -23,8 +23,6 @@
 !bin/
 !bin/.bin
 !bin/.bin/.gitkeep
-!bin/.bin/hsrvpn
-!bin/.bin/insvpn
 
 # cheat
 !cheat/
