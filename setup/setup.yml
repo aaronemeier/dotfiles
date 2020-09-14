@@ -133,11 +133,11 @@
       with_items: "{{ settings.extensions.iina|default('mp3') }}"
 
     - name: Setup macOS defaults
-      script: ./defaults.sh
+      script: ./macos.sh
       when: settings.setup_defaults|default(false)
       notify:
         - Restart dock
-
+    
   handlers:
     - name: Restart cloudflared
       command: launchctl stop com.cloudflare.cloudflared && launchctl start com.cloudflare.cloudflared

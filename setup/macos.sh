@@ -2,6 +2,12 @@
 # Note: This script is on purpose externally and no more within setup.yml with Ansibles osx_default module.
 #       It's easier to test for new macOS versions and deprecated settings
 
+# Close any open System Preferences panes, to prevent them from overriding settings
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
 # Disable captitative portal assistant
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
 
@@ -20,7 +26,7 @@ defaults delete com.apple.dock persistent-apps
 # Disable desktop icons
 defaults write com.apple.finder CreateDesktop -bool false
 
-# Disable saving new files to iCloud
+# Save to disk (not to iCloud) by default
 defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Disable creating .DS_STORE files on network
@@ -74,6 +80,21 @@ sudo nvram SystemAudioVolume=" "
 sudo nvram SystemAudioVolumeDB=" "
 
 # Expand all panes by default
-defaults write -g NSNavPanelExpandedStateForSaveMode -bool true
-defaults write -g PMPrintingExpandedStateForPrint2 -bool true
-defaults write -g PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+# Increase window resize speed
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Use scroll gesture with the ctrl modifier key to zoom
+defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+
+# Prevent Time Machine from prompting to use new hard drives as backup volume
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true

@@ -68,7 +68,7 @@
 !setup/keylayouts/
 !setup/keylayouts/**
 !setup/config.yml
-!setup/defaults.sh
+!setup/macos.sh
 !setup/hosts.yml
 !setup/setup.yml
 !setup/vault.dist.yml
