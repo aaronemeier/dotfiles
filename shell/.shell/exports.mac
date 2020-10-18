@@ -13,3 +13,9 @@ export HOMEBREW_CASK_OPTS="--fontdir=/Library/Fonts"
 
 # Android
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+
+# dotnet
+DOTNET_CLI_TELEMETRY_OPTOUT=0
+
+# Go
+export GOPATH=$HOME/.go

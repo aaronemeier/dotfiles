@@ -33,3 +33,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Manuals
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# dotnet
+export PATH="$HOME/.dotnet/tools:$PATH"
