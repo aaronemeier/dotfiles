@@ -29,7 +29,7 @@ mac-update-brew() {
         echo -e '==>\e[1m Updating Homebrew packages \e[0m\n'
         brew update
         brew upgrade
-        brew cask upgrade
+        brew upgrade --cask
         brew cleanup -s
     else
         echo -e '==> \e[1m Error: brew not found\e[0m\n'
