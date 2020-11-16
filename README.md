@@ -7,6 +7,7 @@ Dotfiles and Ansible setup script
 ### Requirements
 - Log into App Store
 - Install Xcode via App Store
+- Disable SIP in Recovery with `csrutil disable`
 
 ### Security
 - Enable Filevault
