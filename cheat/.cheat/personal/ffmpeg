@@ -1,0 +1,2 @@
+# Concat mp3
+ffmpeg -safe 0 -f concat -i <(for f in $PWD/*.mp3; do echo "file '$f'"; done) -codec copy -map 0 -map_metadata 0 -map_metadata:s:v 0:s:v -map_metadata:s:a 0:s:a full.mp3
