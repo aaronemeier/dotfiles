@@ -63,13 +63,13 @@
 
 # setup
 !setup/
-!cloudflared/
-!cloudflared/**
+!setup/cloudflared/
+!setup/cloudflared/**
 !setup/keylayouts/
 !setup/keylayouts/**
 !setup/config.yml
-!setup/macos.sh
 !setup/hosts.yml
+!setup/macos.sh
 !setup/setup.yml
 !setup/vault.dist.yml
 
