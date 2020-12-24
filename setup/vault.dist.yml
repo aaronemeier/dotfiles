@@ -1,4 +1,0 @@
-vault_localhost_username: 'username'
-vault_vm_username: 'username'
-vault_vm_password: 'password'
-vault_vm_host: 10.0.0.2

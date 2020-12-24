@@ -1,54 +1,30 @@
 # Shell-independent aliases for mac
 
-# System
-alias restart-usb='sudo launchctl stop com.apple.usbd; sudo launchctl start com.apple.usbd'
-alias reset-wifi='sudo ifconfig en0 down; sudo ifconfig en0 mtu 1500 up'
-
-# DNSCrypt
-alias restart-dnscrypt='sudo brew services stop dnscrypt-proxy; sudo brew services start dnscrypt-proxy'
-alias update-dnscrypt='sudo brew services stop dnscrypt-proxy;
-                        brew uninstall dnscrypt-proxy;
-                        sudo rm -rfv /usr/local/Cellar/dnscrypt-proxy/;
-                        brew install dnscrypt-proxy;
-                        brew services stop dnscrypt-proxy;
-                        sudo brew services restart dnscrypt-proxy;'
-
-# Cloudflared
-alias restart-cloudflared='sudo launchctl stop com.cloudflare.cloudflared; sudo launchctl start com.cloudflare.cloudflared'
-
 # History
 alias history-search='history 0 | fzf --tac'
 
-# Location
-alias location-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
+# Gotos
+alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
 
 # Cleanup
 alias cleanup-brew='brew cleanup --prune 0'
 alias cleanup-python-current-directory="find . -name '*.pyc' -delete"
-
 alias cleanup-history='
     rm -rvf ~/.bash_history;
     rm -rvf ~/.lesshst;
     rm -rvf ~/.node_repl_history;
     rm -rvf ~/.viminfo;
     rm -rvf ~/.zsh_history;
+    sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent";
 '
-
 alias cleanup-logs='
     rm -rvf ~/.docker/application-template/logs/com.docker.log;
-    sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* "delete from LSQuarantineEvent";
     rm -rvf ~/Library/Logs/*;
     rm -rvf /Library/Logs/DiagnosticReports/*;
 '
-
 alias cleanup-caches='
     rm -rvf ~/.ansible/tmp/
     rm -rvf ~/.zcompcache/
     rm -rvf ~/.npm/
-    rm -rvf ~/.flutter/flutter/bin/cache/
     rm -rvf ~/Library/Caches/*
 '
-
-# Haskell
-alias ghc='stack ghc --'
-alias ghci='stack ghci --'

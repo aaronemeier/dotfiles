@@ -1,33 +1,129 @@
 #!/usr/bin/env bash
-# Note: This script is on purpose externally and no more within setup.yml with Ansibles osx_default module.
-#       It's easier to test for new macOS versions and deprecated settings
 
-# Close any open System Preferences panes, to prevent them from overriding settings
-osascript -e 'tell application "System Preferences" to quit'
+# Config
+HOSTNAME=Dumbledore
+ENV_CONFIG="$DOTFILES/shell/.shell/exports"
+VSCODE_EXTENSIONS="md cfg ini conf ini sh zsh bat cmd xml plist nfo tex jinja2 yml yaml json css"
+IINA_EXTENSIONS="mp3 flac aac wma ogg m4a mpg mkv wmv mp4 m4v"
 
 # Ask for the administrator password upfront
 sudo -v
 
-# Disable captitative portal assistant
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
+log(){
+    printf "\n==>\e[1m $1 \e[0m\n"
+}
 
-# Disable hyperlink auditing beacon
-defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2HyperlinkAuditingEnabled -bool false
+if [[ "$(xcode-select -p)" == "/Applications/Xcode.app/Contents/Developer" ]]; then
+    log "Using CLI from XCode.app"
+    sudo xcodebuild -license accept
+elif [[ "$(xcode-select -p)" != "/Library/Developer/CommandLineTools" ]]; then
+    log "Using CLI from system"
+    sudo xcode-select --install
+fi
 
-# Set language to for Microsoft Office Excel
-defaults write com.microsoft.Excel AppleLanguages -array "de-CH"
+if [ -z "$(command -v brew)" ]; then
+    log "Installing homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-#  Remove all tags in Finder
-defaults write com.apple.finder FavoriteTagNames -array ""
+log "Loading environment config"
+source "$ENV_CONFIG"
 
-# Remove all Dock items
-defaults delete com.apple.dock persistent-apps
+log "Installing and updating brew packages"
+brew bundle install --file="$DOTFILES/packages/brew"
+brew cleanup -s
 
-# Disable desktop icons
-defaults write com.apple.finder CreateDesktop -bool false
+log "Enabling brew PATH in GUI"
+sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+log "Installing pip packages"
+unset PIP_REQUIRE_VIRTUALENV
+pip3 install --user -r "$DOTFILES/packages/pip"
+
+log "Installing npm packages"
+while read -r item; do
+    [[ "$item" != "" ]] && npm install --global "$item"
+done < "$DOTFILES/packages/npm"
+
+log "Linking dotfiles"
+sh "$DOTFILES/dotfiles.sh"
+
+log "Installing custom keyboard layouts"
+cp "$DOTFILES/setup/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/"
+cp "$DOTFILES/setup/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
+
+log "Checking Paragon NTFS install"
+[ ! -x "/Applications/NTFS for Mac.app" ] && open "/usr/local/Caskroom/paragon-ntfs/15/FSInstaller.app"
+
+log "Checking Paragon EXTFS install"
+[ ! -x "/Applications/EXTFS for Mac.app" ] && open "/usr/local/Caskroom/paragon-extfs/latest/FSInstaller.app"
+
+log "Fixing wireshark permissions"
+sudo chmod 0644 /etc/manpaths.d/Wireshark
+sudo chmod 0644 /etc/paths.d/Wireshark
+
+log "Setting shell to zsh"
+sudo chsh -s /usr/local/bin/zsh "$USER"
+
+log "Setting hostname"
+sudo systemsetup -setcomputername "$HOSTNAME"
+sudo scutil --set ComputerName "$HOSTNAME"
+sudo scutil --set HostName "$HOSTNAME"
+sudo scutil --set LocalHostName "$HOSTNAME"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName "$HOSTNAME"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server ServerDescription ""
+
+log "Setting vscode file associations"
+for e in $VSCODE_EXTENSIONS; do
+    duti -s com.microsoft.VSCode ".$e" all
+done
+duti -s com.microsoft.VSCode public.plain-text all
+
+log "Setting IINA file associations"
+for e in $IINA_EXTENSIONS; do
+    duti -s "com.colliderli.iina" ".$e" all
+done
+
+## macOSSettings
+## Only change settings which are not available in `System Preferences`
+log "Updating macOS settings"
+
+# Close any open System Preferences panes, to prevent them from overriding settings
+osascript -e 'tell application "System Preferences" to quit'
+
+# Enable spring loading for all Dock items
+defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
+# Screenshot location and format
+defaults write com.apple.screencapture location -string "/tmp/" && killall SystemUIServer
+defaults write com.apple.screencapture type -string png
 
 # Save to disk (not to iCloud) by default
-defaults write -g NSDocumentSaveNewDocumentsToCloud -bool false
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Securely empty the trash by default
+defaults write com.apple.finder EmptyTrashSecurely -bool true
+
+# Hide desktop icons
+defaults write com.apple.finder CreateDesktop -bool false
+
+# Disable autogathering large files when submitting a feedback report
+defaults write com.apple.appleseed.FeedbackAssistant Autogather -bool false
+
+# Prevent Time Machine from prompting to use new hard drives as backup volume
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+# Disable Air Drop
+defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
+
+# Check for software updates daily
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Disable crash reporting dialogs
+defaults write com.apple.CrashReporter DialogType -string none
+
+# Disable infrared controller
+sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
 
 # Disable creating .DS_STORE files on network
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -string true
@@ -35,49 +131,9 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -string true
 # Disable creating .DS_STORE files on usb volumes
 defaults write com.apple.desktopservices DSDontWriteUSBStores -string true
 
-# Check for software updates daily
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-
-# Disable Airdrop
-defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
-
-# Disable crash reporting
-defaults write com.apple.CrashReporter DialogType -string none
-
-# Set screenshot location to temp
-defaults write com.apple.screencapture location -string "/tmp/"
-
-# Empty trash securely by default
-defaults write com.apple.finder EmptyTrashSecurely -bool true
-
 # Set faster key repetition speeds
 defaults write -g KeyRepeat -int 1
 defaults write -g InitialKeyRepeat -int 25
-
-# Force password on wake up
-sudo defaults write /Library/Preferences/com.apple.screensaver askForPassword -bool true
-defaults write ~/Library/Preferences/com.apple.screensaver askForPassword -bool true
-
-# Disable delay between starting the screen saver and locking the machine
-sudo defaults -currentHost write /Library/Preferences/com.apple.screensaver askForPasswordDelay -bool false
-defaults -currentHost write ~/Library/Preferences/com.apple.screensaver askForPasswordDelay -bool false
-
-# Enable stealth mode
-defaults write ~/Library/Preferences/com.apple.alf stealthenabled -bool true
-
-# Disable infrared receiver
-sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
-
-# Disable power chime
-sudo defaults write com.apple.PowerChime ChimeOnAllHardware -bool false
-defaults write com.apple.PowerChime ChimeOnAllHardware -bool false
-
-sudo defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
-defaults write com.apple.PowerChime ChimeOnNoHardware -bool true
-
-# Disable system sounds
-sudo nvram SystemAudioVolume=" "
-sudo nvram SystemAudioVolumeDB=" "
 
 # Expand all panes by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -85,16 +141,24 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
-# Always show scrollbars
-defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-
 # Increase window resize speed
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-# Use scroll gesture with the ctrl modifier key to zoom
-defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
+## Clean dock
+defaults write com.apple.dock persistent-apps -array {}
+defaults write com.apple.dock persistent-others -array {}
+defaults write com.apple.dock recent-apps -array {}
+killall Dock
 
-# Prevent Time Machine from prompting to use new hard drives as backup volume
-defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+# Clean finder
+defaults write com.apple.finder FavoriteTagNames -array ""
+killall Finder
+
+# Set iTerm2 preferences
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/sync/iterm"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+
+# Set Alfred preferences
+killall Alfred &> /dev/null
+defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "$DOTFILES/sync/alfred"
+[ -x "/Applications/Alfred 4.app" ] && open "/Applications/Alfred 4.app"

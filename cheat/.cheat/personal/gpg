@@ -1,0 +1,12 @@
+# Backup
+gpg --armor --export > pgp-public-keys.asc
+gpg --armor --export-secret-keys > pgp-private-keys.asc
+gpg --export-ownertrust > pgp-ownertrust.asc
+
+# Restore
+gpg --import pgp-public-keys.asc
+gpg --import pgp-private-keys.asc
+gpg --import-ownertrust pgp-ownertrust.asc
+gpg --edit-key <key>
+gpg> trust
+Your decision? 5 (Ultimate trust)

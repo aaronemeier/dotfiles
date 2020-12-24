@@ -1,7 +1,10 @@
 # Helper functions for zsh on macOS
+log(){
+    printf "\n==>\e[1m $1 \e[0m\n"
+}
 
 mac-run-setup(){
-    (cd "$HOME/.dotfiles" && sh setup.sh)
+    (cd "$DOTFILES/setup" && sh macos.sh)
 }
 
 mac-update() {
@@ -17,37 +20,34 @@ mac-update-system() {
 
 mac-update-mas() {
     if [ -x "$(command -v mas)" ]; then
-        echo -e '==>\e[1m Updating App Store apps \e[0m\n'
+        log "Updating App Store apps"
         mas upgrade
     else
-        echo -e '==> \e[1m Error: brew not found\e[0m\n'
+        log "Error: mas not found"
     fi
 }
 
 mac-update-brew() {
     if [ -x "$(command -v brew)" ]; then
-        echo -e '==>\e[1m Updating Homebrew packages \e[0m\n'
-        brew update
-        brew upgrade
-        brew upgrade --cask
-        brew cleanup -s
+        log "Updating Homebrew packages"
+        brew upgrade && brew cleanup -s
     else
-        echo -e '==> \e[1m Error: brew not found\e[0m\n'
+        log "Error: brew not found"
     fi        
 }
 
 mac-update-npm() {
     if [ -x "$(command -v npm)" ]; then
-        echo -e '==>\e[1m Updating globally installed npm packages \e[0m\n'
+        log "Updating Node packages"
         npm update -g --force
     else
-        echo -e '==> \e[1m Error: npm not found\e[0m\n'
+        log "Error: npm not found"
     fi
 }
 
 mac-update-python() {
     if [ -x "$(command -v pip3)" ]; then
-        echo -e '==> \e[1m Updating pip packages \e[0m\n'
+        log "Updating Python packages"
         export PIP_REQUIRE_VIRTUALENV=""
         pip3 install --upgrade pip setuptools wheel
         for pkg in $(gpip list --outdated --format=freeze | cut -d'=' -f1); do
@@ -55,22 +55,45 @@ mac-update-python() {
         done
         unset PIP_REQUIRE_VIRTUALENV
     else
-        echo -e '==> \e[1m Error: pip not found\e[0m\n'
+        log "Error: pip3 not found"
     fi
 }
 
-mac-save-setup(){
-    if [ -x "$(command -v brew)" ] && [ -x "$(command -v code)" ] &&
-        [ -x "$(command -v pip3)" ] && [ -x "$(command -v npm)" ]; then
-        echo -e '==> \e[1m Saving setup \e[0m\n'        
-        brew bundle dump --force --file="$HOME/.dotfiles/packages/brew"
-        code --list-extensions > "$HOME/.dotfiles/packages/vscode"
-        export PIP_REQUIRE_VIRTUALENV=""
-        pip3 list --user --not-required --format=freeze > "$HOME/.dotfiles/packages/pip"
-        unset PIP_REQUIRE_VIRTUALENV
-        npm ls --parseable -g --depth=0 2&>/dev/null| sed -E 's/^(\/usr\/local\/lib)?(\/node_modules\/)?//g' > "$HOME/.dotfiles/packages/npm"
+mac-save() {
+    mac-save-brew
+    mac-save-npm
+    mac-save-python
+}
+
+mac-save-brew() {
+    if [ -x "$(command -v brew)" ]; then
+        log "Saving Homebrew packages"
+        brew bundle dump --force --file="$DOTFILES/packages/brew"
+        sed '/^$/d' "$DOTFILES/packages/brew"
     else
-        echo -e '==> \e[1m Error: at least one package manager is not installed \e[0m\n'
+        log "Error: brew not found"
+    fi
+}
+
+mac-save-npm() {
+    if [ -x "$(command -v npm)" ]; then
+        log "Saving Node packages"
+        npm ls --parseable -g --depth=0 2&>/dev/null | sed -E 's/^(\/usr\/local\/lib)?(\/node_modules\/)?//g' > "$DOTFILES/packages/npm"
+        sed '/^$/d' "$DOTFILES/packages/npm"
+    else
+        log "Error: npm not found"
+    fi
+}
+
+mac-save-python() {
+    if [ -x "$(command -v pip3)" ]; then
+        log "Saving Python packages"
+        export PIP_REQUIRE_VIRTUALENV=""
+        pip3 list --user --not-required --format=freeze > "$DOTFILES/packages/pip"
+        unset PIP_REQUIRE_VIRTUALENV
+        sed '/^$/d' "$DOTFILES/packages/pip"
+    else
+        log "Error: pip3 not found"
     fi
 }
 

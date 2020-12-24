@@ -10,7 +10,7 @@ PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/usr/local/opt/fzf/bin:$PATH"
 
 # Python
-PATH="$HOME/Library/Python/3.8/bin:$PATH"
+PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 # TeX
 PATH="/Library/TeX/texbin:$PATH"
@@ -20,6 +20,7 @@ PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
 
 # Dotnet
 PATH="/usr/local/share/dotnet:$PATH"
+export PATH="$HOME/.dotnet/tools:$PATH"
 
 # Android
 ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
@@ -33,6 +34,3 @@ export PATH="/usr/local/sbin:$PATH"
 
 # Manuals
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-# dotnet
-export PATH="$HOME/.dotnet/tools:$PATH"

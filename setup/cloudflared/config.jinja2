@@ -1,5 +1,0 @@
-proxy-dns: true
-proxy-dns-upstream:
-{% for url in settings.cloudflared.urls %}
-    - {{ url }}
-{% endfor %}

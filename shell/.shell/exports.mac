@@ -7,15 +7,15 @@ export PIP_REQUIRE_VIRTUALENV=true
 
 # Brew
 export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_CASK_OPTS="--require-sha"
 export HOMEBREW_NO_INSECURE_REDIRECT=1
-export HOMEBREW_CASK_OPTS="--fontdir=/Library/Fonts"
+export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --require-sha"
 
 # Android
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
 # dotnet
-export DOTNET_CLI_TELEMETRY_OPTOUT=0
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
-# Go
-export GOPATH="$HOME/.go"
+# Zlib
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"

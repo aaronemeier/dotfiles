@@ -35,10 +35,6 @@
 !cheat/.config/
 !cheat/.config/cheat/*
 
-# files
-!files/
-!files/*
-
 # git
 !git/
 !git/.gitconfig
@@ -55,7 +51,6 @@
 !packages/brew
 !packages/npm
 !packages/pip
-!packages/vscode
 
 # postgres
 !postgres/
@@ -63,15 +58,9 @@
 
 # setup
 !setup/
-!setup/cloudflared/
-!setup/cloudflared/**
 !setup/keylayouts/
 !setup/keylayouts/**
-!setup/config.yml
-!setup/hosts.yml
 !setup/macos.sh
-!setup/setup.yml
-!setup/vault.dist.yml
 
 # shell
 !shell/
@@ -95,17 +84,6 @@
 !vim/
 !vim/.vimrc
 
-# vscode
-!vscode/
-!vscode/Library/
-!vscode/Library/Application Support/
-!vscode/Library/Application Support/Code/
-!vscode/Library/Application Support/Code/User/
-!vscode/Library/Application Support/Code/User/snippets/
-!vscode/Library/Application Support/Code/User/snippets/*
-!vscode/Library/Application Support/Code/User/keybindings.json
-!vscode/Library/Application Support/Code/User/settings.json
-
 # zsh
 !zsh/
 !zsh/.zsh
@@ -116,7 +94,5 @@
 
 !.editorconfig
 !.gitignore
-!.gitlab-ci.yml
 !dotfiles.sh
 !README.md
-!setup.sh

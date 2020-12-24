@@ -214,7 +214,7 @@ ZSH_PROMPT_DEFAULT_USERNAME="aaron"
 source "$HOME/.zsh/prompt.zsh"
 
 # Check dotfiles
-[[ $( (cd ~/.dotfiles/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
+[[ $( (cd $DOTFILES/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
             && echo -e "\n $fg[red] WARNING:  There are uncommited changes in your dotfiles. $reset_color \n"
 
 # Syntax highlighting (this must be at the end of .zshrc)
