@@ -11,6 +11,7 @@ mac-update() {
     mac-update-system
     mac-update-npm
     mac-update-python
+    mac-save
 }
 
 mac-update-system() {
