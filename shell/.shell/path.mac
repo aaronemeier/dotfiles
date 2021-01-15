@@ -18,10 +18,6 @@ PATH="/Library/TeX/texbin:$PATH"
 # Wireshark
 PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
 
-# Dotnet
-PATH="/usr/local/share/dotnet:$PATH"
-export PATH="$HOME/.dotnet/tools:$PATH"
-
 # Android
 ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 PATH="$ANDROID_SDK_ROOT/tools/bin:$PATH"

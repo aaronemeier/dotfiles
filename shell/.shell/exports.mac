@@ -13,9 +13,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --req
 # Android
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
-# dotnet
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
 # Zlib
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
