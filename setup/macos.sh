@@ -113,9 +113,6 @@ defaults write com.apple.appleseed.FeedbackAssistant Autogather -bool false
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 
-# Disable Air Drop
-defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
-
 # Check for software updates daily
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 

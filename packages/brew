@@ -63,6 +63,7 @@ cask "jetbrains-toolbox"
 cask "logitech-options"
 cask "mactex"
 cask "mono-mdk"
+cask "musescore"
 cask "oracle-jdk"
 cask "paragon-extfs"
 cask "paragon-ntfs"
@@ -81,6 +82,7 @@ mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
 mas "Affinity Photo", id: 824183456
 mas "GarageBand", id: 682658836
+mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
