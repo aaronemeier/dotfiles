@@ -3,6 +3,9 @@
 # History
 alias history-search='history 0 | fzf --tac'
 
+# Colorize bsd ls
+alias ls='ls -G'
+
 # Gotos
 alias goto-icons='cd /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources'
 
