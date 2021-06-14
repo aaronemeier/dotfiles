@@ -45,9 +45,13 @@ alias docker-killall='docker kill $(docker ps -a -q)'
 alias docker-reset='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume list -q)'
 alias docker-cleanup='docker system prune --all --force'
 
+# Cleanup
+alias cleanup-python-current-directory="find . -name '*.pyc' -delete"
 
 # Misc
 alias duh='du -hs ./* | sort -h'
 alias duha='du -ha ./* | sort -h'
 
 [[ "$(uname)" == 'Darwin' ]] && source "$HOME/.shell/aliases.mac"
+[[ "$(uname)" == 'Linux' ]] && source "$HOME/.shell/aliases.linux"
+

@@ -1,0 +1,9 @@
+# Shell-independent aliases for linux
+
+# Maintenance
+alias deb-update='
+    sudo apt update;
+    sudo apt dist-upgrade;
+    sudo apt autoremove;
+    sudo apt autoclean
+'
