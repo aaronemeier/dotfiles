@@ -1,4 +1,4 @@
 idna==3.2
 pipenv==2021.5.29
-pylint==2.8.3
+pylint==2.9.3
 urllib3==1.26.6
