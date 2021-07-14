@@ -6,5 +6,6 @@ create-react-app
 eslint
 ios-sim
 native-run
+netlify-cli
 npm
 vercel
