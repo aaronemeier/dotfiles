@@ -1,6 +1,7 @@
 
 @angular/cli
 @ionic/cli
+@vue/cli
 cordova-res
 create-react-app
 eslint
@@ -8,4 +9,5 @@ ios-sim
 native-run
 netlify-cli
 npm
+semantic-release
 vercel
