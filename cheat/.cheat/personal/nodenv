@@ -1,0 +1,6 @@
+# List available
+nodenv install -l
+
+# List installed
+node versions
+ls ~/.nodenv/versions/
