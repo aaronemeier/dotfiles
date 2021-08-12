@@ -61,3 +61,7 @@
 
 [init]
     defaultBranch = master
+
+
+[includeIf "gitdir:~/Developer/work/"]
+    path = ~/.dotfiles/work/git/.gitconfig
