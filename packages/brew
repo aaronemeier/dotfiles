@@ -78,7 +78,6 @@ cask "postman"
 cask "rar"
 cask "rectangle"
 cask "signal"
-cask "slack"
 cask "spotify"
 cask "tower"
 cask "visual-studio-code"
@@ -96,5 +95,6 @@ mas "Microsoft Outlook", id: 985367838
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
+mas "Slack", id: 803453959
 mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835

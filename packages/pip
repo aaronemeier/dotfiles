@@ -2,3 +2,5 @@ appdirs==1.4.4
 cookiecutter==1.7.3
 pipenv==2021.5.29
 pylint==2.9.6
+regex==2021.8.3
+tomli==1.2.1
