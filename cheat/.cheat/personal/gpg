@@ -10,3 +10,11 @@ gpg --import-ownertrust pgp-ownertrust.asc
 gpg --edit-key <key>
 gpg> trust
 Your decision? 5 (Ultimate trust)
+
+# Extend
+gpg --list-keys
+gpg --edit-key <key>
+command> list
+command> key 1
+command> expire
+command> save
