@@ -239,4 +239,6 @@ fi
 [ -x "$(command -v pyenv)" ] && eval "$(pyenv init -)"
 
 # Nodenv
-eval "$(nodenv init -)"
+[ -x "$(command -v nodenv)" ] && eval "$(nodenv init -)"
+
+
