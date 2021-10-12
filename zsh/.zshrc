@@ -241,4 +241,7 @@ fi
 # Nodenv
 [ -x "$(command -v nodenv)" ] && eval "$(nodenv init -)"
 
+# Kubectl
+source <(kubectl completion zsh)
+
 
