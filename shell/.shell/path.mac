@@ -27,6 +27,9 @@ PATH="$ANDROID_SDK_ROOT/tools/bin:$PATH"
 PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
 
+# Sed
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
 # Getopt
 PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
