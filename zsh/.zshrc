@@ -242,6 +242,6 @@ fi
 [ -x "$(command -v nodenv)" ] && eval "$(nodenv init -)"
 
 # Kubectl
-source <(kubectl completion zsh)
+[ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 
