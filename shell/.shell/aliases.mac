@@ -1,5 +1,8 @@
 # Shell-independent aliases for mac
 
+# Brew
+alias brew-insecure='HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts" brew $@'
+
 # History
 alias history-search='history 0 | fzf --tac'
 
