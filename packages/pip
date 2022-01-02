@@ -1,9 +1,10 @@
 appdirs==1.4.4
+backports.entry-points-selectable==1.1.1
 cookiecutter==1.7.3
 darker==1.3.2
-mypy==0.910
+mypy==0.930
 pipenv==2021.11.23
+protobuf==3.19.1
 pylint==2.12.2
 regex==2021.11.10
-tomli==1.2.2
-typed-ast==1.5.0
+typed-ast==1.5.1

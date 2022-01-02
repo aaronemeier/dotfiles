@@ -1,0 +1,25 @@
+# Backup/Restore deployment
+kubectl -n <NAMESPACE> get deploy  <DEPLOYMENT> -o yaml > backup.yml
+kubectl -n <NAMESPACE> apply -f backup.yml
+
+# Get current nginx config
+POD=$(kubectl get pod -n ingress-nginx)
+kubectl exec <POD> -n ingress-nginx  -- cat /etc/nginx/nginx.conf > nginx.conf
+
+# History & Events
+kubectl -n <NAMESPACE> rollout history deploy/<DEPLOYMENT>
+kubectl -n <NAMESPACE> get events
+
+# Ressources
+kubectl -n <NAMESPACE> top pod
+kubectl -n <NAMESPACE> top node
+
+# Scale Up/Down
+kubectl -n <NAMESPACE> scale --replicas=0 deploy --all
+kubectl -n <NAMESPACE> scale --replicas=1 deploy --all
+
+# Delete evicted pods
+kubectl -n <NAMESPACE> delete pod --field-selector="status.phase==Failed" 
+
+# Update image of deployment
+kubectl -n <NAMESPACE> set image deployment/<DEPLOYMENT_NAME> <DEPLOYMENT_NAME>=registry.digitalocean.com/image:latest
