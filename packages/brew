@@ -43,7 +43,7 @@ brew "mas"
 brew "openjdk"
 brew "maven"
 brew "mongocli"
-brew "mysql", restart_service: true
+brew "mysql"
 brew "netcat"
 brew "nmap"
 brew "node-build"
