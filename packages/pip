@@ -7,4 +7,4 @@ pipenv==2022.1.8
 protobuf==3.19.3
 pylint==2.12.2
 regex==2022.1.18
-typed-ast==1.5.1
+typed-ast==1.5.2
