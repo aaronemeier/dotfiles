@@ -22,4 +22,5 @@ if [ "$(uname)" == 'Darwin' ]; then
     install cheat
     install git
     install postgres
+    install work
 fi

@@ -64,4 +64,4 @@
 
 
 [includeIf "gitdir:~/Developer/work/"]
-    path = ~/.dotfiles/work/git/.gitconfig
+    path = ~/.dotfiles/work_configs/git/.gitconfig
