@@ -57,10 +57,9 @@
 !postgres/.psqlrc
 
 # setup
-!setup/
-!setup/keylayouts/
-!setup/keylayouts/**
-!setup/macos.sh
+!macos.sh
+!keylayouts/
+!keylayouts/**
 
 # shell
 !shell/

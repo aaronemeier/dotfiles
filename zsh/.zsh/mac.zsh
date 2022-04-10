@@ -4,7 +4,7 @@ log(){
 }
 
 mac-run-setup(){
-    (cd "$DOTFILES/setup" && sh macos.sh)
+    (cd "$DOTFILES" && sh macos.sh)
 }
 
 mac-update() {

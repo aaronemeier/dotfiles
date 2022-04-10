@@ -12,5 +12,5 @@ Dotfiles and setup scripts
 
 ```bash
 git clone https://github.com/aaronemeier/dotfiles.git ~/.dotfiles
-(cd ~/.dotfiles/setup && sh macos.sh)
+(cd ~/.dotfiles && sh macos.sh)
 ```

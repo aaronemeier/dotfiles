@@ -2,6 +2,7 @@
 
 # Config
 HOSTNAME=Dumbledore
+DOTFILES="$HOME/.dotfiles"
 ENV_CONFIG="$DOTFILES/shell/.shell/exports"
 VSCODE_EXTENSIONS="md cfg ini conf ini sh zsh bat cmd xml plist nfo tex jinja2 yml yaml json css"
 IINA_EXTENSIONS="mp3 flac aac wma ogg m4a mpg mkv wmv mp4 m4v"
@@ -26,6 +27,10 @@ if [ -z "$(command -v brew)" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+log "Linking dotfiles"
+brew install stow
+sh "$DOTFILES/dotfiles.sh"
+
 log "Loading environment config"
 source "$ENV_CONFIG"
 
@@ -45,12 +50,9 @@ while read -r item; do
     [[ "$item" != "" ]] && npm install --global "$item"
 done < "$DOTFILES/packages/npm"
 
-log "Linking dotfiles"
-sh "$DOTFILES/dotfiles.sh"
-
 log "Installing custom keyboard layouts"
-cp "$DOTFILES/setup/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/"
-cp "$DOTFILES/setup/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
+cp "$DOTFILES/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/"
+cp "$DOTFILES/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
 
 log "Checking Paragon NTFS install"
 [ ! -x "/Applications/NTFS for Mac.app" ] && open "/usr/local/Caskroom/paragon-ntfs/15/FSInstaller.app"
@@ -84,15 +86,11 @@ for e in $IINA_EXTENSIONS; do
     duti -s "com.colliderli.iina" ".$e" all
 done
 
-## macOSSettings
-## Only change settings which are not available in `System Preferences`
+# macOS Settings: We're only changing hidden settings
 log "Updating macOS settings"
 
-# Close any open System Preferences panes, to prevent them from overriding settings
+# Close any open System Preferences panes, to prevent any interference
 osascript -e 'tell application "System Preferences" to quit'
-
-# Enable spring loading for all Dock items
-defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
 
 # Screenshot location and format
 defaults write com.apple.screencapture location -string "/tmp/" && killall SystemUIServer
@@ -141,7 +139,7 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 # Increase window resize speed
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
-## Clean dock
+# Clean dock
 defaults write com.apple.dock persistent-apps -array {}
 defaults write com.apple.dock persistent-others -array {}
 defaults write com.apple.dock recent-apps -array {}

@@ -1,8 +1,5 @@
 # Shell-independent path for mac
 
-# Postgres
-PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-
 # Coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
@@ -20,12 +17,6 @@ PATH="/Library/TeX/texbin:$PATH"
 
 # Wireshark
 PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
-
-# Android
-ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-PATH="$ANDROID_SDK_ROOT/tools/bin:$PATH"
-PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
-PATH="$ANDROID_SDK_ROOT/emulator:$PATH"
 
 # Sed
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
