@@ -1,4 +1,4 @@
-astroid==2.12.1
+astroid==2.12.2
 cookiecutter==2.1.1
 dill==0.3.5.1
 isort==5.10.1
