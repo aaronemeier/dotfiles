@@ -23,4 +23,5 @@ if [ "$(uname)" == 'Darwin' ]; then
     install git
     install postgres
     install work
+    install ideavim
 fi

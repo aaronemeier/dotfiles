@@ -40,6 +40,10 @@
 !git/.gitconfig
 !git/.gitexcludes
 
+# ideavim
+!ideavim/
+!ideavim/.ideavim
+
 # gnupg
 !gnupg/
 !gnupg/.gnupg
