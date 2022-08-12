@@ -33,3 +33,6 @@ alias cleanup-caches='
     rm -rvf ~/.npm/
     rm -rvf ~/Library/Caches/*
 '
+
+# GPG
+alias restart-gpg-agent='gpgconf --kill gpg-agent'
