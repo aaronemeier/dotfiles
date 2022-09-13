@@ -19,3 +19,6 @@ export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 # Zlib
 export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
 export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+# Manuals
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"

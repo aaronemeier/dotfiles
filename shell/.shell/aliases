@@ -46,7 +46,8 @@ alias docker-reset='docker rm $(docker ps -a -q); docker rmi $(docker images -q)
 alias docker-cleanup='docker system prune --all --force'
 
 # Cleanup
-alias cleanup-python-current-directory="find . -name '*.pyc' -delete"
+alias cleanup-thumbnails-current-directory='find . \( -iname ".ds_store" -o -iname "desktop.ini" -o -iname "thumbs.db" \) -type f -delete'
+alias cleanup-python-current-directory='find . \( -name "*.pyc" -o -name "__pycache__" \) -delete'
 
 # Misc
 alias duh='du -hs ./* | sort -h'

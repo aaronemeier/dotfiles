@@ -97,7 +97,3 @@ mac-save-python() {
         log "Error: pip3 not found"
     fi
 }
-
-mac-cleanup-folder() {
-    find "$@" -iname '.ds_store|desktop.ini|thumbs.db' -type f -delete
-}

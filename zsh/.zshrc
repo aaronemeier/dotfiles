@@ -244,4 +244,5 @@ fi
 # Kubectl
 [ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
-
+# Angular
+source <(ng completion script)

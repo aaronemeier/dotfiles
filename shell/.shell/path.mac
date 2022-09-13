@@ -27,6 +27,3 @@ PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 # Homebrew
 PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-
-# Manuals
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"

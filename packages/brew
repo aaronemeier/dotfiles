@@ -11,10 +11,8 @@ brew "asciinema"
 brew "bash"
 brew "bash-completion"
 brew "gettext"
-brew "libffi"
 brew "gnupg"
 brew "blackbox"
-brew "python@3.9"
 brew "cheat"
 brew "cloc"
 brew "cocoapods"
@@ -32,6 +30,7 @@ brew "gnu-tar"
 brew "helm"
 brew "jq"
 brew "kustomize"
+brew "libffi"
 brew "libmagic"
 brew "libxmlsec1"
 brew "mas"
@@ -44,9 +43,9 @@ brew "node-build"
 brew "nodenv"
 brew "p7zip"
 brew "pinentry-mac"
-brew "plantuml"
-brew "postgresql"
+brew "postgresql@14"
 brew "pyenv"
+brew "python@3.9"
 brew "smartmontools"
 brew "stow"
 brew "subversion"
@@ -89,7 +88,6 @@ cask "signal"
 cask "spotify"
 cask "tower"
 cask "visual-studio-code"
-cask "vmware-fusion"
 cask "wireshark"
 mas "1Password 7", id: 1333542190
 mas "Affinity Designer", id: 824171161
@@ -99,7 +97,6 @@ mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835
