@@ -17,7 +17,7 @@ prompt_git(){
     fi
 }
 
-prompt_main() { print -n "\n %(?.%F{green}.%F{red}) \u279c %f " }
+prompt_main() { print -n "\n %(?.%F{green}.%F{red}) \u279c %f" }
 
 prompt_virtualenv(){
      [[ -n $VIRTUAL_ENV ]] && print -n "\U1f40d %F{cyan}% $(basename $VIRTUAL_ENV) %f " 
@@ -31,7 +31,7 @@ prompt_precmd() {
     vcs_info
     # Update title
     print -nP "\e]0;$PWD\a"
-	PROMPT=' $(prompt_user)%F{blue}%~ $(prompt_git)$(prompt_virtualenv)$(prompt_main) %'
+	PROMPT=' $(prompt_user)%F{blue}%~ $(prompt_git)$(prompt_virtualenv)$(prompt_main) '
 }
 
 prompt_setup() {
