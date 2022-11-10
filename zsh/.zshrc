@@ -245,4 +245,4 @@ fi
 [ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
 
 # Angular
-source <(ng completion script)
+[ -x "$(command -v ng)" ] && source <(ng completion script)
