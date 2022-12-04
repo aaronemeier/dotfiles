@@ -29,6 +29,7 @@
     br = branch
     ch = checkout
     df = diff
+    dfb = "diff --shortstat origin/master HEAD"
     lg = log -p
     ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 
