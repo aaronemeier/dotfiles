@@ -1,6 +1,3 @@
----
-tags [ networking ]
----
 # To show hit for rules with auto refresh:
 watch --interval 0 'iptables -nvL | grep -v "0     0"'
 
@@ -11,14 +8,14 @@ watch -d -n 2 iptables -nvL
 iptables -A INPUT -i eth0 -p tcp --dport 902 -j REJECT --reject-with icmp-port-unreachable
 
 # Note, --reject-with accept:
-#	icmp-net-unreachable
-#	icmp-host-unreachable
-#	icmp-port-unreachable <- Hide a port to nmap
-#	icmp-proto-unreachable
-#	icmp-net-prohibited
-#	icmp-host-prohibited or
-#	icmp-admin-prohibited
-#	tcp-reset
+#   icmp-net-unreachable
+#   icmp-host-unreachable
+#   icmp-port-unreachable <- Hide a port to nmap
+#   icmp-proto-unreachable
+#   icmp-net-prohibited
+#   icmp-host-prohibited or
+#   icmp-admin-prohibited
+#   tcp-reset
 
 # To add a comment to a rule:
 iptables ... -m comment --comment "This rule is here for this reason"

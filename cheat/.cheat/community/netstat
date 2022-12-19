@@ -1,6 +1,4 @@
----
-tags [ networking ]
----
+
 # WARNING ! netstat is deprecated. Look below.
 
 # To view which users/processes are listening to which ports:

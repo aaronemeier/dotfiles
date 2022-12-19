@@ -1,6 +1,4 @@
----
-tags [ ssh ]
----
+
 # To generate an SSH key:
 ssh-keygen -t rsa
 
