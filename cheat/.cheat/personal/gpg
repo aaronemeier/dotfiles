@@ -18,3 +18,10 @@ command> list
 command> key 1
 command> expire
 command> save
+
+# Encrypt 
+gpg --import public.key
+gpg --output doc.pdf.gpg --encrypt --recipient user@example.com doc.pdf
+
+# Decrypt
+gpg --output doc.pdf --decrypt doc.pdf.gpg
