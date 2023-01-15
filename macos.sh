@@ -127,7 +127,7 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -string true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -string true
 
 # Set faster key repetition speeds
-defaults write -g KeyRepeat -int 1
+defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 25
 
 # Expand all panes by default
