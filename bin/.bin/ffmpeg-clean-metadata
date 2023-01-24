@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Clean metadata of video files
+
+export file="$1"
+if [ ! -f "$file" ]; then
+    echo "File does not exist!"
+    exit 1
+fi
+
+output_file_name=$(python3 -c 'import os; file = os.environ["file"]; ext = file.rsplit(".")[1]; name = file.rsplit(".")[0]; print(f"{name}_new.{ext}")')
+
+echo "Removing metadata from $file and storing it in $output_file_name"
+ffmpeg -i "$file" -metadata title="" -metadata comment="" -codec copy "$output_file_name"

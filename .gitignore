@@ -22,7 +22,10 @@
 # bin
 !bin/
 !bin/.bin
-!bin/.bin/.gitkeep
+!bin/.bin/ffmpeg-clean-metadata
+!bin/.bin/k8s-resources
+!bin/.bin/k8s-usage
+!bin/.bin/remarkable-backup
 
 # cheat
 !cheat/

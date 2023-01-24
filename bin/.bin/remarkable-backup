@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+
+# reMarkable Backup and Management scripts
+# Source: https://github.com/simonschllng/rm-sync/blob/master/rM-sync.sh
+
+RM_HOST="remarkable"
+RM_USBIP="10.11.99.1"
+RM_DIR="/home/root/.local/share/remarkable/xochitl/"
+MAIN_DIR="$HOME/Documents/Remarkable"
+BACKUP_DIR="$MAIN_DIR/backup/"
+UPLOAD_DIR="$MAIN_DIR/upload/"
+DOWNLOAD_DIR="$MAIN_DIR/download/"
+
+mkdir -p "$MAIN_DIR"
+echo ""
+ssh "$RM_HOST" -q exit
+if [ $? == "0" ]; then
+
+    TODAY=$(date +%y%m%d)
+    while getopts bdu opt; do
+        case $opt in
+        b)
+            echo "Starting backup"
+            mkdir -p "$BACKUP_DIR$TODAY"
+
+            echo "scp \"$RM_HOST:$RM_DIR\" \"$BACKUP_DIR$TODAY\""
+            scp -r "$RM_HOST:$RM_DIR/*" "$BACKUP_DIR$TODAY"
+            if [ $? -ne 0 ]; then
+                ERRORREASON=$ERRORREASON$'\n scp command failed'
+                ERROR=1
+            fi
+
+            echo "Done."
+            ;;
+
+        d)
+            echo "Downloading files"
+            mkdir -p "$DOWNLOAD_DIR"
+            ls -1 "$BACKUP_DIR$TODAY" | sed -e 's/\..*//g' | awk '!a[$0]++' >"$DOWNLOAD_DIR/index"
+
+            echo "[" >"$DOWNLOAD_DIR/index.json"
+            for file in "$BACKUP_DIR$TODAY"/*.metadata; do
+                [ -e "$file" ] || continue
+                echo "{" >>"$DOWNLOAD_DIR/index.json"
+                echo "    \"id\": \"$(basename "$file" .metadata)\"," >>"$DOWNLOAD_DIR/index.json"
+                tail --lines=+2 "$file" >>"$DOWNLOAD_DIR/index.json"
+                echo "," >>"$DOWNLOAD_DIR/index.json"
+            done
+            truncate -s-2 "$DOWNLOAD_DIR/index.json"
+            echo "]" >>"$DOWNLOAD_DIR/index.json"
+
+            echo "Downloading" $(wc -l <"$DOWNLOAD_DIR/index") "files."
+            while read -r line; do
+                FILEUID="$line"
+                curl -s --create-dirs -O --output-dir "$DOWNLOAD_DIR" -J -L "http://$RM_USBIP/download/$FILEUID/placeholder"
+                if [ $? -ne 0 ]; then
+                    ERRORREASON=$ERRORREASON$'\n Download failed'
+                    ERROR=1
+                fi
+            done <"$DOWNLOAD_DIR/index"
+            echo "Done."
+            ;;
+
+        u)
+            echo "Uploading files"
+            for file in "$UPLOAD_DIR"/*; do
+                [ -e "$file" ] || continue
+                echo -n $(basename "$file") ": "
+                curl --form "file=@\"$file\"" http://$RM_USBIP/upload
+                echo "."
+                if [ 0 -eq $? ]; then rm "$file"; fi
+            done
+            if [ $? -ne 0 ]; then
+                ERRORREASON=$ERRORREASON$'\n Upload failed'
+                ERROR=1
+            fi
+            echo "Done"
+            ;;
+        esac
+    done
+else
+    echo "reMarkable not connected"
+    ERRORREASON=$ERRORREASON$'\n reMarkable not connected'
+    ERROR=1
+fi
