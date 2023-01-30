@@ -67,7 +67,6 @@ cask "1password"
 cask "alfred"
 cask "camunda-modeler"
 cask "chromedriver"
-cask "cyberduck"
 cask "docker"
 cask "font-source-code-pro"
 cask "font-source-code-pro-for-powerline"
@@ -93,6 +92,7 @@ cask "spotify"
 cask "tower"
 cask "visual-studio-code"
 cask "wireshark"
+mas "Cyberduck", id: 409222199
 mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Logic Pro", id: 634148309
