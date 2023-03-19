@@ -201,10 +201,10 @@ bindkey "^[[1;9D" backward-word
 # Setup fzf autocompletion
 if [ -x "$(command -v fzf)" ]; then
     export FZF_COMPLETION_TRIGGER='~~'
-    source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+    source "/opt/homebrew/opt/fzf/shell/completion.zsh" 2> /dev/null
     # ctrl+t - Search and paste selected to cli
     # ctrl+r - Use fzf for history search
-    source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+    source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
     bindkey -r '\EC'
 
 fi

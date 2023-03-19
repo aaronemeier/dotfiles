@@ -17,6 +17,7 @@ log(){
 if [[ "$(xcode-select -p)" == "/Applications/Xcode.app/Contents/Developer" ]]; then
     log "Using CLI from XCode.app"
     sudo xcodebuild -license accept
+
 elif [[ "$(xcode-select -p)" != "/Library/Developer/CommandLineTools" ]]; then
     log "Using CLI from system"
     sudo xcode-select --install
@@ -26,6 +27,9 @@ if [ -z "$(command -v brew)" ]; then
     log "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+log "Installing Rosetta 2"
+/usr/sbin/softwareupdate --install-rosetta --agree-to-license
 
 log "Linking dotfiles"
 brew install stow
@@ -39,7 +43,7 @@ brew bundle install --file="$DOTFILES/packages/brew"
 brew cleanup -s
 
 log "Enabling brew PATH in GUI"
-sudo launchctl config user path "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+sudo launchctl config user path "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 log "Installing pip packages"
 unset PIP_REQUIRE_VIRTUALENV
@@ -58,17 +62,17 @@ cp "$DOTFILES/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/
 cp "$DOTFILES/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
 
 log "Checking Paragon NTFS install"
-[ ! -x "/Applications/NTFS for Mac.app" ] && open "/usr/local/Caskroom/paragon-ntfs/15/FSInstaller.app"
+[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/15/FSInstaller.app"
 
 log "Checking Paragon EXTFS install"
-[ ! -x "/Applications/EXTFS for Mac.app" ] && open "/usr/local/Caskroom/paragon-extfs/latest/FSInstaller.app"
+[ ! -x "/Applications/EXTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-extfs/latest/FSInstaller.app"
 
 log "Fixing wireshark permissions"
 sudo chmod 0644 /etc/manpaths.d/Wireshark
 sudo chmod 0644 /etc/paths.d/Wireshark
 
 log "Setting shell to zsh"
-sudo chsh -s /usr/local/bin/zsh "$USER"
+sudo chsh -s /opt/homebrew/bin/zsh "$USER"
 
 log "Setting hostname"
 sudo systemsetup -setcomputername "$HOSTNAME"

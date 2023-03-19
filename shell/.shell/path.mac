@@ -1,10 +1,10 @@
 # Shell-independent path for mac
 
 # Coreutils
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
 # fzf
-PATH="/usr/local/opt/fzf/bin:$PATH"
+PATH="/opt/homebrew/opt/fzf/bin:$PATH"
 
 # Python
 PATH="$HOME/Library/Python/3.11/bin:$PATH"
@@ -19,11 +19,17 @@ PATH="/Library/TeX/texbin:$PATH"
 PATH="/Applications/Wireshark.app/Contents/MacOS:$PATH"
 
 # Sed
-PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 
 # Getopt
-PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+
+# Inkdrop and Docker
+PATH="/usr/local/bin:$PATH"
+
+# Jetbrains
+PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 
 # Homebrew
-PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
+PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"

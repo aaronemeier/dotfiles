@@ -42,7 +42,7 @@ embedart:
 replaygain:
   auto: no
   backend: command
-  command: /usr/local/bin/mp3gain
+  command: /opt/homebrew/bin/mp3gain
   targetlevel: 89
   noclip: yes
   apply: yes
