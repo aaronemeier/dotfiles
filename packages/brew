@@ -8,6 +8,7 @@ tap "homebrew/services"
 tap "nodenv/nodenv"
 brew "ansible"
 brew "asciinema"
+brew "azure-cli"
 brew "bash"
 brew "bash-completion"
 brew "gettext"
@@ -51,7 +52,6 @@ brew "maven"
 brew "mysql"
 brew "netcat"
 brew "nmap"
-brew "openssl@3"
 brew "nodenv"
 brew "p7zip"
 brew "pinentry-mac"
@@ -102,6 +102,7 @@ cask "spotify"
 cask "tower"
 cask "visual-studio-code"
 cask "wireshark"
+mas "Adobe Lightroom", id: 1451544217
 mas "Cyberduck", id: 409222199
 mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
