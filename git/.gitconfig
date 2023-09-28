@@ -25,6 +25,7 @@
     l = log --oneline --graph --decorate
     st = status
     ci = commit
+    cia = "commit --amend"
     stall = "add *"
     ciformat = "commit -m 'Fix linting and formatting issues'"
     br = branch
