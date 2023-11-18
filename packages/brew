@@ -108,13 +108,14 @@ mas "Adobe Lightroom", id: 1451544217
 mas "Cyberduck", id: 409222199
 mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
+mas "Kindle", id: 302584613
 mas "Logic Pro", id: 634148309
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Pixelmator Pro", id: 1289583905
-mas "WhatsApp", id: 1147396723
 mas "Xcode", id: 497799835
+mas "‎WhatsApp", id: 310633997
 vscode "EditorConfig.EditorConfig"
 vscode "foxundermoon.shell-format"
 vscode "James-Yu.latex-workshop"
