@@ -91,7 +91,8 @@ cask "keepassxc"
 cask "logitech-camera-settings"
 cask "logitech-options"
 cask "mactex"
-cask "microsoft-teams"
+cask "microsoft-auto-update"
+cask "microsoft-office-businesspro"
 cask "ngrok"
 cask "paragon-extfs"
 cask "paragon-ntfs"
@@ -110,9 +111,6 @@ mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Kindle", id: 302584613
 mas "Logic Pro", id: 634148309
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
 mas "Pixelmator Pro", id: 1289583905
 mas "Xcode", id: 497799835
 mas "‎WhatsApp", id: 310633997
