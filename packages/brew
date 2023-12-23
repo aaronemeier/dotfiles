@@ -104,6 +104,7 @@ cask "signal"
 cask "spotify"
 cask "tower"
 cask "visual-studio-code"
+cask "vmware-fusion"
 cask "wireshark"
 mas "Adobe Lightroom", id: 1451544217
 mas "Cyberduck", id: 409222199
