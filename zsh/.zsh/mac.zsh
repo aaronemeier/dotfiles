@@ -51,7 +51,7 @@ mac-update-python() {
         log "Updating Python packages"
         export PIP_REQUIRE_VIRTUALENV=""
         pip3 install --upgrade pip setuptools wheel
-        for pkg in $(gpip list --outdated --format=freeze | cut -d'=' -f1); do
+        for pkg in $(pip3 list --user --outdated --format=json | jq -r '.[] | "\(.name)"'); do
             pip3 install --user --upgrade $pkg;
         done
         unset PIP_REQUIRE_VIRTUALENV
