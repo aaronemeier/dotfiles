@@ -58,7 +58,7 @@
 !packages/brew
 !packages/ipm
 !packages/npm
-!packages/pip
+!packages/pipx
 
 # postgres
 !postgres/

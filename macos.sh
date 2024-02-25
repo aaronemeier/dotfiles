@@ -45,9 +45,10 @@ brew cleanup -s
 log "Enabling brew PATH in GUI"
 sudo launchctl config user path "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-log "Installing pip packages"
-unset PIP_REQUIRE_VIRTUALENV
-pip3 install --user -r "$DOTFILES/packages/pip"
+log "Installing pipx packages"
+while read -r item; do
+    [[ "$item" != "" ]] && pipx install "$item"
+done < "$DOTFILES/packages/pipx"
 
 log "Installing npm packages"
 while read -r item; do

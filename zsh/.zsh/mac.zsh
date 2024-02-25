@@ -47,16 +47,11 @@ mac-update-npm() {
 }
 
 mac-update-python() {
-    if [ -x "$(command -v pip3)" ]; then
+    if [ -x "$(command -v pipx)" ]; then
         log "Updating Python packages"
-        export PIP_REQUIRE_VIRTUALENV=""
-        pip3 install --upgrade pip setuptools wheel
-        for pkg in $(pip3 list --user --outdated --format=json | jq -r '.[] | "\(.name)"'); do
-            pip3 install --user --upgrade $pkg;
-        done
-        unset PIP_REQUIRE_VIRTUALENV
+        pipx upgrade-all
     else
-        log "Error: pip3 not found"
+        log "Error: pip not found"
     fi
 }
 
@@ -97,14 +92,11 @@ mac-save-npm() {
 }
 
 mac-save-python() {
-    if [ -x "$(command -v pip3)" ]; then
+    if [ -x "$(command -v pipx)" ]; then
         log "Saving Python packages"
-        export PIP_REQUIRE_VIRTUALENV=""
-        pip3 list --user --not-required --format=freeze > "$DOTFILES/packages/pip"
-        unset PIP_REQUIRE_VIRTUALENV
-        sed '/^$/d' "$DOTFILES/packages/pip"
+        pipx list --short | cut -d" " -f1 > "$DOTFILES/packages/pipx"
     else
-        log "Error: pip3 not found"
+        log "Error: pipx not found"
     fi
 }
 

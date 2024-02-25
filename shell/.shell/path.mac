@@ -7,10 +7,14 @@ PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 PATH="/opt/homebrew/opt/fzf/bin:$PATH"
 
 # Python
-PATH="$HOME/Library/Python/3.11/bin:$PATH"
+PATH="$HOME/Library/Python/3.12/bin:$PATH"
 
 # Pyenv
 PATH="$PYENV_ROOT/bin:$PATH"
+
+
+# pipx
+export PATH="$HOME/.local/bin:$PATH"
 
 # TeX
 PATH="/Library/TeX/texbin:$PATH"
