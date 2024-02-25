@@ -152,3 +152,7 @@ git revert <commit SHA>
 # Pich a commit from a branch to current branch. This is different than merge as
 # this just applies a single commit from a branch to current branch
 git cherry-pick <commit SHA1>
+
+# Get branch name where commit was originally created
+git name-rev <commit SHA1>
+# If not possible use `git log --merges <commit SHA1>` to identify by merges

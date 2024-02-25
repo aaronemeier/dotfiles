@@ -1,2 +1,0 @@
-# Size with file patterns
-du -ach ./files*.mp4

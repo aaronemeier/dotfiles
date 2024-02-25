@@ -21,3 +21,5 @@ ffmpeg -i video.ext -i audio.ext -c:v copy -c:a copy output.ext
 # -autoexit : closes ffplay as soon as the audio finishes
 ffmpeg -ss 00:34:24.85 -t 10 -i path/to/file.mp4 -f mp3 pipe:play | ffplay -i pipe:play -autoexit
 
+# Concat mp3
+ffmpeg -safe 0 -f concat -i <(for f in $PWD/*.mp3; do echo "file '$f'"; done) -codec copy -map 0 -map_metadata 0 -map_metadata:s:v 0:s:v -map_metadata:s:a 0:s:a full.mp3

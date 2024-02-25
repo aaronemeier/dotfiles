@@ -31,10 +31,8 @@
 !cheat/
 !cheat/.cheat
 !cheat/.cheat/
-!cheat/.cheat/community
-!cheat/.cheat/community/*
-!cheat/.cheat/personal
-!cheat/.cheat/personal/*
+!cheat/.cheat/cheats
+!cheat/.cheat/cheats/*
 !cheat/.config/
 !cheat/.config/cheat/*
 
