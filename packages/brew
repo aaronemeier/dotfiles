@@ -50,6 +50,7 @@ brew "libmagic"
 brew "libxmlsec1", link: false
 brew "mas"
 brew "maven"
+brew "mp3gain"
 brew "mysql"
 brew "netcat"
 brew "nmap"
