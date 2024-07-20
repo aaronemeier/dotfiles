@@ -210,8 +210,7 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # Setup prompt
-ZSH_PROMPT_DEFAULT_USERNAME="aaron"
-source "$HOME/.zsh/prompt.zsh"
+eval "$(starship init zsh)"
 
 # Check dotfiles
 [[ $( (cd $DOTFILES/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
