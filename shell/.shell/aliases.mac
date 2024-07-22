@@ -33,6 +33,27 @@ alias cleanup-caches='
     rm -rvf ~/.npm/
     rm -rvf ~/Library/Caches/*
 '
+cleanup-python () {
+    find . -type f -name "*.py[co]" -exec trash {} \;
+    find . -type d -name "__pycache__" -exec trash {} \;
+}
+
+cleanup-node () {
+    find . -name node_modules -type d -prune -exec trash {} +
+}
+
+
 
 # GPG
 alias restart-gpg-agent='gpgconf --kill gpg-agent'
+
+# Use  
+alias youtube-dl='yt-dlp'
+
+# Kubernetes
+alias k='kubectl'
+alias kp='kubectl get pods'
+
+# Doctl
+alias doctl-switch-0x41='doctl auth switch --context 0x41'
+alias doctl-switch-work='doctl auth switch --context work'

@@ -1,0 +1,7 @@
+# See https://starship.rs/config/
+
+# Timeout for commands executed by starship (in milliseconds).
+command_timeout = 600
+
+[docker_context]
+disabled = true

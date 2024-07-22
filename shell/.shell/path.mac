@@ -6,15 +6,11 @@ PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 # fzf
 PATH="/opt/homebrew/opt/fzf/bin:$PATH"
 
-# Python
-PATH="$HOME/Library/Python/3.12/bin:$PATH"
-
 # Pyenv
 PATH="$PYENV_ROOT/bin:$PATH"
 
-
 # pipx
-export PATH="$HOME/.local/bin:$PATH"
+PATH="$HOME/.local/bin:$PATH"
 
 # TeX
 PATH="/Library/TeX/texbin:$PATH"
@@ -34,6 +30,8 @@ PATH="/usr/local/bin:$PATH"
 # Jetbrains
 PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 
+# Postgres
+PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
 # Homebrew
-PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"

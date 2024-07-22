@@ -16,17 +16,9 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --req
 # Android
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
-# Zlib
-export LDFLAGS="-L/opt/homebrew/opt/zlib/lib -L/opt/homebrew/opt/bzip2/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/zlib/include -I/opt/homebrew/opt/bzip2/include"
-
-# Openblas
-export LDFLAGS="-L/opt/homebrew/opt/openblas/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openblas/include"
-
-# libffi
-export LDFLAGS="-L/opt/homebrew/opt/libffi/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libffi/include"
+# Postgres
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@16/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@16/include"
 
 # Manuals
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"

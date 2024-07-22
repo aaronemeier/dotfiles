@@ -77,6 +77,11 @@
 !ssh/.ssh/
 !ssh/.ssh/config
 
+# ssh
+!starship/
+!starship/.config/
+!starship/.config/starship.toml
+
 # sync
 !sync/
 !sync/.gitkeep

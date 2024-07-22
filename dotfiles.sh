@@ -24,4 +24,5 @@ if [ "$(uname)" == 'Darwin' ]; then
     install postgres
     install work
     install ideavim
+    install starship
 fi

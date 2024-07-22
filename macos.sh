@@ -26,6 +26,8 @@ fi
 if [ -z "$(command -v brew)" ]; then
     log "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/aaron/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 log "Installing Rosetta 2"
@@ -63,16 +65,16 @@ cp "$DOTFILES/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/
 cp "$DOTFILES/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
 
 log "Checking Paragon NTFS install"
-[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/15/FSInstaller.app"
+[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/16/FSInstaller.app"
 
 log "Checking Paragon EXTFS install"
-[ ! -x "/Applications/EXTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-extfs/latest/FSInstaller.app"
+[ ! -x "/Applications/EXTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-extfs/12.1.29/FSInstaller.app"
 
 log "Fixing wireshark permissions"
 sudo chmod 0644 /etc/manpaths.d/Wireshark
 sudo chmod 0644 /etc/paths.d/Wireshark
 
-log "Setting shell to zsh"
+log "Setting shell to Homebrew's zsh"
 sudo chsh -s /opt/homebrew/bin/zsh "$USER"
 
 log "Setting hostname"

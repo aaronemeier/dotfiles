@@ -21,7 +21,7 @@ done
 autoload -U colors && colors
 
 # Coloring for ls
-[[ -f "$HOME/.dircolors" ]] && eval $(dircolors "$HOME/.dircolors") || eval $(dircolors)
+ [[ -f "$HOME/.dircolors" ]] && eval $(dircolors "$HOME/.dircolors") || [ -x "$(command -v dircolors)" ] && eval $(dircolors)
 
 # Set locations
 HISTFILE="$HOME/.zsh_history"
@@ -210,7 +210,9 @@ if [ -x "$(command -v fzf)" ]; then
 fi
 
 # Setup prompt
-eval "$(starship init zsh)"
+ZSH_PROMPT_DEFAULT_USERNAME="aaron"
+
+[ -x "$(command -v starship)" ] && eval "$(starship init zsh)" || source "$HOME/.zsh/prompt.zsh"
 
 # Check dotfiles
 [[ $( (cd $DOTFILES/; git status -s 2> /dev/null) | tail -n1) != "" ]] \
