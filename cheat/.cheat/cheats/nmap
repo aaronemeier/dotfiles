@@ -1,6 +1,8 @@
-
 # Single target scan:
 nmap [target]
+
+# Scan all ports
+nmap -p- [target]
 
 # Scan from a list of targets:
 nmap -iL [list.txt]
