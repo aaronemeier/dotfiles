@@ -15,6 +15,7 @@ brew "cloc"
 brew "coreutils"
 brew "doctl"
 brew "duti"
+brew "dvc"
 brew "exercism"
 brew "ffmpeg"
 brew "flyway"
@@ -93,9 +94,9 @@ mas "Cyberduck", id: 409222199
 mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Logic Pro", id: 634148309
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Pixelmator Pro", id: 1289583905
 mas "reMarkable", id: 1276493162
+mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
 mas "‎WhatsApp", id: 310633997
 vscode "editorconfig.editorconfig"
