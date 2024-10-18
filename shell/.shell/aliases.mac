@@ -57,3 +57,6 @@ alias kp='kubectl get pods'
 # Doctl
 alias doctl-switch-0x41='doctl auth switch --context 0x41'
 alias doctl-switch-work='doctl auth switch --context work'
+
+# Chrome
+alias insecure-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security --user-data-dir="/tmp/inscureChrome/"'
