@@ -1,5 +1,6 @@
 
 @angular/cli
+corepack
 eas-cli
 npm
 snyk
