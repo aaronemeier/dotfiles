@@ -53,6 +53,9 @@ alias youtube-dl='yt-dlp'
 # Kubernetes
 alias k='kubectl'
 alias kp='kubectl get pods'
+k-image() { 
+    k get "deploy/$1" -o json | jq ".spec.template.spec.containers[0].image"
+}
 
 # Doctl
 alias doctl-switch-0x41='doctl auth switch --context 0x41'
