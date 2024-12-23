@@ -53,7 +53,7 @@ brew "starship"
 brew "stow"
 brew "terraform"
 brew "tmux"
-brew "trash"
+brew "trash", link: true
 brew "vim"
 brew "watchman"
 brew "wget"
