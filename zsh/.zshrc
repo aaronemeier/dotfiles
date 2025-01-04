@@ -177,9 +177,6 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' \
     hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
 
-# # ctrl+w - Remove previous word
-# # ctrl+u - Remove line
-
 # ctrl+r - Search in history 
 bindkey '^R' history-incremental-search-backward
 
@@ -193,10 +190,10 @@ bindkey '^[[4~' end-of-line
 bindkey '^[[Z' reverse-menu-complete
 
 # alt+right_arrow  - Move one word forward
-bindkey "^[[1;9C" forward-word
+bindkey "^[[1;3C" forward-word
 
 # alt+right_arrow  - Move one word back
-bindkey "^[[1;9D" backward-word
+bindkey "^[[1;3D" backward-word
 
 # Setup fzf autocompletion
 if [ -x "$(command -v fzf)" ]; then
@@ -206,7 +203,6 @@ if [ -x "$(command -v fzf)" ]; then
     # ctrl+r - Use fzf for history search
     source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
     bindkey -r '\EC'
-
 fi
 
 # Setup prompt
