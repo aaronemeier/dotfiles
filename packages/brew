@@ -98,9 +98,9 @@ mas "iMovie", id: 408981434
 mas "Logic Pro", id: 634148309
 mas "Pixelmator Pro", id: 1289583905
 mas "reMarkable", id: 1276493162
+mas "WhatsApp", id: 310633997
 mas "Windows App", id: 1295203466
 mas "Xcode", id: 497799835
-mas "‎WhatsApp", id: 310633997
 vscode "editorconfig.editorconfig"
 vscode "foxundermoon.shell-format"
 vscode "james-yu.latex-workshop"
