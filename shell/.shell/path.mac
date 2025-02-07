@@ -31,7 +31,7 @@ PATH="/usr/local/bin:$PATH"
 PATH="$HOME/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 
 # Postgres
-PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
 # Rust
 PATH="/opt/homebrew/opt/rustup/bin:$PATH"

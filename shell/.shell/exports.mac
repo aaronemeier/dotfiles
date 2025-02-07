@@ -17,8 +17,8 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications --fontdir=/Library/Fonts --req
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 
 # Postgres
-export LDFLAGS="-L/opt/homebrew/opt/postgresql@16/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/postgresql@16/include"
+export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 
 # Manuals
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"

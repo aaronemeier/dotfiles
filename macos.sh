@@ -44,9 +44,6 @@ log "Installing and updating brew packages"
 brew bundle install --file="$DOTFILES/packages/brew"
 brew cleanup -s
 
-log "Enabling brew PATH in GUI"
-sudo launchctl config user path "/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-
 log "Installing pipx packages"
 while read -r item; do
     [[ "$item" != "" ]] && pipx install "$item"
@@ -65,10 +62,10 @@ cp "$DOTFILES/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/
 cp "$DOTFILES/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
 
 log "Checking Paragon NTFS install"
-[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/16/FSInstaller.app"
+[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/17.0.243/FSInstaller.app"
 
 log "Checking Paragon EXTFS install"
-[ ! -x "/Applications/EXTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-extfs/12.1.29/FSInstaller.app"
+[ ! -x "/Applications/EXTFS for Mac.app" ] && open "open /opt/homebrew/Caskroom/paragon-extfs/14.0.33/FSInstaller.app"
 
 log "Fixing wireshark permissions"
 sudo chmod 0644 /etc/manpaths.d/Wireshark
@@ -108,6 +105,9 @@ defaults write com.apple.screencapture type -string png
 
 # Save to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Disable key hold down
+defaults write -g ApplePressAndHoldEnabled 0
 
 # Securely empty the trash by default
 defaults write com.apple.finder EmptyTrashSecurely -bool true

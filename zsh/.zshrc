@@ -104,6 +104,9 @@ setopt complete_in_word
 # Move cursor to the end on completing a word
 setopt always_to_end
 
+# Docker completions
+[ -d "$HOME/.docker/completion" ] && fpath=($HOME/.docker/completions $fpath)
+
 # Include completions
 [ -d "/usr/local/share/zsh-completions" ] && fpath=(/usr/local/share/zsh-completions $fpath)
 
