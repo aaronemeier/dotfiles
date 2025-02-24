@@ -43,7 +43,7 @@ brew "nodenv"
 brew "p7zip"
 brew "pinentry-mac"
 brew "pipx"
-brew "pnpm", link: false
+brew "pnpm"
 brew "poetry"
 brew "postgresql@17"
 brew "pre-commit"
