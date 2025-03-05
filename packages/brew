@@ -6,7 +6,7 @@ brew "asciinema"
 brew "azure-cli"
 brew "bash"
 brew "bash-completion"
-brew "gettext"
+brew "gettext", link: false
 brew "gnupg"
 brew "blackbox"
 brew "cheat"
