@@ -32,6 +32,8 @@ mac-update-brew() {
     if [ -x "$(command -v brew)" ]; then
         log "Updating Homebrew packages"
         brew upgrade && brew cleanup -s
+        log "Fixing brew link overwrites"
+        brew link --overwrite node pnpm
     else
         log "Error: brew not found"
     fi        
