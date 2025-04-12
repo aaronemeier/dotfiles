@@ -167,3 +167,6 @@ defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 killall Alfred &> /dev/null
 defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "$DOTFILES/sync/alfred"
 [ -x "/Applications/Alfred 5.app" ] && open "/Applications/Alfred 5.app"
+
+# Set Exercism location
+exercism configure --workspace=~/Developer/exercism &> /dev/null
