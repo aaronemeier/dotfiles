@@ -2,6 +2,8 @@
 @angular/cli
 corepack
 eas-cli
+eas
+expo-doctor
 npm
 snyk
 vercel

@@ -77,3 +77,6 @@ PS1="\h:\W \u\$ "
 
 # Setup fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Setup cargo
+[ -f ~/.cargo.env ] && source ~/.cargo.env

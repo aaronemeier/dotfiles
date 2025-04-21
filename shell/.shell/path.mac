@@ -36,5 +36,8 @@ PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 # Rust
 PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
+# Cargo
+ PATH="$HOME/.cargo/bin:$PATH"
+
 # Homebrew
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"

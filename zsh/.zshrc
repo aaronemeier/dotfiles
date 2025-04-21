@@ -246,6 +246,3 @@ fi
 
 # Angular
 [ -x "$(command -v ng)" ] && source <(ng completion script)
-
-# Ngrok
-[ -x "$(command -v ngrok)" ] && source <(ngrok completion)
