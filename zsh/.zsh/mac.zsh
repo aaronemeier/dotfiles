@@ -110,3 +110,22 @@ mac-save-ipm() {
         log "Error: ipm not found"
     fi  
 }
+
+mac-set-display-drums() {
+    log "Setting display up for playing drums"
+    #  displayplacer list | grep -B1  "MacBook
+    # id:s4251086178 - mode 54: res:1728x1117 hz:120 color_depth:8 scaling:on
+    displayplacer "id:s4251086178 res:1728x1117 hz:120 color_depth:8 scaling:on"
+    caffeinate -disu
+}
+
+mac-set-display-mobile() {
+    log "Setting display up for mobile use"
+    # s4251086178 - mode 72: res:2056x1329 hz:120 color_depth:8 scaling:on
+    displayplacer "id:s4251086178 res:2056x1329 hz:120 color_depth:8 scaling:on"
+}
+
+mac-set-display-home() {
+    log "Setting display up for home"
+    displayplacer "id:0EF82C14-A4F0-4AE5-8086-731D0A4E6682 res:3008x1692 hz:60 color_depth:7 enabled:true scaling:on origin:(0,0) degree:0" "id:37D8832A-2D66-02CA-B9F7-8F30A301B230 res:1728x1117 hz:120 color_depth:8 enabled:true scaling:on origin:(-1728,0) degree:0"
+}
