@@ -5,7 +5,7 @@ HOSTNAME=Dumbledore
 DOTFILES="$HOME/.dotfiles"
 ENV_CONFIG="$DOTFILES/shell/.shell/exports"
 VSCODE_EXTENSIONS="md cfg ini conf ini sh zsh bat cmd xml plist nfo tex jinja2 yml yaml json css"
-IINA_EXTENSIONS="mp3 flac aac wma ogg m4a mpg mkv wmv mp4 m4v"
+VLC_EXTENSIONS="mp3 flac aac wma ogg m4a mpg mkv wmv mp4 m4v"
 
 # Ask for the administrator password upfront
 sudo -v
@@ -88,9 +88,9 @@ for e in $VSCODE_EXTENSIONS; do
 done
 duti -s com.microsoft.VSCode public.plain-text all
 
-log "Setting IINA file associations"
-for e in $IINA_EXTENSIONS; do
-    duti -s "com.colliderli.iina" ".$e" all
+log "Setting VLC file associations"
+for e in $VLC_EXTENSIONS; do
+    duti -s "org.videolan.vlc" ".$e" all
 done
 
 # macOS Settings: We're only changing hidden settings
