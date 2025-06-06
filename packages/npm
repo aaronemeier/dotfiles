@@ -1,5 +1,6 @@
 
 @angular/cli
+@ionic/cli
 corepack
 eas-cli
 eas
