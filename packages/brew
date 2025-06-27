@@ -78,7 +78,7 @@ cask "alfred"
 cask "calibre"
 cask "camunda-modeler"
 cask "chatgpt"
-cask "docker"
+cask "docker-desktop"
 cask "font-fira-code-nerd-font"
 cask "google-chrome"
 cask "guitar-pro"
@@ -101,7 +101,7 @@ cask "threema"
 cask "tower"
 cask "visual-studio-code"
 cask "vlc"
-cask "wireshark"
+cask "wireshark-app"
 mas "Adobe Lightroom", id: 1451544217
 mas "Cyberduck", id: 409222199
 mas "Home Assistant", id: 1099568401
