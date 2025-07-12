@@ -42,8 +42,6 @@ cleanup-node () {
     find . -name node_modules -type d -prune -exec trash {} +
 }
 
-
-
 # GPG
 alias restart-gpg-agent='gpgconf --kill gpg-agent'
 
@@ -62,4 +60,4 @@ alias doctl-switch-0x41='doctl auth switch --context 0x41'
 alias doctl-switch-work='doctl auth switch --context work'
 
 # Chrome
-alias insecure-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security --user-data-dir="/tmp/inscureChrome/"'
+alias insecure-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security --user-data-dir="$HOME/Library/Application Support/Google/ChromeInsecure"'
