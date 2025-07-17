@@ -4,9 +4,9 @@ tap "homebrew/core"
 brew "ansible"
 brew "asciinema"
 brew "azure-cli"
+brew "gettext", link: false
 brew "bash"
 brew "bash-completion"
-brew "gettext", link: false
 brew "gnupg"
 brew "blackbox"
 brew "cheat"
