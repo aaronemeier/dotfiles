@@ -22,3 +22,6 @@ export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 
 # Manuals
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# Dotnet
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
