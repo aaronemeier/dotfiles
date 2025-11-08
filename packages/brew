@@ -85,7 +85,6 @@ cask "dotnet-sdk"
 cask "font-fira-code-nerd-font"
 cask "google-chrome"
 cask "guitar-pro"
-cask "inkdrop"
 cask "iterm2"
 cask "jetbrains-toolbox"
 cask "logi-options+"
@@ -100,13 +99,13 @@ cask "postman"
 cask "rectangle-pro"
 cask "signal"
 cask "spotify"
-cask "threema"
 cask "tower"
 cask "unity-hub"
 cask "visual-studio-code"
 cask "vlc"
 cask "wireshark-app"
 mas "Adobe Lightroom", id: 1451544217
+mas "Bear", id: 1091189122
 mas "Cyberduck", id: 409222199
 mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434

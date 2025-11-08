@@ -170,3 +170,6 @@ defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "$DO
 
 # Set Exercism location
 exercism configure --workspace=~/Developer/exercism &> /dev/null
+
+# Set Xcode
+cp "$DOTFILES/xcode/IDETemplateMacros.plist" "$HOME/Library/Developer/Xcode/UserData/IDETemplateMacros.plist"

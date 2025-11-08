@@ -61,3 +61,6 @@ alias doctl-switch-work='doctl auth switch --context work'
 
 # Chrome
 alias insecure-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --disable-web-security --user-data-dir="$HOME/Library/Application Support/Google/ChromeInsecure"'
+
+# Youtube DL
+alias youtube-dl-audio='yt-dlp --quiet --extract-audio --audio-format mp3 --audio-quality 0 -o "%(title)s.%(ext)s"'

@@ -94,6 +94,11 @@
 !vim/
 !vim/.vimrc
 
+
+# xcode
+!xcode/
+!xcode/IDETemplateMacros.plist
+
 # zsh
 !zsh/
 !zsh/.zsh
