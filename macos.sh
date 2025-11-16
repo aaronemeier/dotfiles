@@ -54,9 +54,6 @@ while read -r item; do
     [[ "$item" != "" ]] && npm install --global "$item"
 done < "$DOTFILES/packages/npm"
 
-log "Installing Inkdrop packages"
-ipm install --packages-file "$DOTFILES/packages/ipm"
-
 log "Installing custom keyboard layouts"
 cp "$DOTFILES/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/"
 cp "$DOTFILES/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"

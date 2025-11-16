@@ -57,20 +57,10 @@ mac-update-python() {
     fi
 }
 
-mac-update-ipm() {
-    if [ -x "$(command -v ipm)" ]; then
-        log "Updating Inkdrop packages"
-        ipm update
-    else
-        log "Error: ipm not found"
-    fi
-}
-
 mac-save() {
     mac-save-brew
     mac-save-npm
     mac-save-python
-    mac-save-ipm
 }
 
 mac-save-brew() {
@@ -100,15 +90,6 @@ mac-save-python() {
     else
         log "Error: pipx not found"
     fi
-}
-
-mac-save-ipm() {
-    if [ -x "$(command -v ipm)" ]; then
-        log "Saving Inkdrop packages"
-        ipm list --bare --no-versions > "$DOTFILES/packages/ipm"
-    else
-        log "Error: ipm not found"
-    fi  
 }
 
 mac-set-display-drums() {
