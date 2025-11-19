@@ -24,4 +24,5 @@ export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # Dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=true
 export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
