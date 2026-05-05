@@ -20,6 +20,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     install ansible
     install beets
     install cheat
+    install claude
     install git
     install postgres
     install work

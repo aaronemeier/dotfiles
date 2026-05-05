@@ -36,6 +36,12 @@
 !cheat/.config/
 !cheat/.config/cheat/*
 
+# claude
+!claude/
+!claude/.claude
+!claude/.claude/commands/*/*
+!claude/.claude/skills/*/*
+
 # git
 !git/
 !git/.gitconfig
