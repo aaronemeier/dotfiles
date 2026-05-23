@@ -61,7 +61,6 @@
 !packages/
 !packages/brew
 !packages/ipm
-!packages/npm
 !packages/pipx
 
 # postgres

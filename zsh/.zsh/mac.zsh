@@ -59,7 +59,6 @@ mac-update-python() {
 
 mac-save() {
     mac-save-brew
-    mac-save-npm
     mac-save-python
 }
 
@@ -70,16 +69,6 @@ mac-save-brew() {
         sed '/^$/d' "$DOTFILES/packages/brew"
     else
         log "Error: brew not found"
-    fi
-}
-
-mac-save-npm() {
-    if [ -x "$(command -v npm)" ]; then
-        log "Saving Node packages"
-        npm ls --parseable -g --depth=0 2&>/dev/null | sed -E 's/^(\/opt\/homebrew\/lib)?(\/node_modules\/)?//g' > "$DOTFILES/packages/npm"
-        sed '/^$/d' "$DOTFILES/packages/npm"
-    else
-        log "Error: npm not found"
     fi
 }
 
