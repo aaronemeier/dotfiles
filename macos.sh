@@ -159,6 +159,7 @@ killall Finder
 # Set iTerm2 preferences
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/sync/iterm"
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+touch ~/.hushlogin
 
 # Set Alfred preferences
 killall Alfred &> /dev/null
