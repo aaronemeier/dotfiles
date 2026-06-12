@@ -20,3 +20,4 @@ thumbs.db
 *.xlk
 ~$*.ppt*
 *.~vsd*
+**/.claude/settings.local.json

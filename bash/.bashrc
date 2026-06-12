@@ -80,3 +80,8 @@ PS1="\h:\W \u\$ "
 
 # Setup cargo
 [ -f ~/.cargo.env ] && source ~/.cargo.env
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/aaron/.lmstudio/bin"
+# End of LM Studio CLI section
+

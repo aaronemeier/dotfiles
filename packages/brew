@@ -1,109 +1,216 @@
 tap "aaronemeier/brew"
 tap "homebrew/bundle"
 tap "homebrew/core"
+# Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# Automate deployment, configuration, and upgrading
 brew "ansible"
+# Record and share terminal sessions
 brew "asciinema"
+# Microsoft Azure CLI 2.0
 brew "azure-cli"
+# GNU internationalization (i18n) and localization (l10n) library
 brew "gettext", link: false
+# Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Programmable completion for Bash 3.2
 brew "bash-completion"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Safely store secrets in Git/Mercurial/Subversion
 brew "blackbox"
+# Create and view interactive cheat sheets for *nix commands
 brew "cheat"
+# Statistics utility to count lines of code
 brew "cloc"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Utility to configure multi-display resolutions and arrangements
 brew "displayplacer"
+# Command-line tool for DigitalOcean
 brew "doctl"
+# Select default apps for documents and URL schemes on macOS
 brew "duti"
+# Command-line tool to interact with exercism.io
 brew "exercism"
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
+# Database version control to control migrations
 brew "flyway"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU compiler collection
 brew "gcc"
+# Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Geospatial Data Abstraction Library
 brew "gdal"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
+# Git extension for versioning large files
 brew "git-lfs"
+# Open-source GitLab command-line tool
 brew "glab"
+# GNU implementation of the famous stream editor
 brew "gnu-sed"
+# GNU version of the tar archiving utility
 brew "gnu-tar"
+# Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "gradle"
+# User-friendly cURL replacement (command-line HTTP client)
+brew "httpie"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Swiss-army knife of markup format conversion
 brew "pandoc"
+# Interactive environments for writing and running code
 brew "jupyterlab"
+# Anti-bikeshedding Kotlin linter with built-in formatter
 brew "ktlint"
+# Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
+# Template-free customization of Kubernetes YAML manifests
 brew "kustomize"
+# Implementation of the file(1) command
 brew "libmagic"
+# XML security library
 brew "libxmlsec1"
+# Mac App Store command-line interface
 brew "mas"
+# Java-based project management
 brew "maven"
+# Memory profiler for Python applications
 brew "memray"
+# Lossless mp3 normalizer with statistical analysis
 brew "mp3gain"
+# Open source relational database management system
 brew "mysql"
+# Utility for managing network connections
 brew "netcat"
+# Port scanning utility for large networks
 brew "nmap"
+# Node.js version manager
 brew "nodenv"
+# AI coding agent, built for the terminal
 brew "opencode"
+# 7-Zip (high compression file archiver) implementation
 brew "p7zip"
+# Pinentry for GPG on Mac
 brew "pinentry-mac"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Fast, disk space efficient package manager
 brew "pnpm"
+# Object-relational database system
 brew "postgresql@17"
+# Python version management
 brew "pyenv"
+# Rust toolchain installer
 brew "rustup"
+# SMART hard drive monitoring
 brew "smartmontools"
+# Cross-shell prompt for astronauts
 brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Tool to enforce Swift style and conventions
 brew "swiftlint"
+# Tool to build, change, and version infrastructure
 brew "terraform"
+# Terminal multiplexer
 brew "tmux"
+# CLI tool that moves files or folder to the trash
 brew "trash"
+# Command-line unarchiving tools supporting multiple formats
 brew "unar"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Vi 'workalike' with many additional features
 brew "vim"
+# Watch files and take action when they change
 brew "watchman"
+# Internet file retriever
 brew "wget"
+# Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# UNIX shell (command interpreter)
 brew "zsh"
+# Additional completion definitions for zsh
 brew "zsh-completions"
+# Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-brew "aaronemeier/brew/gettext@0.23"
+# Password manager that keeps all passwords secure behind one password
 cask "1password"
+# Command-line interface for 1Password
 cask "1password-cli"
+# Application launcher and productivity software
 cask "alfred"
+# E-books management software
 cask "calibre"
+# Workflow and Decision Automation Platform
 cask "camunda-modeler"
-cask "chatgpt"
+# Anthropic's official Claude AI desktop app
 cask "claude"
+# Terminal-based AI coding assistant
 cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
 cask "codex"
+# App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Developer platform
 cask "dotnet-sdk"
+# Developer platform
 cask "dotnet-sdk@9"
+# Drive health diagnostic & monitoring tool
+cask "drivedx"
 cask "font-fira-code-nerd-font"
+# Web browser
 cask "google-chrome"
+# Sheet music editor software for guitar, bass, keyboards, drums and more
 cask "guitar-pro"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# JetBrains tools manager
 cask "jetbrains-toolbox"
+# App to manage software development and track bugs
+cask "linear"
+# Discover, download, and run local LLMs
+cask "lm-studio"
+# Software for Logitech devices
 cask "logi-options+"
+# Provides access to camera controls
 cask "logitech-camera-settings"
+# Full TeX Live distribution with GUI applications
 cask "mactex"
+# Provides updates to various Microsoft products
 cask "microsoft-auto-update"
+# Office suite
 cask "microsoft-office-businesspro"
+# Read/write support for ext2/3/4 formatted volumes
 cask "paragon-extfs"
+# Read/write support for NTFS formatted volumes
 cask "paragon-ntfs"
+# Home media player
 cask "plex"
+# Window snapping tool
 cask "rectangle-pro"
+# Instant messaging application focusing on security
 cask "signal"
+# Music streaming service
 cask "spotify"
+# Git client focusing on power and productivity
 cask "tower"
+# Management tool for Unity
 cask "unity-hub"
+# Open-source code editor
 cask "visual-studio-code"
+# Multimedia player
 cask "vlc"
+# Network protocol analyzer
 cask "wireshark-app"
 mas "Adobe Lightroom", id: 1451544217
 mas "Bear", id: 1091189122
@@ -119,7 +226,6 @@ mas "Xcode", id: 497799835
 vscode "docker.docker"
 vscode "editorconfig.editorconfig"
 vscode "foxundermoon.shell-format"
-vscode "github.copilot-chat"
 vscode "james-yu.latex-workshop"
 vscode "k--kato.intellij-idea-keybindings"
 vscode "ms-azuretools.vscode-containers"

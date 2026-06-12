@@ -267,3 +267,8 @@ compdef _dotnet_zsh_complete dotnet
 
 # iTerm2
 test -e "/Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh" && source "/Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh" || true
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/aaron/.lmstudio/bin"
+# End of LM Studio CLI section
+
