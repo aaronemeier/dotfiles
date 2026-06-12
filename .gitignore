@@ -39,8 +39,10 @@
 # claude
 !claude/
 !claude/.claude
-!claude/.claude/commands/*/*
-!claude/.claude/skills/*/*
+!claude/.claude/commands
+!claude/.claude/commands/**/*
+!claude/.claude/skills/
+!claude/.claude/skills/**/*
 
 # git
 !git/

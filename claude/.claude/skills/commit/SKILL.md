@@ -28,9 +28,10 @@ description: Create well-formatted git commits following conventional commit sta
 
 ## Example Output
 ```
-feat(auth): add password reset functionality
+feat(auth): Add password reset functionality
 
 - Add forgot password form
 - Implement email verification flow
 - Add password reset endpoint
+
 ```
