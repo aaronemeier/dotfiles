@@ -1,4 +1,4 @@
-tap "aaronemeier/brew"
+tap "aaronemeier/brew", trusted: true
 tap "homebrew/bundle"
 tap "homebrew/core"
 # Cryptography and SSL/TLS Toolkit
@@ -59,8 +59,12 @@ brew "gnu-sed"
 brew "gnu-tar"
 # Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "gradle"
+# Kubernetes package manager
+brew "helm"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
+# Git-compatible distributed version control system
+brew "jj"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Open-source, cross-platform JavaScript runtime environment
@@ -89,6 +93,8 @@ brew "memray"
 brew "mp3gain"
 # Open source relational database management system
 brew "mysql"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Utility for managing network connections
 brew "netcat"
 # Port scanning utility for large networks
@@ -143,6 +149,8 @@ brew "zsh"
 brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "aaronemeier/brew/gettext@0.23"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -212,6 +220,8 @@ cask "visual-studio-code"
 cask "vlc"
 # Network protocol analyzer
 cask "wireshark-app"
+# Multiplayer code editor
+cask "zed"
 mas "Adobe Lightroom", id: 1451544217
 mas "Bear", id: 1091189122
 mas "Cyberduck", id: 409222199
