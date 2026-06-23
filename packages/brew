@@ -73,6 +73,8 @@ brew "node"
 brew "pandoc"
 # Interactive environments for writing and running code
 brew "jupyterlab"
+# Handy way to save and run project-specific commands
+brew "just"
 # Anti-bikeshedding Kotlin linter with built-in formatter
 brew "ktlint"
 # Tool that can switch between kubectl contexts easily and create aliases
@@ -225,7 +227,6 @@ cask "zed"
 mas "Adobe Lightroom", id: 1451544217
 mas "Bear", id: 1091189122
 mas "Cyberduck", id: 409222199
-mas "Developer", id: 640199958
 mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Logic Pro", id: 634148309
