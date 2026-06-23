@@ -107,8 +107,11 @@ setopt always_to_end
 # Docker completions
 [ -d "$HOME/.docker/completion" ] && fpath=($HOME/.docker/completions $fpath)
 
-# Include completions
+# Include zsh completions
 [ -d "/usr/local/share/zsh-completions" ] && fpath=(/usr/local/share/zsh-completions $fpath)
+
+# Include other completions (e.g. just)
+[ -d "/usr/local/share/zsh-completions" ] && fpath=(~/.zsh/completions $fpath)
 
 # Enable zsh better completion (Note: it might be necessary to run: `compaudit | xargs chmod g-w`)
 autoload -Uz compinit && compinit -u

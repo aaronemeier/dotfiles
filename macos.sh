@@ -171,3 +171,7 @@ exercism configure --workspace=~/Developer/exercism &> /dev/null
 
 # Set Xcode
 cp "$DOTFILES/xcode/IDETemplateMacros.plist" "$HOME/Library/Developer/Xcode/UserData/IDETemplateMacros.plist"
+
+# Just completions
+mkdir -p ~/.zsh/completions
+just --completions zsh > ~/.zsh/completions/_just
