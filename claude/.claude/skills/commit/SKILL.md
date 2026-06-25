@@ -1,6 +1,6 @@
 ---
 name: commit
-description: Create well-formatted git commits following conventional commit standards.
+description: Create well-formatted git commits following conventional commit standards, but in a more simplified version.
 ---
 
 ## Instructions
@@ -10,7 +10,7 @@ description: Create well-formatted git commits following conventional commit sta
 
 ## Commit Format
 ```
-<type>(<scope>): <description>
+[<type>:] <description>
 
 [optional body]
 
@@ -18,17 +18,15 @@ description: Create well-formatted git commits following conventional commit sta
 ```
 
 ## Types
+The type can be empty (e.g. when adding tests and if it doesn't fit into the specified types below).
+
 - feat: New feature
 - fix: Bug fix
-- docs: Documentation changes
-- style: Code style changes
 - refactor: Code refactoring
-- test: Adding or modifying tests
-- chore: Maintenance tasks
 
 ## Example Output
 ```
-feat(auth): Add password reset functionality
+feat: Add password reset functionality
 
 - Add forgot password form
 - Implement email verification flow
