@@ -39,6 +39,7 @@
 # claude
 !claude/
 !claude/.claude
+!claude/.claude/settings.json
 !claude/.claude/commands
 !claude/.claude/commands/**/*
 !claude/.claude/skills/
