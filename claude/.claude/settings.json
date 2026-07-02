@@ -8,11 +8,11 @@
       "Read(./build)"
     ]
   },
-  "model": "opus",
+  "model": "claude-fable-5[1m]",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true
   },
-  "effortLevel": "xhigh",
-  "theme": "auto",
-  "tui": "fullscreen"
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "theme": "auto"
 }
