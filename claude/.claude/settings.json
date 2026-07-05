@@ -3,12 +3,13 @@
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
+      "Read(./*.env)",
+      "Read(./*.tfvars)",
       "Read(./secrets/**)",
       "Read(./config/credentials.json)",
       "Read(./build)"
     ]
   },
-  "model": "claude-fable-5[1m]",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true
   },
