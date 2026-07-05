@@ -42,6 +42,11 @@ source "$ENV_CONFIG"
 
 log "Installing and updating brew packages"
 brew bundle install --file="$DOTFILES/packages/brew"
+if [[ ! $? -eq 0 ]]; then
+   log "Error while installing brew packages, stopping. Please fix them first."
+   exit 1
+fi
+
 brew cleanup -s
 
 log "Installing pipx packages"
@@ -49,20 +54,15 @@ while read -r item; do
     [[ "$item" != "" ]] && pipx install "$item"
 done < "$DOTFILES/packages/pipx"
 
-log "Installing npm packages"
-while read -r item; do
-    [[ "$item" != "" ]] && npm install --global "$item"
-done < "$DOTFILES/packages/npm"
-
 log "Installing custom keyboard layouts"
 cp "$DOTFILES/keylayouts/ABC with Umlauts.icns" "$HOME/Library/Keyboard Layouts/"
 cp "$DOTFILES/keylayouts/ABC with Umlauts.keylayout" "$HOME/Library/Keyboard Layouts/"
 
 log "Checking Paragon NTFS install"
-[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/17.0.243/FSInstaller.app"
+[ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/17.0.488/FSInstaller.app"
 
 log "Checking Paragon EXTFS install"
-[ ! -x "/Applications/EXTFS for Mac.app" ] && open "open /opt/homebrew/Caskroom/paragon-extfs/14.0.33/FSInstaller.app"
+[ ! -x "/Applications/EXTFS for Mac.app" ] && open "open /opt/homebrew/Caskroom/paragon-extfs/17.0.488/FSInstaller.app"
 
 log "Fixing wireshark permissions"
 sudo chmod 0644 /etc/manpaths.d/Wireshark

@@ -1,16 +1,12 @@
 tap "aaronemeier/brew", trusted: true
-tap "homebrew/bundle"
+tap "hashicorp/tap"
 tap "homebrew/core"
-# Cryptography and SSL/TLS Toolkit
-brew "openssl@3"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
 # Record and share terminal sessions
 brew "asciinema"
-# Microsoft Azure CLI 2.0
-brew "azure-cli"
 # GNU internationalization (i18n) and localization (l10n) library
-brew "gettext", link: false
+brew "gettext"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Programmable completion for Bash 3.2
@@ -41,12 +37,8 @@ brew "flyway"
 brew "fzf"
 # GNU compiler collection
 brew "gcc"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
 # Geospatial Data Abstraction Library
 brew "gdal"
-# GitHub command-line tool
-brew "gh"
 # Distributed revision control system
 brew "git"
 # Git extension for versioning large files
@@ -83,14 +75,8 @@ brew "kubectx"
 brew "kustomize"
 # Implementation of the file(1) command
 brew "libmagic"
-# XML security library
-brew "libxmlsec1"
 # Mac App Store command-line interface
 brew "mas"
-# Java-based project management
-brew "maven"
-# Memory profiler for Python applications
-brew "memray"
 # Lossless mp3 normalizer with statistical analysis
 brew "mp3gain"
 # Open source relational database management system
@@ -103,8 +89,6 @@ brew "netcat"
 brew "nmap"
 # Node.js version manager
 brew "nodenv"
-# AI coding agent, built for the terminal
-brew "opencode"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Pinentry for GPG on Mac
@@ -117,8 +101,6 @@ brew "pnpm"
 brew "postgresql@17"
 # Python version management
 brew "pyenv"
-# Rust toolchain installer
-brew "rustup"
 # SMART hard drive monitoring
 brew "smartmontools"
 # Cross-shell prompt for astronauts
@@ -127,8 +109,6 @@ brew "starship"
 brew "stow"
 # Tool to enforce Swift style and conventions
 brew "swiftlint"
-# Tool to build, change, and version infrastructure
-brew "terraform"
 # Terminal multiplexer
 brew "tmux"
 # CLI tool that moves files or folder to the trash
@@ -152,7 +132,9 @@ brew "zsh-completions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # GNU internationalization (i18n) and localization (l10n) library
-brew "aaronemeier/brew/gettext@0.23"
+brew "aaronemeier/brew/gettext@0.23", trusted: true
+# Terraform
+brew "hashicorp/tap/terraform", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -167,21 +149,13 @@ cask "camunda-modeler"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
-# OpenAI's coding agent that runs in your terminal
-cask "codex"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Developer platform
 cask "dotnet-sdk"
-# Developer platform
-cask "dotnet-sdk@9"
-# Drive health diagnostic & monitoring tool
-cask "drivedx"
 cask "font-fira-code-nerd-font"
 # Web browser
 cask "google-chrome"
-# Sheet music editor software for guitar, bass, keyboards, drums and more
-cask "guitar-pro"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
 # JetBrains tools manager
@@ -196,8 +170,6 @@ cask "logi-options+"
 cask "logitech-camera-settings"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
-# Provides updates to various Microsoft products
-cask "microsoft-auto-update"
 # Office suite
 cask "microsoft-office-businesspro"
 # Read/write support for ext2/3/4 formatted volumes
@@ -222,8 +194,6 @@ cask "visual-studio-code"
 cask "vlc"
 # Network protocol analyzer
 cask "wireshark-app"
-# Multiplayer code editor
-cask "zed"
 mas "Adobe Lightroom", id: 1451544217
 mas "Bear", id: 1091189122
 mas "Cyberduck", id: 409222199
@@ -231,9 +201,10 @@ mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Logic Pro", id: 634148309
 mas "Pixelmator Pro", id: 1289583905
-mas "reMarkable", id: 1276493162
+mas "Shazam", id: 897118787
 mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835
+vscode "anthropic.claude-code"
 vscode "docker.docker"
 vscode "editorconfig.editorconfig"
 vscode "foxundermoon.shell-format"
@@ -244,6 +215,5 @@ vscode "ms-azuretools.vscode-docker"
 vscode "rokoroku.vscode-theme-darcula"
 vscode "tokiedokie.reveal-markdown"
 vscode "vscode-icons-team.vscode-icons"
-cargo "bacon"
 npm "corepack"
 npm "vercel"
