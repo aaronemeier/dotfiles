@@ -62,7 +62,7 @@ log "Checking Paragon NTFS install"
 [ ! -x "/Applications/NTFS for Mac.app" ] && open "/opt/homebrew/Caskroom/paragon-ntfs/17.0.488/FSInstaller.app"
 
 log "Checking Paragon EXTFS install"
-[ ! -x "/Applications/EXTFS for Mac.app" ] && open "open /opt/homebrew/Caskroom/paragon-extfs/17.0.488/FSInstaller.app"
+[ ! -x "/Applications/EXTFS for Mac.app" ] && open "open /opt/homebrew/Caskroom/paragon-extfs/14.0.46/FSInstaller.app"
 
 log "Fixing wireshark permissions"
 sudo chmod 0644 /etc/manpaths.d/Wireshark
