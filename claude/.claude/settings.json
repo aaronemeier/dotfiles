@@ -10,6 +10,7 @@
       "Read(./build)"
     ]
   },
+  "model": "claude-fable-5[1m]",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true
   },

@@ -1,7 +1,10 @@
 ---
-name: fix-tests
-description: Use report.xml to find failing tests and fix the setup, implementation
+name: fix-pytests
+description: Use report.xml to find failing pytests and fix the setup, implementation
 ---
+
+## Prerequisites
+This only applies for Python projects that have pytest installed.
 
 ## Instructions
 1. Check test-reports/report.xml, read the xml and extract all failing tests
