@@ -57,3 +57,4 @@ alias duha='du -ha ./* | sort -h'
 [[ "$(uname)" == 'Darwin' ]] && source "$HOME/.shell/aliases.mac"
 [[ "$(uname)" == 'Linux' ]] && source "$HOME/.shell/aliases.linux"
 
+alias vim=nvim
