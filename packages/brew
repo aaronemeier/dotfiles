@@ -21,6 +21,8 @@ brew "cheat"
 brew "cloc"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Load/unload environment variables based on $PWD
+brew "direnv"
 # Utility to configure multi-display resolutions and arrangements
 brew "displayplacer"
 # Command-line tool for DigitalOcean
@@ -37,6 +39,8 @@ brew "flyway"
 brew "fzf"
 # GNU compiler collection
 brew "gcc"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # Geospatial Data Abstraction Library
 brew "gdal"
 # Distributed revision control system
@@ -89,6 +93,8 @@ brew "netcat"
 brew "nmap"
 # Node.js version manager
 brew "nodenv"
+# Drop-in replacement for Terraform. Infrastructure as Code Tool
+brew "opentofu"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Pinentry for GPG on Mac
@@ -99,6 +105,8 @@ brew "pipx"
 brew "pnpm"
 # Object-relational database system
 brew "postgresql@17"
+# Fast Git hook manager written in Rust, drop-in alternative to pre-commit
+brew "prek"
 # Python version management
 brew "pyenv"
 # SMART hard drive monitoring
@@ -137,8 +145,8 @@ brew "aaronemeier/brew/gettext@0.23", trusted: true
 brew "hashicorp/tap/terraform", trusted: true
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
-# Command-line interface for 1Password
-cask "1password-cli"
+# Command-line helper for the 1Password password manager
+cask "1password-cli@beta"
 # Application launcher and productivity software
 cask "alfred"
 # E-books management software
@@ -151,6 +159,8 @@ cask "claude"
 cask "claude-code"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
+# Emulator to play GameCube and Wii games
+cask "dolphin"
 # Developer platform
 cask "dotnet-sdk"
 cask "font-fira-code-nerd-font"
@@ -166,8 +176,8 @@ cask "linear"
 cask "lm-studio"
 # Software for Logitech devices
 cask "logi-options+"
-# Provides access to camera controls
-cask "logitech-camera-settings"
+# Optimise your webcam, headset, and Logi Dock for video meetings
+cask "logitune"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
 # Office suite
