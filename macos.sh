@@ -161,6 +161,9 @@ defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$DOTFILES/
 defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 touch ~/.hushlogin
 
+# Store some recent apps in XCode
+defaults write -g NSRecentDocumentsLimit -int 5
+
 # Set Alfred preferences
 killall Alfred &> /dev/null
 defaults write com.runningwithcrayons.Alfred-Preferences syncfolder -string "$DOTFILES/sync/alfred"
