@@ -10,11 +10,23 @@
       "Read(./build)"
     ]
   },
-  "model": "claude-fable-5[1m]",
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true
   },
   "effortLevel": "high",
   "tui": "fullscreen",
-  "theme": "auto"
+  "theme": "auto",
+  "editorMode": "vim",
+  "preferredNotifChannel": "auto",
+  "inputNeededNotifEnabled": false,
+  "agentPushNotifEnabled": false,
+  "model": "claude-fable-5[1m]",
+  "hooks": {
+    "SessionStart": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh start" }] }],
+    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh acknowledge" }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh complete" }] }],
+    "PostToolUseFailure": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh error" }] }],
+    "Notification": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh attention" }] }],
+    "PreCompact": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh limit" }] }]
+  }
 }
