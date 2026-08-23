@@ -43,6 +43,8 @@ brew "gcc"
 brew "pkgconf"
 # Geospatial Data Abstraction Library
 brew "gdal"
+# Interpreter for PostScript and PDF
+brew "ghostscript"
 # Distributed revision control system
 brew "git"
 # Git extension for versioning large files
@@ -93,6 +95,8 @@ brew "netcat"
 brew "nmap"
 # Node.js version manager
 brew "nodenv"
+# General-purpose speech recognition model
+brew "openai-whisper"
 # Drop-in replacement for Terraform. Infrastructure as Code Tool
 brew "opentofu"
 # 7-Zip (high compression file archiver) implementation

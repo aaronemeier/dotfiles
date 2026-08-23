@@ -23,3 +23,6 @@ kubectl -n <NAMESPACE> delete pod --field-selector="status.phase==Failed"
 
 # Update image of deployment
 kubectl -n <NAMESPACE> set image deployment/<DEPLOYMENT_NAME> <DEPLOYMENT_NAME>=registry.digitalocean.com/image:latest
+
+# Exec a shell in a Pod
+kubectl exec -it <pod> -- /bin/bas
