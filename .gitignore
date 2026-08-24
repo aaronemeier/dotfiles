@@ -42,8 +42,10 @@
 !claude/.claude/settings.json
 !claude/.claude/commands
 !claude/.claude/commands/**/*
-!claude/.claude/skills/
+!claude/.claude/skills
 !claude/.claude/skills/**/*
+!claude/.claude/hooks
+!claude/.claude/hooks/**/*
 
 # git
 !git/
