@@ -8,6 +8,74 @@
       "Read(./secrets/**)",
       "Read(./config/credentials.json)",
       "Read(./build)"
+    ],
+    "ask": [
+      "mcp__linear-server",
+      "mcp__rider",
+      "mcp__pycharm"
+    ]
+  },
+  "model": "claude-fable-5[1m]",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/play-sound.sh start"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/play-sound.sh acknowledge"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/play-sound.sh complete"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/play-sound.sh error"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/play-sound.sh attention"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/play-sound.sh limit"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
@@ -19,14 +87,5 @@
   "editorMode": "vim",
   "preferredNotifChannel": "auto",
   "inputNeededNotifEnabled": false,
-  "agentPushNotifEnabled": false,
-  "model": "claude-fable-5[1m]",
-  "hooks": {
-    "SessionStart": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh start" }] }],
-    "UserPromptSubmit": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh acknowledge" }] }],
-    "Stop": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh complete" }] }],
-    "PostToolUseFailure": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh error" }] }],
-    "Notification": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh attention" }] }],
-    "PreCompact": [{ "hooks": [{ "type": "command", "command": "$HOME/.claude/hooks/play-sound.sh limit" }] }]
-  }
+  "agentPushNotifEnabled": false
 }
