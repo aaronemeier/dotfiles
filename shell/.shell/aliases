@@ -53,8 +53,8 @@ alias cleanup-python-current-directory='find . \( -name "*.pyc" -o -name "__pyca
 # Misc
 alias duh='du -hs ./* | sort -h'
 alias duha='du -ha ./* | sort -h'
+alias vim=nvim
 
 [[ "$(uname)" == 'Darwin' ]] && source "$HOME/.shell/aliases.mac"
 [[ "$(uname)" == 'Linux' ]] && source "$HOME/.shell/aliases.linux"
 
-alias vim=nvim

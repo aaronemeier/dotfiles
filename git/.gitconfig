@@ -1,7 +1,7 @@
 [user]
 	name = Aaron Meier
 	email = aaron@0x41.ch
-    editor = code --new-window --wait
+    editor = nvim
 
 [commit]
     gpgsign = true
@@ -18,7 +18,7 @@
     ui = auto
 
 [core]
-    editor = code --new-window --wait
+	editor = nvim
     excludesfile = ~/.gitexcludes
 
 [alias]

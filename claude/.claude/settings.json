@@ -1,4 +1,7 @@
 {
+  "attribution": {
+    "sessionUrl": false
+  },
   "permissions": {
     "deny": [
       "Read(./.env)",
@@ -12,7 +15,11 @@
     "ask": [
       "mcp__linear-server",
       "mcp__rider",
-      "mcp__pycharm"
+      "mcp__pycharm",
+      "mcp__atlassian"
+    ],
+    "allow": [
+      "Bash($HOME/.claude/hooks/mute-toggle.sh)"
     ]
   },
   "model": "claude-fable-5[1m]",
@@ -86,6 +93,7 @@
   "theme": "auto",
   "editorMode": "vim",
   "preferredNotifChannel": "auto",
+  "remoteControlAtStartup": false,
   "inputNeededNotifEnabled": false,
   "agentPushNotifEnabled": false
 }
