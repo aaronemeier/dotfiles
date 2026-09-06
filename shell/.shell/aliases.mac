@@ -76,3 +76,8 @@ cl() {
       claude "$@"                                                    
     fi                                                               
 }   
+
+# 1Password
+alias op-switch-0x41='op account use --account my.1password.eu'
+alias op-switch-work='op account use --account eturnity.1password.eu'
+

@@ -3,6 +3,9 @@
     "sessionUrl": false
   },
   "permissions": {
+    "allow": [
+      "Bash($HOME/.claude/hooks/mute-toggle.sh)"
+    ],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
@@ -16,10 +19,8 @@
       "mcp__linear-server",
       "mcp__rider",
       "mcp__pycharm",
-      "mcp__atlassian"
-    ],
-    "allow": [
-      "Bash($HOME/.claude/hooks/mute-toggle.sh)"
+      "mcp__atlassian",
+      "mcp__GitLab"
     ]
   },
   "model": "claude-fable-5[1m]",
