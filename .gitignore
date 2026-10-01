@@ -44,8 +44,16 @@
 !claude/.claude/commands/**/*
 !claude/.claude/skills
 !claude/.claude/skills/**/*
+claude/.claude/skills/synced/
 !claude/.claude/hooks
 !claude/.claude/hooks/**/*
+claude/.claude/hooks/generals-sounds/.muted
+
+# diffnav
+!diffnav/
+!diffnav/.config/
+!diffnav/.config/diffnav/
+!diffnav/.config/diffnav/config.yml
 
 # git
 !git/
@@ -67,6 +75,12 @@
 !packages/brew
 !packages/ipm
 !packages/pipx
+
+# scode
+!scode/
+!scode/.config/
+!scode/.config/scode/
+!scode/.config/scode/sandbox.yaml
 
 # postgres
 !postgres/

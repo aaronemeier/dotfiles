@@ -21,3 +21,4 @@ thumbs.db
 ~$*.ppt*
 *.~vsd*
 **/.claude/settings.local.json
+.envrc

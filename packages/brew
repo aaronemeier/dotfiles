@@ -1,4 +1,6 @@
 tap "aaronemeier/brew", trusted: true
+tap "bindsch/tap", trusted: true
+tap "can1357/tap"
 tap "hashicorp/tap"
 tap "homebrew/core"
 # Automate deployment, configuration, and upgrading
@@ -11,6 +13,8 @@ brew "gettext"
 brew "bash"
 # Programmable completion for Bash 3.2
 brew "bash-completion"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Safely store secrets in Git/Mercurial/Subversion
@@ -21,6 +25,8 @@ brew "cheat"
 brew "cloc"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
+# Git diff pager based on delta but with a file tree
+brew "diffnav"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Utility to configure multi-display resolutions and arrangements
@@ -43,6 +49,12 @@ brew "gcc"
 brew "pkgconf"
 # Geospatial Data Abstraction Library
 brew "gdal"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
+# GitHub command-line tool
+brew "gh"
 # Interpreter for PostScript and PDF
 brew "ghostscript"
 # Distributed revision control system
@@ -61,12 +73,8 @@ brew "gradle"
 brew "helm"
 # User-friendly cURL replacement (command-line HTTP client)
 brew "httpie"
-# Git-compatible distributed version control system
-brew "jj"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Interactive environments for writing and running code
@@ -87,6 +95,8 @@ brew "mas"
 brew "mp3gain"
 # Open source relational database management system
 brew "mysql"
+# Incremental parsing library
+brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Utility for managing network connections
@@ -125,6 +135,8 @@ brew "swiftlint"
 brew "tmux"
 # CLI tool that moves files or folder to the trash
 brew "trash"
+# Parser generator tool
+brew "tree-sitter-cli"
 # Command-line unarchiving tools supporting multiple formats
 brew "unar"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -135,6 +147,8 @@ brew "vim"
 brew "watchman"
 # Internet file retriever
 brew "wget"
+# Port of OpenAI's Whisper model in C/C++
+brew "whisper.cpp"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # UNIX shell (command interpreter)
@@ -145,6 +159,10 @@ brew "zsh-completions"
 brew "zsh-syntax-highlighting"
 # GNU internationalization (i18n) and localization (l10n) library
 brew "aaronemeier/brew/gettext@0.23", trusted: true
+# Safe sandbox wrapper for AI coding harnesses
+brew "bindsch/tap/scode", trusted: true
+# Coding agent with the IDE wired in
+brew "can1357/tap/omp", trusted: true
 # Terraform
 brew "hashicorp/tap/terraform", trusted: true
 # Password manager that keeps all passwords secure behind one password
@@ -160,7 +178,11 @@ cask "camunda-modeler"
 # Anthropic's official Claude AI desktop app
 cask "claude"
 # Terminal-based AI coding assistant
-cask "claude-code"
+cask "claude-code@latest"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# Brings the power of Copilot coding agent directly to your terminal
+cask "copilot-cli"
 # App to build and share containerised applications and microservices
 cask "docker-desktop"
 # Emulator to play GameCube and Wii games
@@ -168,6 +190,8 @@ cask "dolphin"
 # Developer platform
 cask "dotnet-sdk"
 cask "font-fira-code-nerd-font"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
 # Web browser
 cask "google-chrome"
 # Terminal emulator as alternative to Apple's Terminal app
@@ -198,6 +222,10 @@ cask "rectangle-pro"
 cask "signal"
 # Music streaming service
 cask "spotify"
+# Video game digital distribution service
+cask "steam"
+# Command-line client for Steam
+cask "steamcmd"
 # Git client focusing on power and productivity
 cask "tower"
 # Management tool for Unity
@@ -215,6 +243,7 @@ mas "Home Assistant", id: 1099568401
 mas "iMovie", id: 408981434
 mas "Logic Pro", id: 634148309
 mas "Pixelmator Pro", id: 1289583905
+mas "reMarkable", id: 1276493162
 mas "Shazam", id: 897118787
 mas "WhatsApp", id: 310633997
 mas "Xcode", id: 497799835

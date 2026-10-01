@@ -12,6 +12,8 @@ install zsh
 install bin
 install tmux
 install vim
+install diffnav
+install neovim
 
 if [ "$(uname)" == 'Darwin' ]; then
     mkdir -p ~/.gnupg && chmod 0700 ~/.gnupg && install gnupg
@@ -25,5 +27,8 @@ if [ "$(uname)" == 'Darwin' ]; then
     install postgres
     install work
     install ideavim
-    install starship
+    install starship    
+    install ghostty
+    install scode
+    install omp
 fi

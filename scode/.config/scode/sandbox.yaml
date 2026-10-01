@@ -1,0 +1,13 @@
+# TODO Enable again when https://github.com/bindsch/scode/pull/4 and resolving symlinks works
+strict: false
+
+# blocked:
+#   - ~/Keychains
+
+allowed:
+  - ~/.claude
+  - ~/.dotfiles/claude
+  - ~/.claude/.credentials.json
+  - /tmp/claude-501
+
+scrub_env: true

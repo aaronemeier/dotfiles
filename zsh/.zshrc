@@ -275,4 +275,5 @@ test -e "/Applications/iTerm.app/Contents/Resources/iterm2_shell_integration.zsh
 export PATH="$PATH:/Users/aaron/.lmstudio/bin"
 # End of LM Studio CLI section
 
+# direnv
 eval "$(direnv hook zsh)"

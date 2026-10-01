@@ -65,19 +65,12 @@ alias insecure-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ C
 # Youtube DL
 alias youtube-dl-audio='yt-dlp --quiet --extract-audio --audio-format mp3 --audio-quality 0 -o "%(title)s.%(ext)s"'
 
-# Claude
-cl() {                                                             
-    local branch ticket                                              
-    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)            
-    ticket=$(echo "$branch" | grep -oiE '[a-z]+-[0-9]+' | head -1 |  tr '[:lower:]' '[:upper:]')                                        
-    if [[ -n "$ticket" ]]; then                                      
-      claude -n "$ticket" "$@"                                       
-    else                                                             
-      claude "$@"                                                    
-    fi                                                               
-}   
-
 # 1Password
 alias op-switch-0x41='op account use --account my.1password.eu'
 alias op-switch-work='op account use --account eturnity.1password.eu'
 
+# Claude
+alias claude='scode claude'
+
+# Oh My Pi
+alias omp='scode omp'

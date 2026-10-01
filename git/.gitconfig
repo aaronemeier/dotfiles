@@ -50,7 +50,7 @@
     helper = osxkeychain
 
 [gpg]
-    program = /opt/homebrew/bin/gpg
+	program = /opt/homebrew/bin/gpg
 
 [tag]
     forceSignAnnotated = true
@@ -73,3 +73,5 @@
 
 [includeIf "gitdir:~/Developer/work/"]
     path = ~/.dotfiles/work_configs/git/.gitconfig
+[pager]
+	diff = diffnav
