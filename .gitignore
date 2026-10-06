@@ -48,6 +48,7 @@ claude/.claude/skills/synced/
 !claude/.claude/hooks
 !claude/.claude/hooks/**/*
 claude/.claude/hooks/generals-sounds/.muted
+!claude/.claude/statusline.sh
 
 # diffnav
 !diffnav/
